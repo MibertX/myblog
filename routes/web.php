@@ -12,9 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layout');
 });
 
 Route::get('/test', function() {
    return view('test');
 });
+
+Route::get('/publish', [
+    'uses' => 'NewsController@getAdd'
+]);
+
