@@ -1,0 +1,70 @@
+/*________!This stylesheet file is only for main template!________*/
+
+            /*____Common____*/
+body{
+    background-color: #2d3844;
+    min-width: 765px;
+}
+
+.no-padding{
+    padding: 0;
+}
+
+
+            /*____Header____*/
+.navbar-custom{
+    border-radius: 0;
+    border: 0;
+    margin-top: 10px;
+    height: 150px;
+    background-color: #222a33;
+}
+
+/*Brand-logo*/
+.navbar-brand-custom{
+    padding: 40px 20px 0 60px;
+}
+
+.navbar-brand-custom>a.navbar-brand{
+    font: 24pt Arial, sans-serif;
+}
+
+.navbar-brand-custom>a.navbar-brand>strong{
+    color: #ede9dc;
+}
+
+/*Main navigation menu -
+    used the css relationship excapt of making different classes for each element */
+.navbar-default{
+    background-color: transparent;
+}
+.navmenu-custom{
+    padding: 34px 0;
+}
+
+.navmenu-custom>li{
+    padding: 1px 0 1px 0;
+}
+
+.navmenu-custom>li>a{
+    font: 14pt Arial, sans-serif;
+    color: #53585c;
+    width: 280px;
+    height: 25px;
+    padding: 2px 5px;
+    background-color: #252e38;
+}
+
+.navmenu-custom>li>a:hover{
+    color: #ede9dc;
+    background-color: #2d3844;
+}
+
+
+            /*____Footer____*/
+#footer{
+    color: #ede9dc;
+    background-color: #222a33;
+    text-align: center;
+    margin-top: 20px;
+}

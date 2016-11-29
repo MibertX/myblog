@@ -11,8 +11,14 @@ class NewsController extends Controller
 	 *
 	 * @return Response
 	 */
-    public function getAdd()
+	public function getAdd()
 	{
 		return view('news/add');
+	}
+
+
+	public function postAdd()
+	{
+		return 'hello';
 	}
 }

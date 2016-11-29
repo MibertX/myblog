@@ -26,5 +26,21 @@ class News extends Model
 	];
 
 
+	/**
+	 * The categories of articles
+	 * 
+	 * @var array
+	 */
+	public static $categories = array(
+		'it'          => 'IT',
+		'php'         => 'PHP',
+		'laravel'     => 'Laravel',
+		'developing' => 'Разработка',
+		'gadgets'     =>'Гаджеты',
+		'android'     =>'Аndroid',
+		'ios'         =>'iOS',
+		'windows'     =>'Windows'
+	);
+
 	
 }

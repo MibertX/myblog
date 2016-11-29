@@ -16,7 +16,8 @@
     <!-- Bootstrap -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link href="/bootstrap/css/custom.css" rel="stylesheet">
+    <link href="/bootstrap/css/custom-template.css" rel="stylesheet">
+    <link href="/bootstrap/css/custom-news.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -29,7 +30,7 @@
 <div class="navbar navbar-inverse navbar-custom" role="navigation">
     <div class="container">
         <div class="row">
-            <div class="navbar-header col-sm-7 col-xs-12 navbar-brand-custom">
+            <div class="navbar-header col-sm-6 col-xs-12 navbar-brand-custom">
                 <a class="navbar-brand" href="/">
                     <strong>MyBlog</strong>
                 </a>
@@ -41,9 +42,9 @@
                     <span class="icon-bar"></span>
                 </button>
             </div>
-
-            <div class="navbar-collapse collapse col-sm-5 hidden-xs pull-right">
-                <ul class="nav navmenu-nav nav-custom-menu-item">
+            <div class="col-md-2 col-sm-1">&nbsp;</div>
+            <div class="navbar-default col-sm-5 col-md-4 hidden-xs ">
+                <ul class="nav navmenu-nav navmenu-custom">
                     <li><a href="">Главная    </a></li>
                     <li><a href="">Обо мне    </a></li>
                     <li><a href="">Контакты   </a></li>

@@ -23,3 +23,7 @@ Route::get('/publish', [
     'uses' => 'NewsController@getAdd'
 ]);
 
+Route::post('publish', [
+   'uses' => 'NewsController@postAdd'
+]);
+
