@@ -13,19 +13,21 @@
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
 
-    <!-- Bootstrap -->
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link href="/bootstrap/css/custom-template.css" rel="stylesheet">
-    <link href="/bootstrap/css/custom-news.css" rel="stylesheet">
-
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <!-- Bootstrap -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <!-- Custom stylesheets -->
+    <link href="/bootstrap/css/custom-template.css" rel="stylesheet">
     @yield('headExtra')
 </head>
+
 <body>
 <div class="navbar navbar-inverse navbar-custom" role="navigation">
     <div class="container">
@@ -34,7 +36,6 @@
                 <a class="navbar-brand" href="/">
                     <strong>MyBlog</strong>
                 </a>
-
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -42,7 +43,9 @@
                     <span class="icon-bar"></span>
                 </button>
             </div>
+
             <div class="col-md-2 col-sm-1">&nbsp;</div>
+
             <div class="navbar-default col-sm-5 col-md-4 hidden-xs ">
                 <ul class="nav navmenu-nav navmenu-custom">
                     <li><a href="">Главная    </a></li>
@@ -50,7 +53,6 @@
                     <li><a href="">Контакты   </a></li>
                 </ul>
             </div>
-
         </div><!--/.navbar-collapse -->
     </div>
 </div>

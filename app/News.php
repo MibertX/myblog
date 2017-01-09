@@ -11,7 +11,7 @@ class News extends Model
 	 *
 	 * @var string
 	 */
-    protected $table = 'news';
+	protected $table = 'news';
 
 
 	/**
@@ -22,25 +22,48 @@ class News extends Model
 	protected $fillable = [
 		'title',
 		'author',
-		'path'
+		'text',
+		'categories'
 	];
 
 
 	/**
 	 * The categories of articles
-	 * 
+	 *
 	 * @var array
 	 */
 	public static $categories = array(
-		'it'          => 'IT',
-		'php'         => 'PHP',
-		'laravel'     => 'Laravel',
+		'it'         => 'IT',
+		'php'        => 'PHP',
+		'laravel'    => 'Laravel',
 		'developing' => 'Разработка',
-		'gadgets'     =>'Гаджеты',
-		'android'     =>'Аndroid',
-		'ios'         =>'iOS',
-		'windows'     =>'Windows'
+		'gadgets'    => 'Гаджеты',
+		'android'    => 'Аndroid',
+		'ios'        => 'iOS',
+		'windows'    => 'Windows'
 	);
 
+
+	public static function categoriesToStr($data) {
+		$categories = [];
+		foreach ($data as $key=>$value) {
+			if(array_key_exists($key, News::$categories)) {
+				$categories[$key] = $value;
+			}
+		}
+		return implode(', ', $categories);
+	}
 	
+	
+	public static function getValidationRules()
+	{
+		// проинициализируем массив статичеческими правилами
+		$validation = array(
+			'title' => 'required|min:3|max:250',
+			'categories' => 'required',
+			'text' => 'required|min:10'
+		);
+
+		return $validation;
+	}
 }
