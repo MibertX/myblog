@@ -21,21 +21,32 @@ class NewsController extends Controller
 		return view('news/add');
 	}
 
-
+	/**
+	 * Create the new article, save the it's text into .txt file and save it in DB after successfully validation
+	 *
+	 * @return string
+	 */
 	public function postAdd()
 	{
-		$data['title'] = $_POST['title'];
-		$data['categories'] = News::categoriesToStr(Input::all());
-		$data['author'] = 'Mibert';
-		$data['text'] = $_POST['text'];
-
-		$validation = Validator::make($data, News::getValidationRules());
+		//create a data array of user input to validate it
+		$validation_array['title']      = trim($_POST['title']);
+		$validation_array['categories'] = News::categoriesToStr(Input::all()); // array of categories into a string
+		$validation_array['author']     = 'Mibert';
+		$validation_array['text']       = trim($_POST['text']);
+		$validation = Validator::make($validation_array, News::getValidationRules());
 		if ($validation->fails()) {
 			return Redirect::back()->withErrors($validation)->withInput();
 		}
+		
+		//create a new article (object) using successfully validated data
+		$article = new News();
+		$article->title      = $validation_array['title'];
+		$article->author     = 'Mibert';
+		$article->text       = $article->saveInTxtFile($validation_array['text']); 
+		$article->categories = $validation_array['categories'];
 
-		$article = News::create($data);
-		return 'Добавлена новость, id: ' . $article->id;
-
+		//and save it into DB
+		$article->save();
+		return 'Добавлена новость, id: ' . $article->id . $article->created_at;
 	}
 }
