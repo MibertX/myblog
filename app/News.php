@@ -4,19 +4,35 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Date\DateFormat;
 
 /**
  * Class News
  * @package App
- * @property id
+ * @property $id
  * @property $text
  * @property $title
  * @property $author
  * @property $categories
+ * @property $short_month
+ * @property $short_day
  */
-
+global $categories_counters;
 class News extends Model
 {
+	public function getCreatedAtAttribute($time)
+	{
+		$this->short_month = date('M', strtotime($time));
+		$this->short_day   = date('d', strtotime($time));
+		return DateFormat::when($time);
+	}
+
+	public function getUpdatedAtAttribute($time)
+	{
+		return DateFormat::when($time);
+	}
+
+
 	/**
 	 * The database table that used by this model
 	 *
@@ -70,6 +86,35 @@ class News extends Model
 		'ios'        => 'iOS',
 		'windows'    => 'Windows'
 	);
+	
+	
+	public static $categories_counters = [];
+
+	public static function updateCounters($new_counter) {
+//		News::$categories_counters = $new_counter;
+		$categories_counters = $new_counter;
+	}
+
+	public static function getCounters() {
+		if (isset($GLOBALS['categories_counters'])) {
+			return $GLOBALS['categories_counters'];
+		}else {
+			return array();
+		}
+	}
+
+	public static function createCounters()
+	{
+		$text = '';
+		foreach (News::$categories as $category) {
+			$text = $text . $category . '0' . '\n';
+		}
+
+		if(Storage::disk('local')) {
+			Storage::put('category_counters.txt', $text);
+			return true;
+		}
+	}
 
 
 	/**
@@ -84,7 +129,7 @@ class News extends Model
 		$categories = [];
 		foreach ($data as $key=>$value) {
 			if(array_key_exists($key, News::$categories)) {
-				$categories[$key] = $value;
+				$categories[] = $key;
 			}
 		}
 		return implode(', ', $categories);
@@ -130,8 +175,42 @@ class News extends Model
 			$dir = $this->defaultDir . DIRECTORY_SEPARATOR . str_replace(' ', '_', strtolower($this->title));
 			$file_path = $dir . DIRECTORY_SEPARATOR . 'text.txt';
 			Storage::put($file_path, $text);
-			
+
 			return $file_path;
 		}
+	}
+
+
+	public function previewText()
+	{
+		$file = fopen('../storage/app/' . $this->text, 'r');
+		$preview = fgets($file, 2048);
+		fclose($file);
+
+		if (strlen($preview) < 100) {
+			$file = Storage::get($this->text);
+			return substr($file, 0, 300) . '...';
+		}
+		
+		return $preview;
+	}
+
+
+	public static function updateArticleCountersByCategories($categories_string)
+	{
+		$categories = explode(', ', $categories_string);
+		$categories_counter = News::getCounters();
+		
+		foreach ($categories as $category) {
+			if(isset($categories_counter[$category])) {
+				$categories_counter[$category] = (int)$categories_counter[$category] +1;
+			}else {
+				$categories_counter[$category] = 1;
+			}
+
+		}
+
+		News::updateCounters($categories_counter);
+//		News::updateCounters($categories_counter);
 	}
 }

@@ -3,7 +3,7 @@ return [
 	'later'               => ':date в :time',
 	'today'               => 'сегодня в :time',
 	'minutes_ago'         => ':minutes мин. назад',
-	'hours_ago'           => ':hoursч. :minutesмин. назад',
+	'hours_ago'           => ':hoursч.:minutesмин. назад',
 	'yesterday'           => 'вчера в :time',
 	
 	'month_declensions' => [

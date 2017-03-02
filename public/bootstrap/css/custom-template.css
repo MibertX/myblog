@@ -6,6 +6,10 @@ body{
     min-width: 765px;
 }
 
+body, html {
+    height: 100%;
+}
+
 .no-padding{
     padding: 0;
 }

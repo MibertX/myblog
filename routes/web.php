@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function() {
-   return view('test');
+    return view('test');
 });
 
 Route::get('/publish', [
@@ -25,5 +25,9 @@ Route::get('/publish', [
 
 Route::post('publish', [
    'uses' => 'NewsController@postAdd'
+]);
+
+Route::get('/main', [
+    'uses' => 'NewsController@getAll'
 ]);
 

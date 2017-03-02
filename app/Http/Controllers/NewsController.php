@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
 use App\News;
 
@@ -18,9 +19,11 @@ class NewsController extends Controller
 	 */
 	public function getAdd()
 	{
-		return view('news/add');
+		$categories = News::$categories;
+		return view('news/add', array('categories' => $categories));
 	}
 
+	
 	/**
 	 * Create the new article, save the it's text into .txt file and save it in DB after successfully validation
 	 *
@@ -42,11 +45,34 @@ class NewsController extends Controller
 		$article = new News();
 		$article->title      = $validation_array['title'];
 		$article->author     = 'Mibert';
-		$article->text       = $article->saveInTxtFile($validation_array['text']); 
+		$article->text       = $article->saveInTxtFile($validation_array['text']);
 		$article->categories = $validation_array['categories'];
 
 		//and save it into DB
 		$article->save();
+		News::updateArticleCountersByCategories($article->categories);
 		return 'Добавлена новость, id: ' . $article->id . $article->created_at;
+	}
+
+
+	public function getAll()
+	{
+		$news = News::simplepaginate(3);
+
+		foreach ($news as $article) {
+			if ($article->created_at == $article->updated_at) {
+				$article->author = 'Добавил ' . $article->author;
+				$article->date   = $article->created_at;
+			}else {
+				$article->author = 'Изменил ' . $article->author;
+				$article->date   = $article->updated_at;
+			}
+			
+			$article->text_preview = $article->previewText();
+		}
+
+		$categories = News::$categories;
+		$counters = News::getCounters();
+		return view('news/all', array('news' => $news, 'categories' => $categories, 'counters' => $counters));
 	}
 }

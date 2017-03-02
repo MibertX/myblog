@@ -6,7 +6,7 @@
     @stop
 
 @section('headExtra')
-    <link href="/bootstrap/css/custom-news.css" rel="stylesheet">
+    <link href="/bootstrap/css/custom-news-add.css" rel="stylesheet">
     @stop
 
 
@@ -51,17 +51,31 @@
         </div>
 
         {{--Right side of the form - checkboxes for selecting categories--}}
-        <div class="col-xs-4 news-add-categories-padding">
-            <div class="form-group ">
-                <p class="news-add-checkbox-title">Категории</p>
+        <div class="col-xs-4 news-container-categories-padding">
+            <div class="form-group">
+                <div class="wrapper">
+                    <h4 class="news-categories-title">Категории</h4>
+                </div>
 
-                @foreach(\App\News::$categories as $key=>$value)
-                    <label class="checkbox news-add-checkbox-field">
-                        {{ Form::checkbox($key, $value, null, array('class' => 'news-add-checkbox')) }}
-                        <span class="pull-right">{{$value}}</span>
-                    </label>
+                <ul class="news-categories-list">
                     <hr class="hr-custom">
-                @endforeach
+                    @foreach($categories as $key=>$value)
+                    {{--<label class="checkbox news-add-checkbox-field">--}}
+                        {{--{{ Form::checkbox($key, $value, null, array('class' => 'news-add-checkbox')) }}--}}
+                        {{--<span class="pull-right">{{$value}}</span>--}}
+                    {{--</label>--}}
+                    {{--<hr class="hr-custom">--}}
+
+                       <li>
+                           <label class="checkbox news-category-field">
+                               {{ Form::checkbox($key, $value, null, array('class' => 'news-add-checkbox')) }}
+                               <span class="news-category-font pull-right">{{$value}}</span>
+                           </label>
+                       </li>
+                        <hr class="hr-custom">
+                    @endforeach
+                </ul>
+
                 @yield('categories_error')
             </div>
         </div>
