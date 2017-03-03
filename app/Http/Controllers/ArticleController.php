@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Categories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 
-use App\News;
+use App\Articles;
 
-class NewsController extends Controller
+
+class ArticleController extends Controller
 {
 	/**
 	 * Show the form for creating a new article
@@ -19,8 +21,14 @@ class NewsController extends Controller
 	 */
 	public function getAdd()
 	{
-		$categories = News::$categories;
-		return view('news/add', array('categories' => $categories));
+		
+		
+		//!!! С модели Категорий!!!
+		$categories = Categories::getAllCategories();
+		var_dump($categories);die;
+		
+		
+//		return view('news/add', array('categories' => $categories));
 	}
 
 	

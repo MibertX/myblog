@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNewsTable extends Migration
+class CreateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,13 @@ class CreateNewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('news', function(Blueprint $table) {
-            $table->increments('id')->unique();
+        Schema::create('categories', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+            $table->charset = 'UTF8';
+            $table->collation = 'utf8_general_ci';
             
-            $table->string('title')->unique();
-            $table->string('path');
-            $table->string('author');
-
-            $table->integer('views')->unsigned();
-
-            $table->timestamps();
+            $table->increments('category_id');
+            $table->string('name', 70);
         });
     }
 
@@ -33,6 +30,6 @@ class CreateNewsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('news');
+        Schema::dropIfExists('categories');
     }
 }

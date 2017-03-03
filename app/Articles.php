@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Date\DateFormat;
 
 /**
- * Class News
+ * Class Articles
  * @package App
  * @property $id
  * @property $text
@@ -17,8 +17,9 @@ use Date\DateFormat;
  * @property $short_month
  * @property $short_day
  */
-global $categories_counters;
-class News extends Model
+
+
+class Articles extends Model
 {
 	public function getCreatedAtAttribute($time)
 	{

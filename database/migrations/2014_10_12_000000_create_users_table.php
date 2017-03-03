@@ -14,9 +14,12 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->engine = 'InnoDB';
+            $table->charset = 'UTF8';
+            $table->collation = 'utf8_general_ci';            
 
             $table->bigIncrements('user_id')->unique();
-            $table->string('name');
+            $table->string('fname', 50)->nullable();
+            $table->string('lname', 50);
             $table->string('email')->unique();
 
             $table->string('password');
@@ -24,7 +27,7 @@ class CreateUsersTable extends Migration
             $table->string('activationCode');
 
             $table->boolean('isActive')->index();
-            $table->boolean('isAdmin');
+            $table->boolean('isAdmin')->default(0);
 
             $table->timestamps();
         });

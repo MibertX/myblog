@@ -20,7 +20,7 @@ Route::get('/test', function() {
 });
 
 Route::get('/publish', [
-    'uses' => 'NewsController@getAdd'
+    'uses' => 'ArticleController@getAdd'
 ]);
 
 Route::post('publish', [
