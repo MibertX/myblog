@@ -8,7 +8,9 @@
         "php": ">=5.6.4",
         "laravel/framework": "5.3.*",
         "laravelcollective/html": "~5.3",
-        "doctrine/dbal": "*"
+        "doctrine/dbal": "*",
+        "barryvdh/laravel-ide-helper": "*",
+        "barryvdh/laravel-debugbar": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -45,6 +47,9 @@
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "php artisan optimize"
+        ],
+        "post-update-cmd": [
+            "php artisan debugbar:publish"
         ]
     },
     "config": {

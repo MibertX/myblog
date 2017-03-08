@@ -19,15 +19,27 @@ Route::get('/test', function() {
     return view('test');
 });
 
-Route::get('/publish', [
-    'uses' => 'ArticleController@getAdd'
+
+Route::get('/mytest', [
+    'uses' => 'TestController@index'
 ]);
 
-Route::post('publish', [
-   'uses' => 'NewsController@postAdd'
+
+
+Route::get('/article/publish', [
+    'uses'       => 'ArticlesController@getPublish',
+    'as'         => 'publishView',
+    'middleware' => 'existView'
 ]);
 
-Route::get('/main', [
-    'uses' => 'NewsController@getAll'
+Route::post('/article/publish', [
+   'uses' => 'ArticlesController@postPublish',
+    'as'  => 'publish',
+]);
+
+Route::get('/article/all', [
+    'uses'       => 'ArticlesController@getAll',
+    'as'         => 'allArticles',
+//    'middleware' => 'existView'
 ]);
 

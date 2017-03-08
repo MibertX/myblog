@@ -14,14 +14,14 @@
         <div class="row">
             <div class="col-xs-8 background-news">
                 {{--Сделать отдельный шаблон для превью--}}
-                @foreach ($news as $article)
-                    @include('news/preview')
+                @foreach ($articles as $article)
+                    @include('article/preview')
                 @endforeach
 
                 {{--Навигация страничек        --}}
                 {{--<div class="col-xs-1 c">&nbsp;</div>--}}
                 <div class="col-xs-12">
-                    <div class="wrapper-pag">{{ $news->render() }}</div>
+                    <div class="wrapper-pag">{{ $articles->render() }}</div>
                 </div>
                 {{--<div class="col-xs-1 c">&nbsp;</div>--}}
             </div>
@@ -32,13 +32,13 @@
 
                 <ul class="news-categories-list">
                     <hr class="hr-custom">
-                    @foreach($categories as $key => $category)
+                    @foreach($categories as $category)
                         <li class="news-category-field">
                             <a href="">
-                                @if (isset($counters[$key]))
-                                    <span class="pull-left">{{$counters[$key]}}</span>
-                                @endif
-                                <span class="pull-right news-category-font">{{$category}}</span>
+                                {{--@if (isset($counters[$key]))--}}
+                                    {{--<span class="pull-left">{{}}</span>--}}
+                                {{--@endif--}}
+                                <span class="pull-right news-category-font">{{$category->name}}</span>
                             </a>
                         </li>
                         <hr class="hr-custom">

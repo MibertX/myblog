@@ -24,7 +24,7 @@
     @endif
 
     {{ Form::open(array(
-            'url'    => action('NewsController@postAdd'),
+            'url'    => route('publish'),
             'method' => 'post',
             'role'   => 'form',
             'class'  => 'form-vertical '
@@ -68,7 +68,7 @@
 
                        <li>
                            <label class="checkbox news-category-field">
-                               {{ Form::checkbox($key, $value, null, array('class' => 'news-add-checkbox')) }}
+                               {{ Form::checkbox('categories[]', $key, null, array('class' => 'news-add-checkbox')) }}
                                <span class="news-category-font pull-right">{{$value}}</span>
                            </label>
                        </li>

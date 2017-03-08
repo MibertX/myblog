@@ -20,14 +20,13 @@ class CreateArticlesTable extends Migration
             
             $table->bigIncrements('article_id')->unique();
             $table->string('title', 100);
-            $table->string('txt_file_path')->unique();
             $table->bigInteger('author_id')->unsigned();
             $table->bigInteger('views')->unsigned();
             $table->timestamps();
             
             //foreign keys
             $table->foreign('author_id')->references('user_id')->on('users')
-                ->onDelete('cascade')->onUpdate('cascade')->unsigned();
+                ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

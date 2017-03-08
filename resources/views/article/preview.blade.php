@@ -16,7 +16,7 @@
 
 <div class="row row-pad">
     <div class="col-xs-12 no-padding">
-        <p class="preview-text">{{$article->text_preview}}</p>
+        <p class="preview-text">{{$article->text}}</p>
     </div>
 </div>
 

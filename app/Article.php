@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Date\DateFormat;
+use App\Text;
 
 /**
  * Class Article
@@ -14,11 +15,19 @@ use Date\DateFormat;
  * @property $views
  * @property $short_month
  * @property $short_day
+ * @property $text
  */
 
 
 class Article extends Model
 {
+
+//	public function __construct()
+//	{
+//		$text = Article::find($this->article_id)->text()->get();
+//		$this->text = $text->text;
+//	}
+
 	/**
 	 * The database table that used by this model
 	 *
@@ -54,6 +63,7 @@ class Article extends Model
 	{
 		return $this->hasOne('App\Text', 'article_id', 'article_id');
 	}
+
 
 
 	/**
