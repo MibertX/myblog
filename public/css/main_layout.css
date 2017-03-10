@@ -1,4 +1,4 @@
-/*________!This stylesheet file is only for main template!________*/
+/*CSS for 'app/resourses/views/layout.blade.php' */
 
             /*____Common____*/
 body{
@@ -12,6 +12,13 @@ body, html {
 
 .no-padding{
     padding: 0;
+}
+
+.wrapper {
+    margin: auto;
+    display: table;
+    height: 100%;
+    background-color: transparent;
 }
 
 

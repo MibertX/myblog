@@ -1,4 +1,4 @@
-.row-background {
+.reg-background-field {
     background-color: #2d3844;
     border-radius: 8px;
     padding: 0 15px 0 10px;
@@ -6,12 +6,11 @@
 
 }
 
-.margin-bottom {
+.reg-row {
     margin-bottom: 15px ;
-
 }
 
-.input-field {
+.reg-input-field {
     height: 34px;
     margin: 10px 0;
     background-color: #C0C0C0;
@@ -23,8 +22,7 @@
     font: 14pt Verdana, arial;
 }
 
-
-.custom-container {
+.reg-form {
     padding: 35px 55px 15px;
     background-color: #222a33;
     border-radius: 12px;
@@ -32,7 +30,7 @@
 
 }
 
-.label-field {
+.reg-label-field {
     text-align: center;
     padding: 0;
     font: 16pt Verdana, Arial, sans-serif;
@@ -41,16 +39,11 @@
     margin: 0;
 }
 
-.label-field  {
-
-}
-
 .half-line-height {
     line-height: 27px;
 }
 
-
-.btn-custom {
+.reg-btn {
     width: 150px;
     height: 40px;
     margin: 20px 10px 0;
@@ -58,27 +51,14 @@
     padding-left: 5px;
 }
 
-
-
-
-
-.wrapper-reg {
-    margin: auto;
-    display: table;
-    height: 100%;
-    background-color: transparent;
-}
-
-
-.input-field:focus {
+.reg-input-field:focus {
     background-color: #eeeade;
     outline: none;
     border: 1px solid #2d3844;
     border-bottom: none;
 }
 
-.input-field:focus + .label-field {
+.reg-input-field:focus + .reg-label-field {
     color: white;
 }
-
 

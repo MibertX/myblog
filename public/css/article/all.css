@@ -1,79 +1,8 @@
-.short-date {
-    padding: 0;
-    width: 40px;
+.all-wrapper {
+    padding-bottom: 3px;
 }
 
-
-.day {
-
-    height: 25px;
-    background-color: #3e4750;
-    text-align: center;
-    font: 16pt Arial, sans-serif;
-    color: #ffffff;
-    line-height: 27px;
-    border-radius: 6px 6px 0 0;
-
-}
-
-
-.month {
-    height: 15px;
-    background-color: #191f25;
-    color: #808080;
-    text-align: center;
-    font: 10pt Arial, sans-serif;
-    border-radius: 0 0 6px 6px;
-}
-
-
-
-.title {
-    color: #3e4750;
-    margin: 0;
-    font: 16pt Arial, sans-serif;
-}
-
-.information {
-    color: #808080;
-    font: 10pt  Arial, sans-serif;
-}
-
-.preview-text {
-    color: #000000;
-    font: 14pt Arial
-}
-
-.row-pad {
-    padding: 5px 20px
-}
-
-.hr-preview {
-    margin: 15px 5px;
-    background-color: transparent;
-    border-color: #808080;
-}
-
-.link-font {
-    font: 14pt Arial;
-    color: #3e4750;
-}
-
-span.link-font > a {
-    color: inherit;
-    font: inherit;
-    font-style: italic;
-    text-decoration: underline;
-}
-
-
-
-
-/*пагинация*/
-
-
-
-.wrapper-pag > ul.pagination {
+.all-wrapper > ul.pagination {
     margin: 0;
     display: table-row;
     height: 100%;
@@ -151,4 +80,3 @@ li.disable > span:active > .text-decoration,
 li.disable > span:focus > .text-decoration {
     border-bottom: 1px solid #000000;
 }
-/*конец пагинации*/

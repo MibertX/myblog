@@ -1,18 +1,19 @@
-@extends('layout')
+@extends('main_layout')
 
 @section('title')
     Все новости
     @stop
 
 @section('headExtra')
-    <link href="/bootstrap/css/custom-news-add.css" rel="stylesheet">
-    <link href="/bootstrap/css/custom-news-preview.css" rel="stylesheet">
+    <link href="/css/article/common.css" rel="stylesheet">
+    <link href="/css/article/all.css" rel="stylesheet">
+    <link href="/css/article/preview.css" rel="stylesheet">
     @stop
 
 @section('content')
-    <div class="container padding-container">
+    <div class="container common-article-container">
         <div class="row">
-            <div class="col-xs-8 background-news">
+            <div class="col-xs-8 common-article-background">
                 {{--Сделать отдельный шаблон для превью--}}
                 @foreach ($articles as $article)
                     @include('article/preview')
@@ -21,27 +22,24 @@
                 {{--Навигация страничек        --}}
                 {{--<div class="col-xs-1 c">&nbsp;</div>--}}
                 <div class="col-xs-12">
-                    <div class="wrapper-pag">{{ $articles->render() }}</div>
+                    <div class="wrapper all-wrapper">{{ $articles->render() }}</div>
                 </div>
                 {{--<div class="col-xs-1 c">&nbsp;</div>--}}
             </div>
 
-            <div class="col-xs-4 news-container-categories-padding">
+            <div class="col-xs-4 common-category-container">
 
-                <div class="wrapper"><h4 class="news-categories-title">Категории</h4></div>
+                <div class="wrapper"><h4 class="common-category-title">Категории</h4></div>
 
-                <ul class="news-categories-list">
-                    <hr class="hr-custom">
+                <ul class="common-category-list">
+                    <hr class="common-category-hr">
                     @foreach($categories as $category)
-                        <li class="news-category-field">
+                        <li class="common-category-field">
                             <a href="">
-                                {{--@if (isset($counters[$key]))--}}
-                                    {{--<span class="pull-left">{{}}</span>--}}
-                                {{--@endif--}}
-                                <span class="pull-right news-category-font">{{$category->name}}</span>
+                                <span class="pull-right common-category-font">{{$category->name}}</span>
                             </a>
                         </li>
-                        <hr class="hr-custom">
+                        <hr class="common-category-hr">
                     @endforeach
                 </ul>
             </div>

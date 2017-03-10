@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
     <!-- Custom stylesheets -->
-    <link href="/bootstrap/css/custom-template.css" rel="stylesheet">
+    <link href="/css/main_layout.css" rel="stylesheet">
     @yield('headExtra')
 </head>
 
@@ -57,7 +57,11 @@
     </div>
 </div>
 
-@yield('content')
+
+    @yield('content')
+
+
+
 
 <div id="footer">
     <div class="container">

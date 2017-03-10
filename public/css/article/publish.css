@@ -1,0 +1,67 @@
+/*________!This stylesheet file is only for form to publish new articles!________*/
+
+            /*____Left side of the form____*/
+.publish-label {
+    padding: 0;
+    font: 16pt Verdana, Arial, sans-serif;
+    line-height: 54px;
+    color: grey;
+    margin: 0;
+    text-align: center;
+}
+
+.publish-input {
+    /*height: 34px;*/
+    margin: 10px 0;
+    /*background-color: #C0C0C0;*/
+    /*border: 1px solid #C0C0C0;    */
+    background-color: darkgray;
+    border: 1px solid darkgray;
+    border-bottom: none;
+    border-radius: 4px;
+    box-shadow: 2px 3px 5px 0 black;
+    padding: 0 10px;
+    font: 14pt Verdana, arial;
+    resize: none;
+}
+
+.publish-input:focus {
+    background-color: #eeeade;
+    outline: none;
+    box-shadow: 2px 3px 5px 0 black;
+    border: 1px solid #2d3844;
+    border-bottom: none;
+}
+
+.publish-input-background {
+    background-color: #2d3844;
+    border-radius: 8px;
+    padding: 0 15px 0 10px;
+    border: 1px solid black;
+    margin: 15px 30px 15px;
+}
+
+
+/*Submit button*/
+.news-add-submit-center{
+    text-align: center;
+    padding-top: 10px;
+}
+
+
+/*Errors Bag*/
+.error-info {
+    color: red;
+    font: 8pt Arial, sans-serif;
+    margin: 10px;
+}
+
+
+            /*____Right side of the form____*/
+/*Selecting the categories (checkboxes)*/
+.publish-checkbox {
+    height: 20px;
+    width: 20px;
+    margin-top: 7px !important;
+
+}
