@@ -1,255 +1,90 @@
-/*________!This stylesheet file is only for form to publish new articles!________*/
+/*
+        |===============================================================================|
+        | This stylesheet applies only to './resources/views/article/publish.blade.php' |
+        |===============================================================================|
 
-            /*____Left side of the form____*/
-.publish-label {
-    padding: 0;
-    font: 16pt Verdana, Arial, sans-serif;
-    line-height: 54px;
-    /*color: grey;*/
-    color: orange;
-    margin: 0;
-    text-align: center;
-    /*position: relative;*/
-    /*bottom: 34px;*/
-    /*display: inline-block;*/
-    /*position: absolute;*/
-    /*top: 0;*/
-}
-
-.publish-input {
-    /*height: 34px;*/
-    /*background-color: #C0C0C0;*/
-    /*border: 1px solid #C0C0C0;    */
-    /*background-color: darkgray;*/
-    background-color:  #C0C0C0;
-
-    border: 1px solid darkgray;
-    border-bottom: none;
-    border-radius: 4px;
-    box-shadow: 2px 3px 5px 0 black;
-    padding: 0 10px;
-    font: 14pt Verdana, arial;
-    resize: none;
-    /*position: relative;*/
-    /*top: 54px;*/
-    /*vertical-align: bottom;*/
-    /*display: inline-block;*/
-    /*position: absolute;*/
-    /*bottom: 20px;*/
-
-
-}
-
-
-.publish-input:focus {
-    background-color: #eeeade;
-    outline: none;
-    box-shadow: 2px 3px 5px 0 black;
-    border: 1px solid #2d3844;
-    border-bottom: none;
-}
+|-----------------------------------------------------------------------------------------------------
+| Left side of the form - buttons, inputs and their labels, and background for them all
+|-----------------------------------------------------------------------------------------------------
+*/
 
 .publish-input-background {
     background-color: #2d3844;
     border-radius: 8px;
     padding: 10px 20px 20px;
     border: 1px solid black;
-    /*margin: 15px 30px 15px;*/
-
     margin: 0 0 15px;
     text-align: center;
     position: relative;
 }
 
-
-/*Submit button*/
-.news-add-submit-center{
+.publish-label {
+    -webkit-user-select: none;
+    padding: 0;
+    margin: 0 0 10px;
+    line-height: 54px;
     text-align: center;
-    padding-top: 10px;
+    /*color: orange;*/
+    /*color: #20B2AA;*/
+    color: whitesmoke;
+    font: 16pt Verdana, Arial, sans-serif;
+}
+
+.publish-input {
+    outline: none;
+    resize: none;
+    padding: 5px 10px;
+    /*background-color:  #C0C0C0;*/
+    background-color: #708090;
+    box-shadow: 2px 3px 5px 0 black;
+    border: 1px solid #708090;
+    border-bottom: none;
+    border-radius: 4px;
+    font: 14pt Verdana, arial;
+}
+
+.publish-input:focus,
+.publish-input:active {
+    background-color: #eeeade;
+    box-shadow: 2px 3px 5px 0 black;
+    border: 1px solid #2d3844;
+    border-bottom: none;
 }
 
 
-/*Errors Bag*/
-.error-info {
-    color: red;
-    font: 8pt Arial, sans-serif;
-    margin: 10px;
-}
+/*
+|-----------------------------------------------------------------------------------------------------
+| Buttons and checkboxes
+|-----------------------------------------------------------------------------------------------------
+| The real checkboxes are hidden, but there are some images like a checkbox instead of them
+*/
 
-
-            /*____Right side of the form____*/
-/*Selecting the categories (checkboxes)*/
 .publish-checkbox {
-    display: inline-block;
     visibility: hidden;
-    /*display: none;*/
+    margin-top: 7px !important;
     height: 20px;
     width: 20px;
-    padding-left: 10px !important;
-    margin-top: 7px !important;
-    list-style: none;
 }
 
-
-/*.publish-checkbox + span:before {*/
 .publish-checkbox:after {
+    display: inline-block;
     visibility: visible;
     content: "";
-    display: inline-block;
     height: 20px;
     width: 20px;
     border: 3px solid #53585C;
     border-radius: 5px;
-
-    /*background-image: url("/css/elements/checkbox_unchecked.png");*/
-
 }
 
 .publish-checkbox:checked:after {
-
     border: none;
     background-image: url("/css/elements/checkbox_checked.png");
 }
-
-.publish-checkbox:checked+span {
-    /*color: black;*/
-    /*background-color: #eeeade;*/
-    margin-left: -30px;
-    padding-right: 10px !important;
-}
-
 
 .publish-button {
     width: 150px;
     height: 40px;
     margin: 20px 10px;
-    padding-right: 5px;
-    padding-left: 5px;
+    padding: 0 5px;
 }
 
-
-.common-category-field {
-    margin-right: -30px !important;
-    padding-left: 30px !important;
-
-
-}
-
-.common-category-font {
-    padding-right: 40px !important;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*.publish-checkbox:checked+span {*/
-    /*background-color: yellow;*/
-    /*margin-left: -20px;*/
-    /*!*padding: 0 10px 0 0 !important;*!*/
-    /*!*padding-left: 100px !important;*!*/
-    /*padding-right: 10px !important;*/
-
-/*}*/
-
-
-/*.publish-button {*/
-    /*width: 150px;*/
-    /*height: 40px;*/
-    /*margin: 20px 10px;*/
-    /*padding-right: 5px;*/
-    /*padding-left: 5px;*/
-/*}*/
-
-
-/*.common-category-field {*/
-    /*margin-right: -20px !important;*/
-
-/*}*/
-
-/*.common-category-font {*/
-    /*padding-right: 30px !important;*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*.publish-checkbox {*/
-    /*display: inline-block;*/
-    /*height: 20px;*/
-    /*width: 20px;*/
-    /*padding-left: 10px !important;*/
-    /*margin-top: 7px !important;*/
-/*}*/
-
-/*.publish-checkbox:checked+span {*/
-    /*color: black;*/
-    /*background-color: #eeeade;*/
-    /*margin-left: -30px;*/
-    /*padding-right: 10px !important;*/
-/*}*/
-
-
-/*.publish-button {*/
-    /*width: 150px;*/
-    /*height: 40px;*/
-    /*margin: 20px 10px;*/
-    /*padding-right: 5px;*/
-    /*padding-left: 5px;*/
-/*}*/
-
-
-/*.common-category-field {*/
-    /*margin-right: -30px !important;*/
-    /*padding-left: 30px !important;*/
-
-/*}*/
-
-/*.common-category-font {*/
-    /*padding-right: 40px !important;*/
-
-/*}*/

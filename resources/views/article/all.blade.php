@@ -14,21 +14,17 @@
     <div class="container common-article-container">
         <div class="row">
             <div class="col-xs-8 common-article-background">
-                {{--Сделать отдельный шаблон для превью--}}
                 @foreach ($articles as $article)
                     @include('article/preview')
                 @endforeach
 
-                {{--Навигация страничек        --}}
-                {{--<div class="col-xs-1 c">&nbsp;</div>--}}
+                {{--Page navigation's buttons--}}
                 <div class="col-xs-12">
                     <div class="wrapper all-wrapper">{{ $articles->render() }}</div>
                 </div>
-                {{--<div class="col-xs-1 c">&nbsp;</div>--}}
             </div>
 
             <div class="col-xs-4 common-category-container">
-
                 <div class="wrapper"><h4 class="common-category-title">Категории</h4></div>
 
                 <ul class="common-category-list">
@@ -43,9 +39,6 @@
                     @endforeach
                 </ul>
             </div>
-
         </div>
     </div>
-
-
-    @stop
+@stop

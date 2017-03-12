@@ -1,7 +1,13 @@
-/*CSS for 'app/resourses/views/layout.blade.php' */
+/*
+        |===========================================================================|
+        | This stylesheet applies only to './resources/views/main_layout.blade.php' |
+        |===========================================================================|
 
-            /*____Common____*/
-body{
+|-----------------------------------------------------------------------------------------------------
+| Common settings for each page
+|-----------------------------------------------------------------------------------------------------
+*/
+body {
     background-color: #2d3844;
     min-width: 765px;
 }
@@ -10,7 +16,7 @@ body, html {
     height: 100%;
 }
 
-.no-padding{
+.no-padding {
     padding: 0;
 }
 
@@ -22,58 +28,72 @@ body, html {
 }
 
 
-            /*____Header____*/
-.navbar-custom{
-    border-radius: 0;
-    border: 0;
+/*
+|-----------------------------------------------------------------------------------------------------
+| Header
+|-----------------------------------------------------------------------------------------------------
+*/
+.navbar-custom {
+    -webkit-user-select: none;
     margin-top: 10px;
     height: 150px;
     background-color: #222a33;
+    border-radius: 0;
+    border: 0;
 }
 
-/*Brand-logo*/
-.navbar-brand-custom{
+.navbar-brand-custom {
     padding: 40px 20px 0 60px;
 }
 
-.navbar-brand-custom>a.navbar-brand{
+.navbar-brand-custom > a.navbar-brand {
     font: 24pt Arial, sans-serif;
 }
 
-.navbar-brand-custom>a.navbar-brand>strong{
+.navbar-brand-custom>a.navbar-brand>strong {
     color: #ede9dc;
 }
 
-/*Main navigation menu -
-    used the css relationship excapt of making different classes for each element */
-.navbar-default{
+
+/*
+|-----------------------------------------------------------------------------------------------------
+| Main navigation menu
+|-----------------------------------------------------------------------------------------------------
+|
+|Used CSS relationship excapt of making different classes for each element
+|
+*/
+.navbar-default {
     background-color: transparent;
 }
-.navmenu-custom{
+.navmenu-custom {
     padding: 34px 0;
 }
 
-.navmenu-custom>li{
+.navmenu-custom>li {
     padding: 1px 0 1px 0;
 }
 
-.navmenu-custom>li>a{
-    font: 14pt Arial, sans-serif;
-    color: #53585c;
+.navmenu-custom>li>a {
+    padding: 2px 5px;
     width: 280px;
     height: 25px;
-    padding: 2px 5px;
     background-color: #252e38;
+    color: #53585c;
+    font: 14pt Arial, sans-serif;
 }
 
-.navmenu-custom>li>a:hover{
+.navmenu-custom>li>a:hover {
     color: #ede9dc;
     background-color: #2d3844;
 }
 
-
-            /*____Footer____*/
-#footer{
+/*
+|-----------------------------------------------------------------------------------------------------
+| Footer
+|-----------------------------------------------------------------------------------------------------
+*/
+#footer {
     color: #ede9dc;
     background-color: #222a33;
     text-align: center;

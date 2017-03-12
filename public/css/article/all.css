@@ -1,3 +1,15 @@
+/*
+        |===============================================================================|
+        | This stylesheet applies only to './resourses/views/article/all.blade.php' |
+        |===============================================================================|
+
+|-----------------------------------------------------------------------------------------------------
+| Page navigation's buttons
+
+| ?? Laravel delete my own navigation, will be fixed soon ??
+|-----------------------------------------------------------------------------------------------------
+*/
+
 .all-wrapper {
     padding-bottom: 3px;
 }
@@ -8,8 +20,6 @@
     height: 100%;
 }
 
-
-
 li.enable > a,
 li.disable > span {
     color: #808080;
@@ -19,11 +29,9 @@ li.disable > span {
     padding: 10px 20px 10px;
 }
 
-
 li.disable > span {
     background-color: transparent;
 }
-
 
 li.disable > span:hover,
 li.disable > span:active,
@@ -35,11 +43,9 @@ li.disable > span:focus {
     border-bottom: none;
 }
 
-
 li.enable > a {
     background-color: #222a33;
 }
-
 
 li.enable > a:hover,
 li.enable > a:active,
@@ -61,12 +67,10 @@ li.enable > a:focus {
     border-left: none ;
 }
 
-
 .text-decoration {
     padding-bottom: 4px;
     border-bottom: 1px solid #808080;
 }
-
 
 li.enable > a:hover > .text-decoration,
 li.enable > a:active > .text-decoration,
@@ -74,9 +78,9 @@ li.enable > a:focus > .text-decoration {
     border-bottom: 1px solid #ffffff;
 }
 
-
 li.disable > span:hover > .text-decoration,
 li.disable > span:active > .text-decoration,
 li.disable > span:focus > .text-decoration {
     border-bottom: 1px solid #000000;
 }
+

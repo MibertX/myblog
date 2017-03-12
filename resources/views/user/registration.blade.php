@@ -19,7 +19,7 @@
           enctype="multipart/form-data">
 
         {!! csrf_field() !!}
-        <div class="row reg-row">
+        <div class="row">
             <div class="col-md-10 col-md-offset-1 col-xs-12">
                 <div class="row reg-background-field">
                     <input type="text" name="nickname" id="nickname"
@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        <div class="row reg-row">
+        <div class="row">
             <div class="col-md-10 col-md-offset-1 col-xs-12">
                 <div class="row reg-background-field">
                     <input type="text" name="login" id="login"
@@ -43,7 +43,7 @@
             </div>
         </div>
 
-        <div class="row reg-row">
+        <div class="row">
             <div class="col-md-10 col-md-offset-1 col-xs-12">
                 <div class="row reg-background-field">
                     <input type="password" name="password" id="password"
@@ -55,7 +55,7 @@
             </div>
         </div>
 
-        <div class="row reg-row">
+        <div class="row">
             <div class="col-md-10 col-md-offset-1 col-xs-12">
                 <div class="row reg-background-field">
                     <input type="password" name="password_confirmation" id="password_confirmation"
@@ -67,7 +67,7 @@
             </div>
         </div>
 
-        <div class="row reg-row">
+        <div class="row">
             <div class="col-md-10 col-md-offset-1 col-xs-12">
                 <div class="row reg-background-field">
                     <input type="email" name="email" id="email"
@@ -80,15 +80,13 @@
         </div>
 
         <div class="row">
-            <div class="col-xs-12">
-                <div class="wrapper">
-                    <button type="submit" class="btn btn-success reg-btn">
-                        Отправить
-                    </button>
-                    <button type="reset" class="btn btn-warning reg-btn">
-                        Сбросить
-                    </button>
-                </div>
+            <div class="wrapper">
+                <button type="submit" class="btn btn-success reg-btn">
+                    Отправить
+                </button>
+                <button type="reset" class="btn btn-warning reg-btn">
+                    Сбросить
+                </button>
             </div>
         </div>
 
