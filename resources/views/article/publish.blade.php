@@ -21,20 +21,21 @@
         {{--Left side of the form - input fields--}}
         <div class="col-xs-8 common-article-background">
             <div class="publish-input-background">
-                <label for="title" class="control-label publish-label col-xs-12">Название статьи</label>
+                <label for="title" class="control-label publish-label">Название статьи</label>
                 <input type="text" name="title" id="title" class="form-control publish-input">
                 @yield('title_error')
             </div>
 
-            <div class="publish-input-background">
-                <label for="text" class="control-label publish-label col-xs-12">Текст статьи</label><br>
+            <div class="row publish-input-background">
+                <label for="text" class="control-label publish-label">Текст статьи</label><br>
                 <textarea class="form-control publish-input" rows="18" name="text" id="text"></textarea>
                 @yield('text_error')
             </div>
 
             <div class="col-xs-12">
                 <div class="wrapper">
-                    <button type="submit" class="btn btn-primary submit-button">Добавить</button>
+                    <button type="submit" class="btn btn-success publish-button">Добавить</button>
+                    <button type="reset" class="btn btn-warning publish-button">Сброс</button>
                 </div>
             </div>
         </div>
@@ -51,7 +52,7 @@
                     <li>
                         <label class="checkbox common-category-field">
                             <input type="checkbox" name="categories[]" value="{{$key}}" class="publish-checkbox">
-                            <span class="common-category-font pull-right">{{$value}}</span>
+                            <span class="common-category-font">{{$value}}</span>
                         </label>
                     </li>
                     <hr class="common-category-hr">
@@ -61,14 +62,6 @@
             @yield('categories_error')
         </div>
     </div>
-
-    {{--<div class="row">--}}
-        {{--Buttons - located under input fields, on the left side--}}
-        {{--<div class="col-xs-8 news-add-submit-center">--}}
-            {{--<button type="submit" class="btn btn-primary submit-button">Добавить</button>--}}
-        {{--</div>--}}
-        {{--<div class="col-xs-4">&nbsp;</div>--}}
-    {{--</div>--}}
     </form>
 </div>
 

@@ -5,17 +5,24 @@
     padding: 0;
     font: 16pt Verdana, Arial, sans-serif;
     line-height: 54px;
-    color: grey;
+    /*color: grey;*/
+    color: orange;
     margin: 0;
     text-align: center;
+    /*position: relative;*/
+    /*bottom: 34px;*/
+    /*display: inline-block;*/
+    /*position: absolute;*/
+    /*top: 0;*/
 }
 
 .publish-input {
     /*height: 34px;*/
-    margin: 10px 0;
     /*background-color: #C0C0C0;*/
     /*border: 1px solid #C0C0C0;    */
-    background-color: darkgray;
+    /*background-color: darkgray;*/
+    background-color:  #C0C0C0;
+
     border: 1px solid darkgray;
     border-bottom: none;
     border-radius: 4px;
@@ -23,7 +30,16 @@
     padding: 0 10px;
     font: 14pt Verdana, arial;
     resize: none;
+    /*position: relative;*/
+    /*top: 54px;*/
+    /*vertical-align: bottom;*/
+    /*display: inline-block;*/
+    /*position: absolute;*/
+    /*bottom: 20px;*/
+
+
 }
+
 
 .publish-input:focus {
     background-color: #eeeade;
@@ -36,9 +52,13 @@
 .publish-input-background {
     background-color: #2d3844;
     border-radius: 8px;
-    padding: 0 15px 0 10px;
+    padding: 10px 20px 20px;
     border: 1px solid black;
-    margin: 15px 30px 15px;
+    /*margin: 15px 30px 15px;*/
+
+    margin: 0 0 15px;
+    text-align: center;
+    position: relative;
 }
 
 
@@ -60,8 +80,176 @@
             /*____Right side of the form____*/
 /*Selecting the categories (checkboxes)*/
 .publish-checkbox {
+    display: inline-block;
+    visibility: hidden;
+    /*display: none;*/
     height: 20px;
     width: 20px;
+    padding-left: 10px !important;
     margin-top: 7px !important;
+    list-style: none;
+}
+
+
+/*.publish-checkbox + span:before {*/
+.publish-checkbox:after {
+    visibility: visible;
+    content: "";
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    border: 3px solid #53585C;
+    border-radius: 5px;
+
+    /*background-image: url("/css/elements/checkbox_unchecked.png");*/
 
 }
+
+.publish-checkbox:checked:after {
+
+    border: none;
+    background-image: url("/css/elements/checkbox_checked.png");
+}
+
+.publish-checkbox:checked+span {
+    /*color: black;*/
+    /*background-color: #eeeade;*/
+    margin-left: -30px;
+    padding-right: 10px !important;
+}
+
+
+.publish-button {
+    width: 150px;
+    height: 40px;
+    margin: 20px 10px;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+
+.common-category-field {
+    margin-right: -30px !important;
+    padding-left: 30px !important;
+
+
+}
+
+.common-category-font {
+    padding-right: 40px !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*.publish-checkbox:checked+span {*/
+    /*background-color: yellow;*/
+    /*margin-left: -20px;*/
+    /*!*padding: 0 10px 0 0 !important;*!*/
+    /*!*padding-left: 100px !important;*!*/
+    /*padding-right: 10px !important;*/
+
+/*}*/
+
+
+/*.publish-button {*/
+    /*width: 150px;*/
+    /*height: 40px;*/
+    /*margin: 20px 10px;*/
+    /*padding-right: 5px;*/
+    /*padding-left: 5px;*/
+/*}*/
+
+
+/*.common-category-field {*/
+    /*margin-right: -20px !important;*/
+
+/*}*/
+
+/*.common-category-font {*/
+    /*padding-right: 30px !important;*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*.publish-checkbox {*/
+    /*display: inline-block;*/
+    /*height: 20px;*/
+    /*width: 20px;*/
+    /*padding-left: 10px !important;*/
+    /*margin-top: 7px !important;*/
+/*}*/
+
+/*.publish-checkbox:checked+span {*/
+    /*color: black;*/
+    /*background-color: #eeeade;*/
+    /*margin-left: -30px;*/
+    /*padding-right: 10px !important;*/
+/*}*/
+
+
+/*.publish-button {*/
+    /*width: 150px;*/
+    /*height: 40px;*/
+    /*margin: 20px 10px;*/
+    /*padding-right: 5px;*/
+    /*padding-left: 5px;*/
+/*}*/
+
+
+/*.common-category-field {*/
+    /*margin-right: -30px !important;*/
+    /*padding-left: 30px !important;*/
+
+/*}*/
+
+/*.common-category-font {*/
+    /*padding-right: 40px !important;*/
+
+/*}*/
