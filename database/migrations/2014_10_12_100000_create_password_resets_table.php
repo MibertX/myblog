@@ -13,11 +13,8 @@ class CreatePasswordResetsTable extends Migration
      */
     public function up()
     {
+        Schema::enableForeignKeyConstraints();
         Schema::create('password_resets', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->charset = 'UTF8';
-            $table->collation = 'utf8_general_ci';            
-
             $table->string('email')->index();
             $table->string('token')->index();
             $table->timestamp('created_at')->nullable();
@@ -31,6 +28,7 @@ class CreatePasswordResetsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::drop('password_resets');
     }
 }

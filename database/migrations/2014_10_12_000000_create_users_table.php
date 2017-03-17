@@ -12,24 +12,24 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+        Schema::enableForeignKeyConstraints();
         Schema::create('users', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->charset = 'UTF8';
-            $table->collation = 'utf8_general_ci';            
-
-            $table->bigIncrements('user_id')->unique();
-            $table->string('fname', 50)->nullable();
-            $table->string('lname', 50);
-            $table->string('email')->unique();
-
-            $table->string('password');
-            $table->rememberToken();
-            $table->string('activationCode');
-
-            $table->boolean('isActive')->index();
-            $table->boolean('isAdmin')->default(0);
-
+            $table->increments('user_id');
+            $table->string('login', 100)->unique();
+            $table->string('email', 100)->unique();
+            $table->string('password', 100);
+            $table->smallInteger('role_id')->unsigned();
+            $table->boolean('seen')->default(false);
+            $table->boolean('active')->index()->default(false);
+            $table->string('activationCode')->nullable();
+            $table->rememberToken()->nullable();
             $table->timestamps();
+        });
+        
+        Schema::table('users', function (Blueprint $table){
+            $table->foreign('role_id')->references('role_id')->on('roles')
+                ->onDelete('restrict')
+                ->onUpdate('restrict');
         });
     }
 
@@ -40,6 +40,11 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
+        Schema::table('users', function(Blueprint $table){
+            $table->dropForeign(['role_id']);
+        });
+
         Schema::drop('users');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoriesTable extends Migration
+class CreateRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,9 @@ class CreateCategoriesTable extends Migration
     public function up()
     {
         Schema::enableForeignKeyConstraints();
-        Schema::create('categories', function (Blueprint $table) {
-            $table->smallIncrements('category_id');
-            $table->string('name', 100)->index();
+        Schema::create('roles', function(Blueprint $table) {
+            $table->smallIncrements('role_id');
+            $table->string('name');
         });
     }
 
@@ -28,6 +28,6 @@ class CreateCategoriesTable extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::drop('categories');
+        Schema::drop('roles');
     }
 }
