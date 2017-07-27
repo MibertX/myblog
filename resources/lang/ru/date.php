@@ -1,6 +1,6 @@
 <?php
 return [
-	'later'               => ':date в :time',
+	'later'               => ':day :date в :time',
 	'today'               => 'сегодня в :time',
 	'minutes_ago'         => ':minutes мин. назад',
 	'hours_ago'           => ':hoursч.:minutesмин. назад',

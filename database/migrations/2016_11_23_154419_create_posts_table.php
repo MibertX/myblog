@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
             $table->string('title', 250)->index();
             $table->integer('user_id')->unsigned();
             $table->text('preview');
-            $table->integer('content_id')->unsigned();
+//            $table->integer('content_id')->index()->unsigned();
             $table->boolean('seen')->default(false);
             $table->boolean('active')->default(true)->index();
             $table->integer('views')->default(0)->unsigned()->index();
@@ -30,9 +30,9 @@ class CreatePostsTable extends Migration
             $table->foreign('user_id')->references('user_id')->on('users')
                 ->onDelete('restrict')
                 ->onUpdate('restrict');
-            $table->foreign('content_id')->references('content_id')->on('contents')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+//            $table->foreign('content_id')->references('content_id')->on('contents')
+//                ->onDelete('cascade')
+//                ->onUpdate('cascade');
         });
     }
 
@@ -46,7 +46,7 @@ class CreatePostsTable extends Migration
         Schema::disableForeignKeyConstraints();
         Schema::table('posts', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
-            $table->dropForeign(['content_id']);
+//            $table->dropForeign(['content_id']);
         });
 
         Schema::drop('posts');

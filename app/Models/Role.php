@@ -20,6 +20,13 @@ class Role extends Model
 	 */
 	protected $primaryKey = 'role_id';
 
+
+	public $fillable = [
+		'role_id',
+		'name'
+	];
+
+
 	/**
 	 * One to many relation.
 	 * Get all users that has this role.
@@ -28,6 +35,6 @@ class Role extends Model
 	 */
 	protected function user()
 	{
-		return $this->belongsToMany('App\Models\User', 'role_id', 'user_id');
+		return $this->belongsToMany('App\Models\User', 'role_id', 'role_id');
 	}
 }

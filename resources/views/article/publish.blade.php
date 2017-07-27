@@ -50,11 +50,13 @@
 
                 <ul class="common-category-list">
                     <hr class="common-category-hr">
-                    @foreach($categories as $key=>$value)
+                    @foreach($categories as $category)
                         <li class="common-category-field">
                             <label class="common-category-label">
-                                <input type="checkbox" name="categories[]" value="{{$key}}" class="publish-checkbox">
-                                <span class="common-category-font pull-right">{{$value}}</span>
+
+                                <input type="checkbox" name="categories[]" value="{{$category->category_id}}" class="publish-checkbox"
+                                        {{ old('categories') ? !in_array($category->category_id, old('categories')) ?: 'checked' : '' }}>
+                                <span class="common-category-font pull-right">{{$category->name}}</span>
                             </label>
                         </li>
                         <hr class="common-category-hr">

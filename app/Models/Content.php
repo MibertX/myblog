@@ -6,12 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Content extends Model
 {
+	public $timestamps = false;
 	/**
 	 * Model's database table
 	 *
 	 * @var string
 	 */
     protected $table = 'contents';
+
+	protected $fillable = [
+		'text',
+		'post_id',
+		'content_id'
+	];
 
 	/**
 	 * Table primary_key

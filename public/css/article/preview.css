@@ -17,23 +17,28 @@
     width: 40px;
     border-radius: 7px;
     box-shadow: 2px 3px 5px 0 black;
+    /*border: 1px solid steelblue;*/
 }
 
 .preview-day {
     height: 25px;
     background-color: #3e4750;
+    /*background-color: steelblue;*/
     border-radius: 6px 6px 0 0;
     text-align: center;
     font: 16pt Arial, sans-serif;
     color: #ffffff;
+    /*color: black;*/
     line-height: 27px;
 }
 
 .preview-month {
     height: 15px;
     background-color: #191f25;
+    /*background-color: #c4e4ed;*/
     border-radius: 0 0 6px 6px;
     color: #808080;
+    /*color: steelblue;*/
     text-align: center;
     font: 10pt Arial, sans-serif;
 }
@@ -45,6 +50,7 @@
 |-----------------------------------------------------------------------------------------------------
 */
 .preview-link {
+    margin-top: 20px;
     -webkit-user-select: none;
     font: 14pt Arial;
     color: #3e4750;
@@ -61,13 +67,15 @@
 .preview-link > a:hover,
 .preview-link > a:active {
     /*border-bottom: 2px solid #1E90FF;*/
-    color: darkorange;
+    /*color: darkorange;*/
+    color: steelblue;
     border: none;
 }
 
 .preview-link >a:hover + span,
 .preview-link >a:active + span{
-    color: darkorange;
+    /*color: darkorange;*/
+    color: steelblue;
 }
 
 
@@ -81,7 +89,8 @@
 }
 
 .preview-title {
-    color: #3e4750;
+    /*color: #3e4750;*/
+    color: black;
     /*margin: 0;*/
     font: 16pt Arial, sans-serif;
 }
@@ -106,22 +115,43 @@
 |-----------------------------------------------------------------------------------------------------
 */
 .preview-container {
-    background-color: #eeeade;
+    /*background-color: #eeeade;*/
+    background-color: #E6E6FA;
     padding: 10px 10px;
     border-radius: 6px;
-    margin-bottom: 25px;
+    /*margin-bottom: 25px;*/
+    margin: 20px 15px 0 !important;
 }
+
+/*.preview-container:first-child {*/
+    /*margin-top: 15px !important;*/
+/*}*/
+
+/*.preview-container:last-child {*/
+    /*margin-top: 15px !important;*/
+/*}*/
 
 .preview-hr {
     margin: 3px 0px;
     background-color: transparent;
-    border-color: #808080;
+    /*border-color: #808080;*/
+    border-color: steelblue;
 
 }
 
 .preview-hr-dashed {
-    margin: 0 10px 25px;
+    /*margin: 0 10px 25px;*/
+    margin: 20px 70px 0;
     border: none;
-    border-bottom: 1px dashed #808080;
+    /*border-bottom: 1px dashed #808080;*/
+    border-bottom: 2px solid #2d3844;
 }
+
+/*.preview-hr-dashed:last-child {*/
+    /*display: none !important;*/
+/*}*/
+
+/*.preview-container:last-child + .preview-hr-dashed {*/
+    /*display: none !important;*/
+/*}*/
 

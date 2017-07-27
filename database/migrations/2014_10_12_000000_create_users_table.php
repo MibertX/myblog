@@ -15,13 +15,13 @@ class CreateUsersTable extends Migration
         Schema::enableForeignKeyConstraints();
         Schema::create('users', function (Blueprint $table) {
             $table->increments('user_id');
-            $table->string('login', 100)->unique();
+            $table->string('name', 100)->unique();
             $table->string('email', 100)->unique();
             $table->string('password', 100);
             $table->smallInteger('role_id')->unsigned();
             $table->boolean('seen')->default(false);
             $table->boolean('active')->index()->default(false);
-            $table->string('activationCode')->nullable();
+            $table->string('activationCode', 30)->nullable();
             $table->rememberToken()->nullable();
             $table->timestamps();
         });

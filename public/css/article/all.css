@@ -10,77 +10,122 @@
 |-----------------------------------------------------------------------------------------------------
 */
 
-.all-wrapper {
-    padding-bottom: 3px;
+/*.all-wrapper {*/
+    /*padding-bottom: 3px;*/
+/*}*/
+
+/*.all-wrapper > ul.pagination {*/
+    /*margin: 0;*/
+    /*display: table-row;*/
+    /*height: 100%;*/
+/*}*/
+
+/*li.enable > a,*/
+/*li.disable > span {*/
+    /*color: #808080;*/
+    /*border: 1px solid #222a33;*/
+    /*border-bottom: none;*/
+    /*font: 14pt Arial;*/
+    /*padding: 10px 20px 10px;*/
+/*}*/
+
+/*li.disable > span {*/
+    /*background-color: transparent;*/
+/*}*/
+
+/*li.disable > span:hover,*/
+/*li.disable > span:active,*/
+/*li.disable > span:focus {*/
+    /*background-color: transparent;*/
+    /*color: #000000;*/
+    /*cursor: no-drop;*/
+    /*border: 1px solid #222a33;*/
+    /*border-bottom: none;*/
+/*}*/
+
+/*li.enable > a {*/
+    /*background-color: #222a33;*/
+/*}*/
+
+/*li.enable > a:hover,*/
+/*li.enable > a:active,*/
+/*li.enable > a:focus {*/
+    /*background-color: #3e4750;*/
+    /*color: white;*/
+    /*border: 1px solid #222a33;*/
+    /*border-bottom: none;*/
+/*}*/
+
+/*.pagination > li:first-child,*/
+/*.pagination > li:first-child {*/
+    /*border-radius: 5px 0 0 0 ;*/
+    /*border-right: none ;*/
+/*}*/
+/*.pagination > li:last-child > span,*/
+/*.pagination > li:last-child > a {*/
+    /*border-radius: 0 5px 0 0 ;*/
+    /*border-left: none ;*/
+/*}*/
+
+/*.text-decoration {*/
+    /*padding-bottom: 4px;*/
+    /*border-bottom: 1px solid #808080;*/
+/*}*/
+
+/*li.enable > a:hover > .text-decoration,*/
+/*li.enable > a:active > .text-decoration,*/
+/*li.enable > a:focus > .text-decoration {*/
+    /*border-bottom: 1px solid #ffffff;*/
+/*}*/
+
+/*li.disable > span:hover > .text-decoration,*/
+/*li.disable > span:active > .text-decoration,*/
+/*li.disable > span:focus > .text-decoration {*/
+    /*border-bottom: 1px solid #000000;*/
+/*}*/
+
+.pagination {
+    margin: 0 0 10px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
 }
 
-.all-wrapper > ul.pagination {
-    margin: 0;
-    display: table-row;
-    height: 100%;
+.pagination li > a,
+.pagination li > span {
+    border-bottom: none !important;
+    border-top: none !important;
+    border-color: transparent !important;
 }
 
-li.enable > a,
-li.disable > span {
-    color: #808080;
-    border: 1px solid #222a33;
-    border-bottom: none;
-    font: 14pt Arial;
-    padding: 10px 20px 10px;
+.pagination .enabled > a{
+    background-color: #E6E6FA;
+    color: steelblue;
 }
 
-li.disable > span {
-    background-color: transparent;
+.pagination .enabled > a:hover,
+.pagination .enabled > a:focus,
+.pagination .enabled > a:active {
+    background-color: #c4e4ed !important;
 }
 
-li.disable > span:hover,
-li.disable > span:active,
-li.disable > span:focus {
-    background-color: transparent;
-    color: #000000;
-    cursor: no-drop;
-    border: 1px solid #222a33;
-    border-bottom: none;
-}
-
-li.enable > a {
+.pagination .disabled > span,
+.pagination .disabled:hover > span {
     background-color: #222a33;
 }
 
-li.enable > a:hover,
-li.enable > a:active,
-li.enable > a:focus {
-    background-color: #3e4750;
-    color: white;
-    border: 1px solid #222a33;
-    border-bottom: none;
+.pagination .simple > a,
+.pagination .simple > a:focus {
+    background-color: transparent !important;
+    color: steelblue !important;
+}
+.pagination .simple > a:hover,
+.pagination .simple > a:active {
+    background-color: steelblue !important;
+    color: white !important;
 }
 
-.pagination > li:first-child,
-.pagination > li:first-child {
-    border-radius: 5px 0 0 0 ;
-    border-right: none ;
-}
-.pagination > li:last-child > span,
-.pagination > li:last-child > a {
-    border-radius: 0 5px 0 0 ;
-    border-left: none ;
+.pagination .active > span {
+    background-color: steelblue;
 }
 
-.text-decoration {
-    padding-bottom: 4px;
-    border-bottom: 1px solid #808080;
-}
-
-li.enable > a:hover > .text-decoration,
-li.enable > a:active > .text-decoration,
-li.enable > a:focus > .text-decoration {
-    border-bottom: 1px solid #ffffff;
-}
-
-li.disable > span:hover > .text-decoration,
-li.disable > span:active > .text-decoration,
-li.disable > span:focus > .text-decoration {
-    border-bottom: 1px solid #000000;
-}
 

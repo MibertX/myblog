@@ -1,0 +1,87 @@
+.responsive-table td {
+    font: 10pt Arial;
+}
+
+.responsive-table .td-title {
+    min-width: 450px;
+}
+
+.responsive-table .td-date {
+    min-width: 175px;
+}
+#category-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#category-list > li {
+    display: block;
+    height: 36px;
+    border-top: 1px solid lightgray;
+}
+
+#category-list > li > label {
+    width: 100%;
+    margin: 2px 0!important;
+    line-height: 30px;
+}
+#category-list > li:last-child {
+    border-bottom: 1px solid lightgray;
+}
+
+.publish-checkbox {
+    visibility: hidden;
+    margin-top: 5px !important;
+    height: 20px;
+    width: 20px;
+}
+
+.publish-checkbox:after {
+    display: inline-block;
+    visibility: visible;
+    content: "";
+    height: 20px;
+    width: 20px;
+    border: 3px solid #53585C;
+    border-radius: 5px;
+}
+
+.publish-checkbox:checked:after {
+    border: none;
+    background-image: url("/css/elements/checkbox_checked.png");
+}
+
+#post-title {
+    width: 100%;
+    border: 1px solid gray;
+    border-radius: 4px;
+    background-color: whitesmoke;
+    font: 20pt Arial, Verdana;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.label-title {
+    width: 100%;
+    text-align: center;
+    font: 17pt Arial, Verdana;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.publish-button {
+    width: 150px;
+    height: 40px;
+    margin: 20px 10px;
+    padding: 0 5px;
+}
+
+.red-color {
+    color: #de5454;
+}
+
+.red-color:hover,
+.red-color:focus,
+.red-color:active {
+    color: #961d1d;
+}

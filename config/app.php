@@ -78,6 +78,7 @@ return [
     */
 
     'locale' => 'ru',
+    'languages' => ['en', 'ru'],
 
     /*
     |--------------------------------------------------------------------------
@@ -171,6 +172,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        GrahamCampbell\Exceptions\ExceptionsServiceProvider::class,
 
         /*
          * Application Service Providers...

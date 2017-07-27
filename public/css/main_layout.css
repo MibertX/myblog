@@ -8,6 +8,7 @@
 |-----------------------------------------------------------------------------------------------------
 */
 body {
+    padding-top: 65px;
     background-color: #2d3844;
     min-width: 765px;
 }
@@ -23,70 +24,270 @@ body, html {
 .wrapper {
     margin: auto;
     display: table;
-    height: 100%;
     background-color: transparent;
 }
 
-
-/*
-|-----------------------------------------------------------------------------------------------------
-| Header
-|-----------------------------------------------------------------------------------------------------
-*/
-.navbar-custom {
+.no-user-select {
     -webkit-user-select: none;
-    margin-top: 10px;
-    height: 150px;
-    background-color: #222a33;
-    border-radius: 0;
-    border: 0;
-}
-
-.navbar-brand-custom {
-    padding: 40px 20px 0 60px;
-}
-
-.navbar-brand-custom > a.navbar-brand {
-    font: 24pt Arial, sans-serif;
-}
-
-.navbar-brand-custom>a.navbar-brand>strong {
-    color: #ede9dc;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 
 /*
 |-----------------------------------------------------------------------------------------------------
-| Main navigation menu
+| Header & Main navbar
 |-----------------------------------------------------------------------------------------------------
-|
-|Used CSS relationship excapt of making different classes for each element
-|
 */
 .navbar-default {
+    background-color: #E6E6FA;
+    min-height: 30px;
+    border: none;
+    border-bottom: 1px solid steelblue;
+
+    /*box-shadow: 0 1px 0 4px #c4e4ed;*/
+    outline: 4px solid #c4e4ed;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+.navbar-default .navbar-brand{
+    height: 45px;
+    font: 20pt Verdana;
+    font-weight: bold;
+    line-height: 45px;
+    color: steelblue;
+    border: none;
+    margin-right: 10px !important;
+    padding: 0 !important;
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:active,
+.navbar-default .navbar-brand:focus {
+    color: #396a93;
+}
+
+.navbar-toggle {
+    float: left;
+    /*background-color: #c4e4ed;*/
+    background-color: transparent !important;
+    border-color: steelblue !important;
+    margin: 6px 10px 0;
+}
+
+.navbar-toggle:active > .icon-bar,
+.navbar-toggle:focus > .icon-bar,
+.navbar-toggle:hover > .icon-bar {
+    background-color: steelblue !important;
+}
+
+.navbar-toggle:active,
+.navbar-toggle:focus,
+.navbar-toggle:focus:hover {
+    background-color: #c4e4ed !important;
+    border-color: steelblue !important;
+}
+
+.navbar-toggle:hover {
+    background-color: transparent !important;
+}
+
+#main-nav {
+    margin-top: 5px;
+    /*margin-bottom: -12px !important;*/
+}
+
+.main-nav-item {
+    height: 40px;
+    padding: 0 !important;
+    border: 1px solid transparent;
+    border-bottom: none;
+    margin: 0 !important;
+}
+
+.main-nav-item>a {
     background-color: transparent;
-}
-.navmenu-custom {
-    padding: 34px 0;
-}
-
-.navmenu-custom>li {
-    padding: 1px 0 1px 0;
-}
-
-.navmenu-custom>li>a {
-    padding: 2px 5px;
-    width: 280px;
-    height: 25px;
-    background-color: #252e38;
-    color: #53585c;
-    font: 14pt Arial, sans-serif;
+    font: 10pt Arial;
+    font-weight: normal !important;
+    color: black !important;
+    line-height: 38px !important;
+    padding: 0 10px;
+    cursor: hand;
 }
 
-.navmenu-custom>li>a:hover {
-    color: #ede9dc;
-    background-color: #2d3844;
+.dropdown-lang {
+    display: inline-block;
+    height: 100%;
+    padding: 9px 0 !important;
+    margin: 0 10px 0 0 !important;
+    /*margin: 0 !important;*/
 }
+
+.dropdown-lang > a {
+    display: inline-block;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.dropdown-lang > a >img {
+    /*border: 1px solid black;*/
+    border-radius: 5px;
+    /*width: 39px;*/
+    /*background-color: black;*/
+}
+
+.dropdown-lang > a:hover,
+.dropdown-lang > a:focus {
+    text-decoration: none !important;
+}
+
+.caret {
+    margin: 0 !important;
+    border-top-color: darkgrey;
+}
+
+.dropdown-lang > a:hover .caret,
+.dropdown-lang > a:focus .caret,
+.dropdown-lang > a:active .caret {
+    border-top-color: steelblue;
+}
+
+.dropdown-lang-menu {
+    min-width: 0;
+    width: auto;
+    padding: 5px;
+    border: none;
+    background-color: #c4e4ed;
+    border-radius: 0 0 5px 5px;
+    margin: 2px 0 0 -5px !important;
+    box-shadow: none;
+}
+
+.dropdown-lang-menu > li > a {
+    padding: 0 !important;
+}
+.dropdown-lang-menu > li > a > img {
+    border: 1px solid dimgray;
+    border-radius: 5px;
+    height: 25px !important;
+    width: 35px !important;
+}
+
+.dropdown-lang-menu > li > a {
+    background-color: transparent !important;
+}
+
+.dropdown-lang-menu > li > a:hover > img {
+    border-color: black;
+}
+
+#current{
+    border-color: steelblue !important;
+    box-shadow: 0 5px 0 -1px #c4e4ed !important;
+    border-radius: 5px 5px 0 0;
+    padding: 0 !important;
+    background-color: #c4e4ed;
+    /*border-bottom: 5px solid black;*/
+}
+
+#current>a {
+    color: steelblue !important;
+    font: 12pt Arial;
+    font-weight: bold;
+}
+
+/*.nav-auth {*/
+    /*margin-right: 10px;*/
+/*}*/
+
+
+/*
+|-----------------------------------------------------------------------------------------------------
+| Auth partial buttons
+|-----------------------------------------------------------------------------------------------------
+*/
+.btn-success, .btn-info, .btn-warning {
+    height: 35px;
+    border: none;
+    margin-top: 5px;
+    /*padding: 6px !important;*/
+    padding: 0 !important;
+}
+
+.btn-success>a, .btn-info>a {
+    padding: 6px 12px !important;
+    color: white;
+}
+
+.btn-success>a:hover,
+.btn-success>a:active,
+.btn-success>a:focus,
+.btn-info>a:hover,
+.btn-info>a:active,
+.btn-info>a:focus {
+    text-decoration: none;
+}
+
+
+/*
+|-----------------------------------------------------------------------------------------------------
+| Status messages
+|-----------------------------------------------------------------------------------------------------
+*/
+
+#notification {
+    position: absolute;
+    left: 2%;
+    bottom: 0;
+    display: none;
+}
+
+#notification #close-popup {
+    background-color: transparent;
+    border: none;
+    position: relative;
+    top: 2%;
+    float: right;
+}
+
+#notification h4 {
+    display: inline-block;
+    float: left;
+    margin-top: 0 !important;
+}
+
+.popup-msg {
+    width: 200px;
+    min-height: 50px;
+}
+
+
+.message-ok, .message-info, .message-error {
+    min-width: 150px;
+    text-align: center;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    -webkit-user-select: none;
+}
+
+.message-ok {
+    background: rgba(0, 102, 0, 0.3);
+    border: 2px solid rgb(0, 55, 0);
+}
+
+.message-info {
+    background: rgba(0, 85, 128, 0.3);
+    border: 2px solid rgb(0, 43, 64);
+}
+
+.message-error {
+    background: rgba(204, 0, 0, 0.3);
+    border: 2px solid rgb(70, 0, 0);
+}
+
 
 /*
 |-----------------------------------------------------------------------------------------------------
@@ -98,4 +299,128 @@ body, html {
     background-color: #222a33;
     text-align: center;
     margin-top: 20px;
+}
+
+
+
+
+form {
+    margin-bottom: 0 !important;
+}
+
+
+/*
+|-----------------------------------------------------------------------------------------------------
+| Media styles
+|-----------------------------------------------------------------------------------------------------
+|
+| Some redifinitions depending on resolution
+*/
+@media (max-width: 767px) {
+    .main-nav-item{
+        border-radius: 0 !important;
+        border: none !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+    }
+
+    .main-nav-item:last-child {
+        border-bottom: 1px solid steelblue !important;
+    }
+
+    .main-nav-item:hover > a {
+        color: steelblue !important;
+    }
+
+    .main-nav-item:focus, .main-nav-item:active {
+        background-color: #c4e4ed;
+    }
+
+    #current {
+        background-color: steelblue;
+        box-shadow: none !important;
+    }
+
+    #current > a {
+        color: white !important;
+    }
+    .navbar-nav {
+        margin-bottom: 0 !important;
+    }
+
+    .navbar-default {
+        border: none !important;
+    }
+
+    .navbar-header {
+        border-bottom: 1px solid steelblue !important;
+    }
+
+    .nav-auth {
+        margin-right: 10px;
+    }
+}
+
+@media (min-width: 768px){
+    .navbar-header {
+        margin-left: 25px !important;
+    }
+
+    .main-nav-item:hover {
+        /*border: 1px solid rgba(70, 130, 180, 0.5);*/
+        border-color: steelblue;
+        border-bottom: none;
+        border-radius: 5px 5px 0 0;
+        box-shadow: 0 5px 0 -1px #c4e4ed;
+
+
+        /*border-bottom: 3px solid #c4e4ed;*/
+
+        /*padding-bottom: 5px !important;*/
+
+    }
+
+    .main-nav-item:focus,
+    .main-nav-item:active {
+        border-color: transparent;
+        background-color: #c4e4ed;
+    }
+
+    .main-nav-item:hover > a {
+        color: steelblue !important;
+    }
+
+    .main-nav-item > a {
+        padding: 0 5px !important;
+    }
+}
+
+@media (min-width: 992px) {
+    #main-nav {
+        margin-left: 40px;
+    }
+
+    .main-nav-item > a {
+        padding: 0 10px !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    #main-nav{
+        margin-left: 80px;
+    }
+}
+
+/*
+CSS hacks
+*/
+.navbar-default, x:-moz-any-link {
+     outline: none;
+     box-shadow: 0 0 0 5px  #c4e4ed;
+}
+
+.link-disabled {
+    pointer-events: none; /* делаем ссылку некликабельной */
+    cursor: default;  /* устанавливаем курсор в виде стрелки */
+    color: #000; /* цвет текста для нективной ссылки */
 }

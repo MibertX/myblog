@@ -20,6 +20,19 @@ class User extends Model
 	 */
 	protected $primaryKey = 'user_id';
 
+	protected static $globalScopes = [
+		'user_id'
+	];
+
+	public $fillable = [
+		'user_id',
+		'name',
+		'email',
+		'role_id',
+		'seen',
+		'active'
+	];
+
 	/**
 	 * One to many relation.
 	 * Get all posts published this user.
@@ -50,6 +63,6 @@ class User extends Model
 	 */
 	protected function role()
 	{
-		return $this->hasOne('App\Models\Role', 'role_id', 'user_id');
+		return $this->hasOne('App\Models\Role', 'role_id', 'role_id');
 	}
 }

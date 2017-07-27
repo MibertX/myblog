@@ -47,18 +47,18 @@ return [
     'ip'                   => 'The :attribute must be a valid IP address.',
     'json'                 => 'The :attribute must be a valid JSON string.',
     'max'                  => [
-        'numeric' => 'The :attribute may not be greater than :max.',
-        'file'    => 'The :attribute may not be greater than :max kilobytes.',
-        'string'  => 'The :attribute may not be greater than :max characters.',
-        'array'   => 'The :attribute may not have more than :max items.',
+        'numeric' => 'Can not be greater than :max.',
+        'file'    => 'Can not be greater than :max kilobytes.',
+        'string'  => 'Can not be greater than :max characters.',
+        'array'   => 'Can not have more than :max items.',
     ],
     'mimes'                => 'The :attribute must be a file of type: :values.',
     'mimetypes'            => 'The :attribute must be a file of type: :values.',
     'min'                  => [
-        'numeric' => 'The :attribute must be at least :min.',
-        'file'    => 'The :attribute must be at least :min kilobytes.',
-        'string'  => 'The :attribute must be at least :min characters.',
-        'array'   => 'The :attribute must have at least :min items.',
+        'numeric' => 'Must be at least :min.',
+        'file'    => 'Must be at least :min kilobytes.',
+        'string'  => 'Must be at least :min characters.',
+        'array'   => 'Must have at least :min items.',
     ],
     'not_in'               => 'The selected :attribute is invalid.',
     'numeric'              => 'The :attribute must be a number.',
@@ -80,8 +80,8 @@ return [
     ],
     'string'               => 'The :attribute must be a string.',
     'timezone'             => 'The :attribute must be a valid zone.',
-    'unique'               => 'The :attribute has already been taken.',
-    'uploaded'             => 'The :attribute failed to upload.',
+    'unique'               => 'Already exists!',
+    'uploaded'             => 'Download fails!',
     'url'                  => 'The :attribute format is invalid.',
 
     /*
@@ -99,6 +99,38 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'text' => [
+            'required' => 'You must enter a text of the article',
+
+        ],
+        'title' => [
+            'required' => 'You must enter a title',
+        ],
+        'categories' => [
+            'required' => 'Select at least one category',
+        ],
+
+
+        /*
+          ____________________________
+            Register form
+          _____________________________
+        */
+        'name' => [
+            'required' => 'You must enter your name(nickname)',
+        ],
+
+        'email' => [
+            'required' => 'You must enter your E-Mail address',
+        ],
+
+        'password' => [
+            'required' => 'Come up with a password between 6 and 18 characters',
+        ],
+
+        'password_confirmation' => [
+            'same' => 'Passwords don\'t match!',
+        ],
     ],
 
     /*
@@ -112,6 +144,13 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'title' => '"Title"',
+        'categories' => '"Categories"',
+        'text' => '"Text"',
+        'password' => '"Password"',
+        'email' => '"E-Mail"',
+        'name' => '"Name"',
+    ],
 
 ];

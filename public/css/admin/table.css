@@ -1,0 +1,153 @@
+td> p {
+    margin: 0;
+}
+
+
+.responsive-table {
+    width: 100%;
+}
+
+.responsive-table tr > td {
+    border-top: 1px solid black;
+    height: 50px;
+    /*line-height: 44px;*/
+    padding: 8px !important;
+}
+
+.responsive-table th {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+.table-row-name {
+    min-width: 225px;
+}
+
+.responsive-table th {
+    font: 16pt Georgia, serif;
+    font-weight: bold;
+    padding: 8px 16px;
+}
+
+.btn-edit {
+    background-color: #ffc14d;
+}
+
+.btn-extra {
+    background-color: #4f74e3;
+}
+
+.btn-delete {
+    background-color: #de5454;
+    display: inline-block;
+    color: white;
+    padding: 6px 12px !important;
+}
+
+.btn-delete,
+.btn-edit,
+.btn-extra {
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    padding: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+.btn-extra:hover,
+.btn-extra:active,
+.btn-extra:focus {
+    background-color: #18399a;
+}
+
+.btn-edit:hover,
+.btn-edit:active,
+.btn-edit:focus {
+    background-color: #e69500;
+}
+
+.btn-delete:hover,
+.btn-delete:active,
+.btn-delete:focus {
+    background-color: #961d1d;
+}
+
+.btn-edit > a,
+.btn-extra > a {
+    display: inline-block;
+    width: 100% !important;
+    height: 100% !important;
+    color: white;
+    padding: 6px 12px !important;
+}
+
+.btn-delete:hover,
+.btn-delete:active,
+.btn-delete:focus,
+.btn-edit > a:hover,
+.btn-edit > a:active,
+.btn-edit > a:focus,
+.btn-extra > a:hover,
+.btn-extra > a:active,
+.btn-extra > a:focus {
+    color: white;
+    text-decoration: none;
+}
+
+button[name='delete'] {
+    background-color: transparent;
+    border: none;
+    min-height: 20px;
+    min-width: 20px;
+    padding: 0 !important;
+}
+/*.icon-extra {*/
+    /*display: inline-block;*/
+    /*width: 25px;*/
+    /*height: 25px;*/
+    /*background-color: #18399a;*/
+    /*border-radius: 6px;*/
+    /*padding: 2px;*/
+/*}*/
+
+/*a > i {*/
+    /*color: white;*/
+    /*width: 22px !important;*/
+    /*height: 22px !important;*/
+    /*padding-top: 5px !important;*/
+    /*padding-left: 3px !important;*/
+/*}*/
+
+.icon-delete .fa-square {
+    color:  #de5454;
+}
+
+.icon-delete:hover .fa-square,
+.icon-delete:active .fa-square,
+.icon-delete:focus .fa-square {
+    color: #961d1d;
+}
+
+.icon-edit .fa-square {
+    color: #ffc14d;
+}
+
+.icon-edit:hover .fa-square,
+.icon-edit:active .fa-square,
+.icon-edit:focus .fa-square {
+    color: #e69500;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.panel-warning {
+    background-color: #fff4e6;
+}
+
+.td-for-btn {
+    width: 75px;
+    text-align: center;
+}

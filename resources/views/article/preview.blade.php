@@ -9,8 +9,8 @@
             </div>
         </div>
         <div class="col-xs-10 preview-article-info">
-            <span class="preview-title">{{$article->title}}</span>
-            <p class="preview-details">{{$article->author}} &nbsp; {{$article->date}}</p>
+            <span class="preview-title">{!! $article->title !!}</span>
+            <p class="preview-details">{{$article->username}}.&nbsp;{{trans('posts.added')}}&nbsp;{{$article->created_at}}</p>
         </div>
     </div>
 
@@ -18,18 +18,26 @@
 
     <div class="row">
         <div class="col-xs-12">
-            <p class="preview-text">{{$article->text}}</p>
+            <p class="preview-text">
+                @foreach($article->categories as $category)
+                    <a href="">{{$category->name}}</a><span>/</span>
+                @endforeach
+                {!! $content !!}
+            </p>
         </div>
     </div>
 
+    @if(!$article->showFull)
     <div class="row">
         <div class="col-xs-12">
             <span class="pull-right preview-link">
-                <a href="">Читать далее</a> <span>&raquo;</span>
+                <a href="{{route('getOne', ['id' => $article->post_id])}}">{{trans('posts.read_more')}}</a>
+                <span>&raquo;</span>
             </span>
         </div>
     </div>
+    @endif
 </div>
 
-<hr class="preview-hr-dashed">
+{{--<hr class="preview-hr-dashed">--}}
 

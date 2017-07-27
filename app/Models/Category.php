@@ -13,6 +13,12 @@ class Category extends Model
 	 */
 	protected $table = 'categories';
 
+
+	protected $fillable = [
+		'name',
+		'category_id'
+	];
+
 	/**
 	 * Model's database table
 	 *
@@ -30,4 +36,6 @@ class Category extends Model
 	{
 		return $this->belongsToMany('App\Models\Post', 'post_category', 'post_id', 'category_id');
 	}
+
+	public $timestamps = false;
 }

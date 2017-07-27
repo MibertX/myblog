@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta content="text/html; charset=utf-8" http-equiv="content-type">
-    <title>@yield('title') - MyBlog</title>
+    <title>@yield('title') - MyBlog </title>
     <meta name="keywords" content="Блог, новости, IT, гаджеты, PHP, програмирование">
     <meta name="description" content="Актуальные новости из мира програмирования и гаджетов">
     <meta charset="utf-8">
@@ -23,45 +23,120 @@
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
+    <!-- Jasny bootsrap -->
+    <script src="/jasny-bootstrap/js/jasny-bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/jasny-bootstrap/css/jasny-bootstrap.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/font-awesome/css/font-awesome.css">
+
+    <!-- Summernote -->
+    <script src="/summernote/summernote.js"></script>
+    <link href="/summernote/summernote.css" rel="stylesheet">
+
     <!-- Custom stylesheets -->
     <link href="/css/main_layout.css" rel="stylesheet">
+    <script src="/js/popup-msg.js"></script>
     @yield('headExtra')
 </head>
 
 <body>
-<div class="navbar navbar-inverse navbar-custom" role="navigation">
+@section('auth')
+    @include('partials.auth_buttons')
+@stop
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
-        <div class="row">
-            <div class="navbar-header col-sm-6 col-xs-12 navbar-brand-custom">
-                <a class="navbar-brand" href="/">
-                    <strong>MyBlog</strong>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#main-nav">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="/">
+                MyBlog
+            </a>
+
+            <div class="dropdown dropdown-lang">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                    <img src="/css/elements/flags/{{session('locale')}}.png" class="img-flag">
+                    <span class="caret"></span>
                 </a>
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-
-            <div class="col-md-2 col-sm-1">&nbsp;</div>
-
-            <div class="navbar-default col-sm-5 col-md-4 hidden-xs ">
-                <ul class="nav navmenu-nav navmenu-custom">
-                    <li><a href="">Главная    </a></li>
-                    <li><a href="">Обо мне    </a></li>
-                    <li><a href="">Контакты   </a></li>
+                <ul class="dropdown-menu dropdown-lang-menu">
+                    @foreach(config('app.languages') as $lang)
+                        @if (session('locale') !== $lang)
+                            <li>
+                                <a href="{{route('locale', ['lang' => $lang])}}">
+                                    <img src="/css/elements/flags/{{$lang}}.png">
+                                </a>
+                            </li>
+                        @endif
+                    @endforeach
                 </ul>
             </div>
-        </div><!--/.navbar-collapse -->
-    </div>
+
+            <div class="nav nav-auth pull-right hidden-sm visible-xs ">
+                @yield('auth')
+            </div>
+        </div>
+
+        <div class="collapse navbar-collapse navbar-left" id="main-nav">
+            <ul class="nav navbar-nav">
+                {{--<li class="dropdown dropdown-lang">--}}
+                    {{--<a class="dropdown-toggle" data-toggle="dropdown">--}}
+                        {{--<img src="./css/elements/flags/{{session('locale')}}.png">--}}
+                    {{--</a>--}}
+                    {{--<ul class="dropdown-menu">--}}
+                        {{--@foreach(config('app.languages') as $lang)--}}
+                            {{--@if (app()->getLocale() !== $lang)--}}
+                                {{--<li><a href="{{route('locale', ['lang' => $lang])}}">{{$lang}}</a></li>--}}
+                            {{--@endif--}}
+                        {{--@endforeach--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
+                <li class="main-nav-item" id="{{session('active') == 'main' ? 'current' : ''}}">
+                    <a href="{{route('home')}}">{{trans('nav.main')}}</a>
+                </li>
+                <li class="main-nav-item" id="">
+                    <a href="">{{trans('nav.about')}}</a>
+                </li>
+                <li class="main-nav-item" id="">
+                    <a href="">{{trans('nav.contact')}}</a>
+                </li>
+                <li class="main-nav-item" id="">
+                    <a href="">Testing</a>
+                </li>
+
+            </ul>
+        </div><!-- /.navbar-collapse -->
+
+        <div class="nav navbar-right nav-auth hidden-xs visible-sm visible-lg visible-md">
+            @yield('auth')
+        </div>
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div id="notification">
+    @if(session('ok'))
+        @include('partials.message_partial', ['type' => 'ok', 'message' => session('ok')])
+        {{session()->forget('ok')}}
+    @endif
+
+    @if(session('info'))
+        @include('partials.message_partial', ['type' => 'info', 'message' => session('info')])
+        {{session()->forget('info')}}
+    @endif
+
+    @if(session('error'))
+        @include('partials.message_partial', ['type' => 'error', 'message' => session('error')])
+        {{session()->forget('error')}}
+    @endif
 </div>
 
-
-    @yield('content')
-
-
-
+@yield('content')
 
 <div id="footer">
     <div class="container">
@@ -72,3 +147,65 @@
 </div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{--<nav class="navbar navbar-fixed-top main-navbar" role="navigation">--}}
+    {{--<div class="container">--}}
+        {{--<div class="row">--}}
+        {{--<div class="navbar-header main-brand">--}}
+            {{--<button type="button" class="navbar-toogle collapsed" data-toggle="collapse"--}}
+                    {{--data-target="#bs-example-navbar-collapse-1">--}}
+                {{--<span class="sr-only">Toggle navigation</span>--}}
+                {{--<span class="icon-bar"></span>--}}
+                {{--<span class="icon-bar"></span>--}}
+                {{--<span class="icon-bar"></span>--}}
+            {{--</button>--}}
+            {{--<a class="" href="/">--}}
+                {{--<strong>MyBlog</strong>--}}
+            {{--</a>--}}
+        {{--</div>--}}
+
+        {{--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">--}}
+            {{--<ul class="nav nav-pills">--}}
+                {{--<li class="a nav-item"><a href="">Главная    </a></li>--}}
+                {{--<li class="nav-item"><a href="">Обо мне    </a></li>--}}
+                {{--<li class="nav-item"><a href="">Контакты   </a></li>--}}
+                {{--<li class="nav-item"><a href="">Testing</a></li>--}}
+                {{--<li class="a nav-item"><a href="">Testing</a></li>--}}
+            {{--</ul>--}}
+        {{--</div><!-- /.navbar-collapse -->--}}
+
+
+        {{--<div class="nav navbar-right">--}}
+        {{--@if(Auth::check())--}}
+
+        {{--@else--}}
+        {{--<button class="btn btn-success">--}}
+        {{--<a href="">Login</a>--}}
+        {{--</button>--}}
+        {{--<button class="btn btn-info">--}}
+        {{--<a href="">Register</a>--}}
+        {{--</button>--}}
+        {{--@endif--}}
+        {{--</div>--}}
+
+
+
+
+
+        {{--</div>--}}
+    {{--</div>--}}
+{{--</nav>--}}

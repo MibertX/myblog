@@ -1,0 +1,106 @@
+body {
+    background-color: #262626 !important;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+
+#footer {
+    display: none;
+}
+
+.navmenu-nav {
+    /*margin-left: 225px;*/
+    /*float: left;*/
+}
+
+.content-wrapper{
+    padding-left: 200px;
+    text-align: left;
+}
+
+.admin-content-container {
+    background-color: white;
+    max-width: 2400px;
+    padding: 20px;
+    margin: 0!important;
+}
+
+.admin-main-menu {
+    width: 200px !important;
+    margin-right: 0 !important;
+    position: fixed;
+    background-color: transparent;
+    border: none;
+}
+
+.admin-main-menu li>a {
+    color: grey;
+}
+
+.admin-main-menu li>a:hover,
+.admin-main-menu li>a:focus,
+.admin-main-menu li>a:active {
+    background-color: black !important;
+    color: white !important;
+}
+
+.admin-sub-menu {
+    position: relative !important;
+    top: 0;
+}
+
+#admin-nav {
+    padding: 0;
+}
+
+.admin-main-container {
+    padding: 0 !important;
+}
+
+.admin-title {
+    margin: 5px;
+    height: 50px;
+    line-height: 50px;
+    font: 28pt Georgia, serif;
+    display: inline-block;
+}
+
+.admin-link-path {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #e6f2ff;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.btn-admin-action {
+    background-color: #00e2e6;
+    margin: 5px;
+    padding: 0 !important;
+    height: 50px;
+    float: right;
+    border: none;
+    border-radius: 4px;
+}
+
+.btn-admin-action > a {
+    padding: 6px 12px !important;
+    font: 18pt Arial;
+    color: white;
+}
+.btn-admin-action:hover,
+.btn-admin-action:focus,
+.btn-admin-action:active {
+    background-color: #00b0b3;
+}
+.btn-admin-action:hover > a,
+.btn-admin-action:focus > a,
+.btn-admin-action:active > a {
+    color: white;
+    text-decoration: none;
+}

@@ -1,0 +1,148 @@
+/*
+        |================================================================================|
+        | This stylesheet applies only to './resources/views/auth/registrater.blade.php' |
+        |================================================================================|
+
+|-----------------------------------------------------------------------------------------------------
+| Buttons, inputs and their labels, and background for them all
+|-----------------------------------------------------------------------------------------------------
+*/
+
+.reg-form {
+    padding: 35px 55px 15px;
+    background-color: #222a33;
+    border-radius: 12px;
+    box-shadow: 5px 5px 20px -4px black;
+    margin-top: 40px;
+}
+
+.reg-background-field {
+    padding: 0 15px 0 10px;
+    margin-bottom: 0;
+    background-color: #2d3844;
+    border-radius: 8px;
+    border: 1px solid black;
+}
+
+.reg-input-field {
+    outline: none;
+    height: 34px;
+    margin: 10px 0;
+    padding: 0 10px;
+    background-color: #708090;
+    border: 1px solid black;
+    border-radius: 4px;
+    font: 14pt Verdana, arial;
+    color: white;
+}
+
+.reg-input-field:focus {
+    background-color: #eeeade;
+    color: black;
+}
+
+.reg-input-field:focus + .reg-label-field {
+    color: DodgerBlue;
+}
+
+.reg-label-field {
+    -webkit-user-select: none;
+    padding: 0;
+    margin: 0;
+    font: 16pt Verdana, Arial, sans-serif;
+    line-height: 54px;
+    text-align: center;
+    color: grey;
+}
+
+/*This selector need when the text from the label
+  need two rows to be displayed correctly*/
+.half-line-height {
+    line-height: 27px;
+}
+
+.reg-btn {
+    width: 150px;
+    height: 40px;
+    margin: 20px 10px 0;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+
+/*
+|-----------------------------------------------------------------------------------------------------
+| Errors & warnings
+|-----------------------------------------------------------------------------------------------------
+|
+| Status message container and redefining .input-fields on depending what user have inputed
+*/
+.arrow {
+    width: 0;
+    height: 0;
+    border: 10px solid;
+    border-color: transparent transparent rgb(70, 0, 0) transparent;
+    border-top: none;
+}
+
+.error {
+    display: inline-block;
+    background: rgba(204, 0, 0, 0.3);
+    color: white;
+    border-radius: 5px;
+    border: 2px solid rgb(70, 0, 0);
+    line-height: 20px;
+    max-width: 100%;
+    height: 100%;
+    padding: 0 10px;
+    font: 11pt Verdana Arial;
+}
+
+.error-container {
+    margin-top: -5px;
+    margin-bottom: 5px;
+}
+
+.empty-error {
+    height: 20px;
+}
+
+.has-error, .no-error {
+    color: white !important;
+    border-color: black !important;
+}
+
+.has-error {
+    background-color: rgba(204, 0, 0, 0.3);
+}
+
+.no-error {
+    background-color: rgba(0, 102, 0, 0.3);
+}
+
+.has-error:active, .has-error:focus {
+    border-color: rgba(204, 0, 0, 0.7) !important;
+    color: black !important;
+}
+
+.no-error:active, .no-error:focus {
+    border-color: rgba(0, 102, 0, 0.7) !important;
+    color: black !important;
+}
+
+.has-error:active + .reg-label-field,
+.has-error:focus + .reg-label-field {
+    color: crimson;
+}
+
+.no-error:active + .reg-label-field,
+.no-error:focus + .reg-label-field {
+    color: limegreen;
+}
+
+/*Disable footer*/
+
+
+#footer {
+    display: none;
+}

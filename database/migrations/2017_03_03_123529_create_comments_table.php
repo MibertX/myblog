@@ -16,7 +16,7 @@ class CreateCommentsTable extends Migration
         Schema::enableForeignKeyConstraints();
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('comment_id');
-            $table->string('text');
+            $table->text('text');
             $table->integer('user_id')->unsigned();
             $table->integer('post_id')->unsigned();
             $table->boolean('seen')->default(false);

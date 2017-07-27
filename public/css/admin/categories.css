@@ -1,0 +1,43 @@
+.responsive-table th {
+    font: 16pt Georgia, serif;
+    font-weight: bold;
+    padding: 8px 16px;
+}
+
+.category-create-form label {
+    display: inline-block;
+    width: 100%;
+    font: 16pt Georgia, serif;
+    font-weight: bold;
+    padding-left: 20px;
+}
+
+.category-create-form input[type='text'] {
+    display: inline-block;
+    width: 100%;
+    font: 16pt Arial, sans-serif;
+    padding: 6px 12px;
+}
+
+.btn-category-submit {
+    background-color: #00e2e6;
+    padding: 6px 12px;
+    height: 40px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+}
+
+.btn-category-submit > a {
+    color: white;
+    padding: 6px 12px !important;
+    margin: 0;
+}
+
+.btn-category-submit:hover,
+.btn-category-submit:active,
+.btn-category-submit:focus {
+    background-color: #00b0b3;
+}
+
+

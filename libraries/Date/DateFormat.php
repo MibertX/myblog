@@ -86,7 +86,8 @@ class DateFormat
 			default:
 				$formatted = trans('date.later', [
 					'time' => date('H:i', $timestamp),
-					'date' => date('d F' . (date('Y', $timestamp) === date('Y') ? null : ' Y'), $timestamp)
+					'day' => date('d', $timestamp),
+					'date' => date('F' . (date('Y', $timestamp) === date('Y') ? null : ' Y'), $timestamp)
 				]);
 				return strtr($formatted, trans('date.month_declensions'));
 		}
