@@ -26,11 +26,18 @@ class CategoryController extends Controller
 
 	/**
 	 * Get all categories from repository and show them.
+	 * 
+	 * @param Request $request
 	 * @return \Illuminate\Http\Response
 	 * */
-	public function getAll()
+	public function getAll(Request $request)
 	{
-		$categories = $this->categories->allCategories();
+		if ($request->ajax()) {
+			$categories = $this->categories->allCategoriesForAdmin($request->ordered_column, $request->direction);
+			return response()->view('admin.category.table', array('categories' => $categories));
+		}
+
+		$categories = $this->categories->allCategoriesForAdmin();
 		return response()->view('admin.category.all', array('categories' => $categories));
 	}
 
@@ -107,8 +114,8 @@ class CategoryController extends Controller
 	public function postDelete(Request $request)
 	{
 		$this->categories->destroyById($request->category_id);
-		return redirect()->route('adminCategories')
-			->with('info', 'The category was deleted successfully');
+//		return redirect()->route('adminCategories')
+//			->with('info', 'The category was deleted successfully');
 	}
 }
 

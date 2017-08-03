@@ -225,4 +225,10 @@ class CategoryRepository extends BaseRepository
 			default:return false;
 		}
 	}
+	
+	
+	public function allCategoriesForAdmin($ordered_collumn = 'categories.name', $direction='asc')
+	{
+		return $this->prepareCategoriesQuery()->orderBy($ordered_collumn, $direction)->paginate(5);
+	}
 }

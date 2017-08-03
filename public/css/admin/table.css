@@ -123,6 +123,16 @@ button[name='delete'] {
     color:  #de5454;
 }
 
+.icon-action .fa-square {
+    color:  #4f74e3;
+}
+
+.icon-action:hover .fa-square,
+.icon-action:active .fa-square,
+.icon-action:focus .fa-square {
+    color: #1f49c7;
+}
+
 .icon-delete:hover .fa-square,
 .icon-delete:active .fa-square,
 .icon-delete:focus .fa-square {
@@ -150,4 +160,12 @@ button[name='delete'] {
 .td-for-btn {
     width: 75px;
     text-align: center;
+}
+
+.td-for-btn button {
+    background-color: transparent;
+    border: none;
+    min-height: 20px;
+    min-width: 20px;
+    padding: 0 !important;
 }

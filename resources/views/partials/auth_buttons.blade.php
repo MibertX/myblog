@@ -1,6 +1,7 @@
 @if(Auth::check())
     <form action="{{route('logout')}}" method="post" enctype="multipart/form-data">
         {{csrf_field()}}
+        {{Auth::user()->name}}
         <button type="submit" class="btn btn-info">
             Exit
         </button>

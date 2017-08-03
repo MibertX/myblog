@@ -12,13 +12,23 @@ class CategoryRepository extends BaseRepository
 		$this->model = $category;
 	}
 	
-	public function allCategories()
+	
+	public function allCategories($ordered_collumn = 'categories.name', $direction='asc')
 	{
-		$categories = $this->model
-			->leftjoin('post_category', 'categories.category_id', '=', 'post_category.category_id')
-			->select('categories.category_id', 'categories.name', DB::raw('count(post_category.post_id) as posts'))
-			->groupBy('category_id', 'categories.name')->get();
+		$categories = $this->prepareCategoriesQuery()->orderBy($ordered_collumn, $direction)->get();
 		
 		return $categories;
 	}
+	
+	
+	protected function prepareCategoriesQuery()
+	{
+		$query = $this->model
+			->leftjoin('post_category', 'categories.category_id', '=', 'post_category.category_id')
+			->select('categories.category_id', 'categories.name', DB::raw('count(post_category.post_id) as posts'))
+			->groupBy('categories.category_id', 'categories.name');
+		
+		return $query;
+	}
 }
+

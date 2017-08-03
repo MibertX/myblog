@@ -36,7 +36,10 @@
 
     <!-- Custom stylesheets -->
     <link href="/css/main_layout.css" rel="stylesheet">
+
+    <link href="/css/user.css" rel="stylesheet">
     <script src="/js/popup-msg.js"></script>
+    <script src="/js/user_modalwindow.js"></script>
     @yield('headExtra')
 </head>
 

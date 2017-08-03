@@ -1,10 +1,15 @@
 @extends('admin.user.layout')
 
+
+
 @section('admin-content')
+    {{csrf_field()}}
     <table class="responsive-table">
         <tr>
             <th>Name</th>
             <th>Role</th>
+            <th>Last seen</th>
+            <th>&nbsp;</th>
             <th>&nbsp;</th>
             <th>&nbsp;</th>
             <th>&nbsp;</th>
@@ -13,32 +18,49 @@
             <tr>
                 <td>{{$user->name}}</td>
                 <td>{{$user->role}}</td>
-                <td>
-                    <form action="#" enctype="multipart/form-data" method="post">
-                        {{csrf_field()}}
-                        <input type="hidden" value="{{$user->user_id}}" name="post_id">
-                        {{--<input type="submit" class="btn-delete" value="{{trans('admin.delete_btn')}}">--}}
-                        <button class="btn-extra" role="button" type="submit">
-                            <a href="#">{{trans('admin.posts.see_btn')}}</a>
-                        </button>
-                    </form>
+                <td>{{$user->updated_at ?: '-'}}</td>
 
-                </td>
-                <td>
-                    <button class="btn-edit" role="button">
-                        <a href="#">{{trans('admin.edit_btn')}}</a>
+                <td class="td-for-btn">
+                    <button class="icon-action" role="button" type="submit" value="{{$user->user_id}}">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-square fa-stack-2x"></i>
+                            <i class="fa fa-eye fa-stack-1x fa-inverse"></i>
+                        </span>
                     </button>
                 </td>
-                <td>
-                    <form action="#" enctype="multipart/form-data" method="post">
-                        {{csrf_field()}}
-                        <input type="hidden" value="{{$user->user_id}}" name="post_id">
 
-                        <input type="submit" class="btn-delete" value="{{trans('admin.delete_btn')}}">
-                    </form>
+                <td class="td-for-btn">
+                    <button class="icon-edit" role="button">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-square fa-stack-2x"></i>
+                            <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </button>
+                </td>
+
+                <td class="td-for-btn">
+                    <button class="icon-ban" role="button" name="delete" value="{{$user->user_id}}">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-square fa-stack-2x"></i>
+                            @if ($user->ban == true)
+                                <?php $icon_class = 'fa-unlock'?>
+                            @else
+                                <?php $icon_class = 'fa-ban'?>
+                            @endif
+                            <i class="fa {{$icon_class}} fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </button>
+                </td>
+
+                <td class="td-for-btn">
+                    <button class="icon-delete" role="button" name="delete">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-square fa-stack-2x"></i>
+                            <i class="fa fa-trash fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </button>
                 </td>
             </tr>
         @endforeach
     </table>
-
 @endsection

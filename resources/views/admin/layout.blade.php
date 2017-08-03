@@ -1,7 +1,7 @@
 @extends("main_layout")
 @section('headExtra')
     <link href="/css/admin/layout.css" rel="stylesheet">
-    @stop
+    @endsection
 
 @section('content')
     <div class="container-fluid admin-main-container">
@@ -16,7 +16,17 @@
 
             <div class="collapse navbar-collapse" id="admin-nav">
                 <ul class="nav navmenu-nav">
-                    <li><a href="#">Пункт 1</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Users&nbsp;<b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu navmenu-nav admin-sub-menu" role="menu">
+                            <li>
+                                <a href="{{route('allUsers')}}">All</a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             {{trans('admin.posts.link')}}&nbsp;<b class="caret"></b>

@@ -123,7 +123,7 @@ Route::post('adminzone/categories/update', [
     'as' => 'categoryUpdate'
 ]);
 
-Route::post('adminzone/categories/delete/', [
+Route::post('adminzone/categories/delete', [
     'uses' => 'Admin\CategoryController@postDelete',
     'as' => 'categoryDelete'
 ]);
@@ -174,8 +174,15 @@ Route::get('/adminzone/posts/activetoogle', [
     'as' => 'tooglePostActive'
 ]);
 
+Route::get('/adminzone/users/create', [
+    'uses' => 'Admin\UserController@getCreateView',
+    'as' => 'createUserView'
+]);
 
-
+Route::post('adminzone/users/create', [
+    'uses' => 'Admin\UserController@create',
+    'as' => 'createUser'
+]);
 
 
 
@@ -188,6 +195,16 @@ Route::post('adminzone/posts/order', [
 Route::post('adminzone/article', [
     'uses' => 'Admin\BlogController@getOneAjax',
     'as' => 'getOneAdmin'
+]);
+
+Route::get('adminzone/users/toogleban', [
+   'uses' => 'Admin\UserController@toogleBan',
+    'as' => 'toogleUserBan'
+]);
+
+Route::get('users/one', [
+    'uses' => 'UserController@getOne',
+    'as' => 'oneUser'
 ]);
 
 

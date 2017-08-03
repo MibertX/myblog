@@ -13,4 +13,11 @@ class UserController extends Controller
 	{
 		$this->users = $userRepository;
 	}
+	
+	public function getOne(Request $request)
+	{
+		$user = $this->users->oneById($request);
+		return response()->view('admin/user/one', array('user' => $user));
+	}
 }
+

@@ -10,7 +10,15 @@
         </div>
         <div class="col-xs-10 preview-article-info">
             <span class="preview-title">{!! $article->title !!}</span>
-            <p class="preview-details">{{$article->username}}.&nbsp;{{trans('posts.added')}}&nbsp;{{$article->created_at}}</p>
+            <p class="preview-details">
+                <button class="icon-action" name="delete" value="{{$article->user_id}}" role="button" type="submit">
+                    {{$article->username}}
+                </button>
+                {{--<a href="{{route('oneUser', array('user_id' => $article->user_id))}}" class="icon-action">--}}
+
+                {{--</a>--}}
+                &nbsp;{{trans('posts.added')}}&nbsp;{{$article->created_at}}
+            </p>
         </div>
     </div>
 

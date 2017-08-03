@@ -129,7 +129,7 @@ class BlogRepository extends BaseRepository
 	protected function preparePostsQuery()
 	{
 		$select = $this->model
-			->select('posts.post_id', 'posts.title', 'posts.preview', 'posts.seen', 'posts.active', 'posts.views', 'posts.created_at', 'posts.updated_at')
+			->select('posts.post_id', 'posts.title', 'posts.preview', 'posts.seen', 'posts.active', 'posts.views', 'posts.created_at', 'posts.updated_at', 'posts.user_id')
 			->join('users', 'posts.user_id', '=' , 'users.user_id')->addSelect('users.name as username', 'users.user_id');
 
 		return $select;

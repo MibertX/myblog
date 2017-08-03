@@ -10,5 +10,4 @@ return [
 	'web'=>'Web',
 	'windows'=>'Windows',
 	'javascript'=>'JavaScript',
-	'english_name'=>'English name',
 ];

@@ -1,95 +1,45 @@
-/**
- * Created by Mibert on 20.07.2017.
- */
-var ORDERED_COLUMN = 'created_at';
-var DIRECTION = 'desc';
+var ORDERED_COLUMN = 'categories.name';
+var DIRECTION = 'asc';
 
-function seenClick(that) {
-    $(that).hide().parent().append('<i class="fa fa-refresh fa-spin"></i>');
-
-    $.ajax({
-        type: "GET",
-        data: {
-            'post_id': that.value,
-            'seen': that.checked
-        },
-        url: "/adminzone/posts/seentoogle",
-        success: function () {
-            $(that).parents('tr').toggleClass('panel-warning')
-        },
-        error: function () {
-            $(that).prop('checked', $(that).prop('checked') == false)
-        },
-        complete: function () {
-            $('.fa-spin').remove();
-            $(that).show();
-        }
-    })
-}
-
-
-function activeClick(checkbox) {
-    $(checkbox).hide().parent().append('<i class="fa fa-refresh fa-spin"></i>');
-    $.ajax({
-        type: "GET",
-        data: {
-            'post_id': checkbox.value,
-            'active': checkbox.checked
-        },
-        url: "/adminzone/posts/activetoogle",
-        success: function () {
-
-        },
-        error: function () {
-            $(checkbox).prop('checked', $(checkbox).prop('checked') == false)
-        },
-        complete: function () {
-            $('.fa-spin').remove();
-            $(checkbox).show();
-        }
-    })
-}
-
-
-function deleteClick(that) {
+function deleteClick(button)
+{
     $.ajax({
         type: "POST",
+        url: "/adminzone/categories/delete",
         dataType: "html",
         data: {
             '_token': $('input[name="_token"]').val(),
-            'post_id': that.value
+            'category_id': button.value
         },
-        url: "/adminzone/posts/delete",
-        success: function (data) {
-            $(that).parents("tr").remove();
-            createPopupForAjax(data);
+        success: function () {
+            $(button).parents("tr").remove();
+            if ($(".responsive-table").children("tr").length < 1) {
+                var previous_page = ($(".responsive-table .pagination .active span").html()) -1;
+
+                if (previous_page > 0) {
+                    getData(previous_page)
+                }
+            }
+        },
+        error: function () {
+            alert('false');
         }
     })
 }
 
-
 function setEventHandlersForTable() {
-    $('.responsive-table input:checkbox[name="seen"]').on('change' , function () {
-        seenClick(this)
-    })
-
-    $('.responsive-table input:checkbox[name="active"]').on('change', function () {
-        activeClick(this)
-    })
-
-    $('.responsive-table .icon-delete').on('click', function () {
+    $('button.icon-delete').on('click', function () {
         deleteClick(this);
     })
 }
 
-
-function getData(page, url) {
+function getData(page) {
     $.ajax({
-        url: url,
+        url: "/adminzone/categories",
         type: "GET",
         data: {
+            'ordered_column': ORDERED_COLUMN,
             'direction': DIRECTION,
-            'ordered': ORDERED_COLUMN,
             'page': page
         },
         success: function (data) {
@@ -118,21 +68,20 @@ $(window).on('hashchange', function() {
 $(document).ready( function () {
     setEventHandlersForTable()
 
-    $(document).on('click', '.pagination a', function(event)
-    {
+    $(document).on('click', '.pagination a', function (event) {
         $('li').removeClass('active');
         $(this).parent('li').addClass('active');
         console.log(this);
         event.preventDefault();
         var myurl = $(this).attr('href');
-        var page=$(this).attr('href').split('page=')[1];
-        getData(page, myurl);
+        var page = $(this).attr('href').split('page=')[1];
+        getData(page);
     })
 
     $('.order').on('click', function () {
         var icon = $(this).children('i');
         var icons = $('.order').children('i');
-        
+
         if(icon.hasClass('fa-sort-desc')) {
             icons.removeClass('fa-sort-desc fa-sort-asc').addClass('fa-sort');
             icon.removeClass('fa-sort-desc').addClass('fa-sort-asc');
@@ -146,11 +95,11 @@ $(document).ready( function () {
 
         $.ajax({
             type: "GET",
-            url: "/adminzone/posts/all",
+            url: "/adminzone/categories",
             data: {
                 '_token': $('input[name="_token"]').val(),
                 'direction': DIRECTION,
-                'ordered': $(this).prop('name')
+                'ordered_column': ORDERED_COLUMN
             },
             success: function (data) {
                 $('.responsive-table').children('tbody').empty().append(data);
@@ -161,4 +110,5 @@ $(document).ready( function () {
             }
         })
     })
+
 })
