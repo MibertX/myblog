@@ -1,8 +1,56 @@
 var ORDERED_COLUMN = 'categories.name';
 var DIRECTION = 'asc';
 
+function activeClick(that)
+{
+    $(that).hide().parent().append('<i class="fa fa-refresh fa-spin"></i>');
+
+    $.ajax({
+        type: "GET",
+        data: {
+            'category_id': that.value,
+            'active': that.checked
+        },
+        url: "/adminzone/categories/activetoogle",
+
+        error: function () {
+            $(that).prop('checked', $(that).prop('checked') == false)
+        },
+
+        complete: function () {
+            $('.fa-spin').remove();
+            $(that).show();
+        }
+    })
+}
+
+function seenClick(that) {
+    $(that).hide().parent().append('<i class="fa fa-refresh fa-spin"></i>')
+
+    $.ajax({
+        type: "GET",
+        data: {
+            'category_id': that.value,
+            'seen': that.checked,
+        },
+        url: '/adminzone/categories/seentoogle',
+        success: function () {
+            $(that).parents('tr').toggleClass('panel-warning')
+        },
+        error: function () {
+            $(that).prop('checked', $(that).prop('checked') == false)
+        },
+        complete: function () {
+            $('.fa-spin').remove();
+            $(that).show();
+        }
+    })
+}
+
 function deleteClick(button)
 {
+    var counter = $(".responsive-table tr").length;
+    console.log(counter);
     $.ajax({
         type: "POST",
         url: "/adminzone/categories/delete",
@@ -13,12 +61,14 @@ function deleteClick(button)
         },
         success: function () {
             $(button).parents("tr").remove();
-            if ($(".responsive-table").children("tr").length < 1) {
-                var previous_page = ($(".responsive-table .pagination .active span").html()) -1;
+            var page = ($(".responsive-table .pagination .active span").html());
 
-                if (previous_page > 0) {
-                    getData(previous_page)
-                }
+            if (($(".responsive-table tr").length) < 3) {
+                --page;
+            }
+
+            if (page > 0) {
+                getData(page)
             }
         },
         error: function () {
@@ -30,6 +80,14 @@ function deleteClick(button)
 function setEventHandlersForTable() {
     $('button.icon-delete').on('click', function () {
         deleteClick(this);
+    })
+
+    $('.responsive-table input:checkbox[name="seen"]').on('click', function(){
+        seenClick(this);
+    })
+
+    $('.responsive-table input:checkbox[name="active"]').on('click', function() {
+        activeClick(this);
     })
 }
 
@@ -73,7 +131,6 @@ $(document).ready( function () {
         $(this).parent('li').addClass('active');
         console.log(this);
         event.preventDefault();
-        var myurl = $(this).attr('href');
         var page = $(this).attr('href').split('page=')[1];
         getData(page);
     })

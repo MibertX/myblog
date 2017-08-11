@@ -12,12 +12,14 @@
         <div class="col-xs-12">
             <h2 class="admin-title">{{trans('admin.posts.gestion')}}</h2>
             @if(request()->path() != 'adminzone/posts/create')
+                @can('createPost', Auth::user())
                 <button class="btn-admin-action" role="button">
                     <a href="{{route('createPostView')}}">
                         <i class="fa fa-plus" aria-hidden="true"></i>
                         {{trans('admin.posts.create_btn')}}
                     </a>
                 </button>
+                @endcan
             @endif
         </div>
     </div>

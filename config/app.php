@@ -170,7 +170,6 @@ return [
          */
 
         Collective\Html\HtmlServiceProvider::class,
-        Barryvdh\Debugbar\ServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         GrahamCampbell\Exceptions\ExceptionsServiceProvider::class,
 
@@ -182,7 +181,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        
+        Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*

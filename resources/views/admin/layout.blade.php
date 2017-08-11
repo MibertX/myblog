@@ -1,7 +1,7 @@
 @extends("main_layout")
 @section('headExtra')
     <link href="/css/admin/layout.css" rel="stylesheet">
-    @endsection
+
 
 @section('content')
     <div class="container-fluid admin-main-container">
@@ -16,29 +16,41 @@
 
             <div class="collapse navbar-collapse" id="admin-nav">
                 <ul class="nav navmenu-nav">
+                    <li>
+                        <a href="{{route('dashboard')}}">
+                            <i class="fa fa-dashboard"></i>
+                            Dashboard
+                        </a>
+                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Users&nbsp;<b class="caret"></b>
+                            <i class="fa fa-user"></i>
+                            Users&nbsp;
+                            <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu navmenu-nav admin-sub-menu" role="menu">
-                            <li>
-                                <a href="{{route('allUsers')}}">All</a>
-                            </li>
+                            <li><a href="{{route('allUsers')}}">All</a></li>
+                            <li><a href="{{route('createUserView')}}">New User</a></li>
                         </ul>
                     </li>
 
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            {{trans('admin.posts.link')}}&nbsp;<b class="caret"></b>
+                            <i class="fa fa-file-text-o"></i>
+                            {{trans('admin.posts.link')}}&nbsp;
+                            <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu navmenu-nav admin-sub-menu" role="menu">
                             <li><a href="{{route('adminPostsView')}}">{{trans('admin.posts.all')}}</a></li>
                             <li><a href="{{route('createPostView')}}">{{trans('admin.posts.create_btn')}}</a></li>
                         </ul>
                     </li>
+
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            {{trans('admin.categories')}}&nbsp;<b class="caret"></b>
+                            <i class="fa fa-tags"></i>
+                            {{trans('admin.categories')}}&nbsp;
+                            <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu navmenu-nav admin-sub-menu" role="menu">
                             <li><a href="{{route('adminCategories')}}">{{trans('admin.all')}}</a></li>

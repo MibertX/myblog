@@ -5,9 +5,9 @@ use App\Models\Content;
 use App\Models\Post;
 use App\Models\Comment;
 use App\Repositories\CategoryRepository as Category;
-use App\Repositories\BaseRepository;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Repositories\UserRepository as User;
 
 class BlogRepository extends BaseRepository
 {
@@ -31,6 +31,8 @@ class BlogRepository extends BaseRepository
 	 * @var category
 	 */
 	protected $category;
+	
+	protected $user;
 
 	/**
 	 * Default value for this class when paginating
@@ -47,13 +49,15 @@ class BlogRepository extends BaseRepository
 	 * @param Comment $comment
 	 * @param Category $category
 	 * @param Content $content
+	 * @param User $user
 	 */
-	public function __construct(Post $post, Comment $comment, Category $category, Content $content)
+	public function __construct(Post $post, Comment $comment, Category $category, Content $content, User $user)
 	{
 		$this->model = $post;
 		$this->comment = $comment;
 		$this->category = $category;
 		$this->content = $content;
+		$this->user = $user;
 	}
 
 	/**
@@ -122,6 +126,185 @@ class BlogRepository extends BaseRepository
 	}
 	
 	/**
+	 * Toogle the post seen value (true or false)
+	 *
+	 * @param $data
+	 */
+	public function tooglePostSeen($data)
+	{
+		$seen = $data->seen == 'true';
+		$this->model->where('post_id', '=', $data->post_id)->update(['seen' => $seen]);
+	}
+
+	/**
+	 * Toogle the post active value (true or false)
+	 *
+	 * @param $data
+	 */
+	public function tooglePostActive($data)
+	{
+		$active = $data->active == 'true';
+		$this->model->where('post_id', '=', $data->post_id)->update(['active' => $active]);
+	}
+
+	/**
+	 * Store the post into DB.
+	 *
+	 * Saving the article affects several tables.
+	 * So, saving to each table has its own method,
+	 * and this method performs them together in a transaction.
+	 *
+	 * @param $data
+	 * @return bool
+	 */
+	public function store($data)
+	{
+		try {
+			DB::beginTransaction();
+			$this->savePost($data);
+			$this->saveCategories($data);
+			$this->saveContent($data);
+			DB::commit();
+			return true;
+		}
+		catch (\Exception $exception) {
+			DB::rollBack();
+			return false;
+		};
+	}
+
+	/**
+	 * Update the post
+	 *
+	 * @param $data
+	 * @return bool
+	 */
+	public function update($data)
+	{
+		try {
+			$this->model = $this->postById($data->post_id);
+
+			DB::beginTransaction();
+			$this->updatePost($data);
+			$this->updateContent($data);
+			$this->updateCategories($data);
+			$this->model->update(['seen' => false]);
+			DB::commit();
+			$result = true;
+		} catch (\Exception $exception) {
+			DB::rollBack();
+			$result = false;
+		};
+
+		return $result;
+	}
+
+	public function newPosts()
+	{
+//		return $this->preparePostsQuery()
+//			->join('contents', 'posts.post_id', '=', 'contents.post_id')
+//			->addSelect('contents.text as posts.content')
+//			->where('posts.seen', '=', false)
+//			->with('categories')
+//			->orderBy('created_at', 'desc')
+//			->paginate(1);
+		
+		return $this->model->select(DB::raw('COUNT(post_id) as counter'))
+			->where('seen', '=', false)->first();
+	}
+	
+	public function newCategories()
+	{
+		return $this->category->newCategories();
+	}
+	
+	public function newUsers()
+	{
+		return $this->user->newUsers();
+	}
+
+	/**
+	 * Saving data of the post in table 'posts'.
+	 *
+	 * @param $data
+	 */
+	protected function savePost($data)
+	{
+		$this->model->title = $data->title;
+		$this->model->user_id = 1; // доделать чтобы ставился айди текущего залогиненого пользователя
+		$this->model->preview = $data->preview;
+		$this->model->save();
+	}
+
+	/**
+	 * Update data of the post in table 'posts'.
+	 *
+	 * No need to update the same data, so, before update, data will be
+	 * checked for the difference
+	 *
+	 * @param $data
+	 */
+	protected function updatePost($data)
+	{
+		if($this->model->title != $data->title || $this->model->preview != $data->preview) {
+			$this->model->update(['title' => $data->title, 'preview' => $data->preview]);
+		}
+	}
+
+	/**
+	 * Save data of the post in table 'contents'.
+	 *
+	 * @param $data
+	 */
+	protected function saveContent($data)
+	{
+		$this->content->text = $data->text;
+		$this->content->post_id = $this->model->post_id;
+		$this->content->save();
+	}
+
+
+	/**
+	 * Update data of the post in table 'contents'.
+	 *
+	 * No need to update the same data, so, before update, data will be
+	 * checked for the difference
+	 *
+	 * @param $data
+	 */
+	protected function updateContent($data)
+	{
+		if($this->model->content != $data->text)
+			$this->content->where('post_id', '=', $data->post_id)->update(['text' => $data->text]);
+	}
+
+	/**
+	 * Saving data of the post in pivot table 'post_category'.
+	 *
+	 * @param $data
+	 */
+	protected function saveCategories($data)
+	{
+		$this->model->categories()->attach($data->categories);
+		$this->model->save();
+	}
+
+	/**
+	 * Update data of the post in pivot table 'post_category'.
+	 *
+	 * No need to update the same data, so, before update, data will be
+	 * checked for the difference
+	 *
+	 * @param $data
+	 */
+	protected function updateCategories($data)
+	{
+		if ($this->model->categories != $data->categories) {
+			$this->model->categories()->sync($data->categories);
+		}
+	}
+
+	/**
 	 * Preparing the select for post. It also includes with user's name and id, who posted this post.
 	 *
 	 * @return mixed
@@ -129,8 +312,10 @@ class BlogRepository extends BaseRepository
 	protected function preparePostsQuery()
 	{
 		$select = $this->model
-			->select('posts.post_id', 'posts.title', 'posts.preview', 'posts.seen', 'posts.active', 'posts.views', 'posts.created_at', 'posts.updated_at', 'posts.user_id')
-			->join('users', 'posts.user_id', '=' , 'users.user_id')->addSelect('users.name as username', 'users.user_id');
+			->select('posts.post_id', 'posts.title', 'posts.preview', 'posts.seen', 'posts.active',
+				'posts.views', 'posts.created_at', 'posts.updated_at', 'posts.user_id')
+			->join('users', 'posts.user_id', '=' , 'users.user_id')
+			->addSelect('users.name as username', 'users.user_id');
 
 		return $select;
 	}

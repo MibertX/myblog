@@ -3,7 +3,7 @@
 <head>
     <meta content="text/html; charset=utf-8" http-equiv="content-type">
     <title>@yield('title') - MyBlog </title>
-    <meta name="keywords" content="Блог, новости, IT, гаджеты, PHP, програмирование">
+    <meta name="keywords" content="Блог, IT, гаджеты, PHP, програмирование">
     <meta name="description" content="Актуальные новости из мира програмирования и гаджетов">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,10 +23,6 @@
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
-    <!-- Jasny bootsrap -->
-    <script src="/jasny-bootstrap/js/jasny-bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/jasny-bootstrap/css/jasny-bootstrap.min.css">
-
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/font-awesome/css/font-awesome.css">
 
@@ -36,7 +32,6 @@
 
     <!-- Custom stylesheets -->
     <link href="/css/main_layout.css" rel="stylesheet">
-
     <link href="/css/user.css" rel="stylesheet">
     <script src="/js/popup-msg.js"></script>
     <script src="/js/user_modalwindow.js"></script>
@@ -88,18 +83,6 @@
 
         <div class="collapse navbar-collapse navbar-left" id="main-nav">
             <ul class="nav navbar-nav">
-                {{--<li class="dropdown dropdown-lang">--}}
-                    {{--<a class="dropdown-toggle" data-toggle="dropdown">--}}
-                        {{--<img src="./css/elements/flags/{{session('locale')}}.png">--}}
-                    {{--</a>--}}
-                    {{--<ul class="dropdown-menu">--}}
-                        {{--@foreach(config('app.languages') as $lang)--}}
-                            {{--@if (app()->getLocale() !== $lang)--}}
-                                {{--<li><a href="{{route('locale', ['lang' => $lang])}}">{{$lang}}</a></li>--}}
-                            {{--@endif--}}
-                        {{--@endforeach--}}
-                    {{--</ul>--}}
-                {{--</li>--}}
                 <li class="main-nav-item" id="{{session('active') == 'main' ? 'current' : ''}}">
                     <a href="{{route('home')}}">{{trans('nav.main')}}</a>
                 </li>
@@ -112,7 +95,6 @@
                 <li class="main-nav-item" id="">
                     <a href="">Testing</a>
                 </li>
-
             </ul>
         </div><!-- /.navbar-collapse -->
 
@@ -121,6 +103,14 @@
         </div>
     </div><!-- /.container-fluid -->
 </nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            @yield('path-link')
+        </div>
+    </div>
+</div>
 
 <div id="notification">
     @if(session('ok'))
@@ -150,65 +140,3 @@
 </div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{{--<nav class="navbar navbar-fixed-top main-navbar" role="navigation">--}}
-    {{--<div class="container">--}}
-        {{--<div class="row">--}}
-        {{--<div class="navbar-header main-brand">--}}
-            {{--<button type="button" class="navbar-toogle collapsed" data-toggle="collapse"--}}
-                    {{--data-target="#bs-example-navbar-collapse-1">--}}
-                {{--<span class="sr-only">Toggle navigation</span>--}}
-                {{--<span class="icon-bar"></span>--}}
-                {{--<span class="icon-bar"></span>--}}
-                {{--<span class="icon-bar"></span>--}}
-            {{--</button>--}}
-            {{--<a class="" href="/">--}}
-                {{--<strong>MyBlog</strong>--}}
-            {{--</a>--}}
-        {{--</div>--}}
-
-        {{--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">--}}
-            {{--<ul class="nav nav-pills">--}}
-                {{--<li class="a nav-item"><a href="">Главная    </a></li>--}}
-                {{--<li class="nav-item"><a href="">Обо мне    </a></li>--}}
-                {{--<li class="nav-item"><a href="">Контакты   </a></li>--}}
-                {{--<li class="nav-item"><a href="">Testing</a></li>--}}
-                {{--<li class="a nav-item"><a href="">Testing</a></li>--}}
-            {{--</ul>--}}
-        {{--</div><!-- /.navbar-collapse -->--}}
-
-
-        {{--<div class="nav navbar-right">--}}
-        {{--@if(Auth::check())--}}
-
-        {{--@else--}}
-        {{--<button class="btn btn-success">--}}
-        {{--<a href="">Login</a>--}}
-        {{--</button>--}}
-        {{--<button class="btn btn-info">--}}
-        {{--<a href="">Register</a>--}}
-        {{--</button>--}}
-        {{--@endif--}}
-        {{--</div>--}}
-
-
-
-
-
-        {{--</div>--}}
-    {{--</div>--}}
-{{--</nav>--}}

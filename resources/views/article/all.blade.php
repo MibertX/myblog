@@ -4,6 +4,12 @@
     {{trans('posts.title.all')}}
     @stop
 
+{{--@section('path-link')--}}
+    {{--<a href="{{route('allArticles')}}" class="{{request()->path() != 'articles/all' ? '' : 'link-disabled'}}">--}}
+        {{--Posts--}}
+    {{--</a>--}}
+    {{--@stop--}}
+
 @section('posts')
     @foreach($articles as $article)
         @include('article/preview', ['content' => $article->preview])

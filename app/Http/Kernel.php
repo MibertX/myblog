@@ -8,6 +8,7 @@ use App\Http\Middleware\RegisterValidation;
 use App\Http\Middleware\SecondMiddle;
 use App\Http\Middleware\SetLocale;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use App\Http\Middleware\ActiveSection;
 
 class Kernel extends HttpKernel
 {
@@ -36,6 +37,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             SetLocale::class,
+            ActiveSection::class,
         ],
 
         'api' => [

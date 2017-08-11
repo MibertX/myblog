@@ -13,7 +13,10 @@
             <h2 class="admin-title">Users management</h2>
             @if(request()->path() != 'adminzone/users/create')
                 <button class="btn-admin-action" role="button">
-                    <a href="{{route('createUserView')}}">New User</a>
+                    <a href="{{route('createUserView')}}">
+                        <i class="fa fa-plus"></i>&nbsp;
+                        New User
+                    </a>
                 </button>
             @endif
         </div>
@@ -22,6 +25,7 @@
     <div class="row">
         <div class="col-xs-12">
             <span class="admin-link-path no-user-select">
+                <i class="fa fa-user"></i>
                 <a href="{{route('createUserView')}}" class="{{request()->path() != 'adminzone/users/all' ? '' : 'link-disabled'}}">
                     Users
                 </a>

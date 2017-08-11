@@ -149,6 +149,14 @@ button[name='delete'] {
     color: #e69500;
 }
 
+.icon-disabled {
+    cursor: not-allowed;
+}
+
+.icon-disabled .fa-square {
+    color: rgba(0, 0, 0, 0.15);
+}
+
 .align-center {
     text-align: center;
 }

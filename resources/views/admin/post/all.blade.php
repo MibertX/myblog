@@ -21,16 +21,20 @@
                 <a href="#" name="posts.created_at" class="order"><i class="fa fa-sort fa-sort-desc"></i></a>
             </th>
 
+            @can('tooglePostSeen', Auth::user())
             <th class="align-center">Seen
                 <a href="#" name="posts.seen" class="order"><i class="fa fa-sort"></i></a>
             </th>
+            @endcan
 
+            @can('tooglePostActive', Auth::user())
             <th class="align-center">Active
                 <a href="#" name="posts.active" class="order"><i class="fa fa-sort"></i></a>
             </th>
-            <th>&nbsp;</th>
-            <th>&nbsp;</th>
-            <th>&nbsp;</th>
+            @endcan
+            <th></th>
+            <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>

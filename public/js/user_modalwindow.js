@@ -4,18 +4,22 @@ function closeUserWindowClick() {
     })
 }
 
+function openUserWindowClick(that) {
+    $.ajax({
+        type: "GET",
+        url: "/users/one",
+        data: {
+            'user_id': that.value
+        },
+        success: function (data) {
+            $('body').append(data);
+            closeUserWindowClick();
+        }
+    })
+}
+
 $(document).ready(function () {
     $('.icon-action').on('click', function () {
-        $.ajax({
-            type: "GET",
-            url: "/users/one",
-            data: {
-                'user_id': this.value
-            },
-            success: function (data) {
-                $('body').append(data);
-                closeUserWindowClick();
-            }
-        })
+        openUserWindowClick(this);
     })
 })

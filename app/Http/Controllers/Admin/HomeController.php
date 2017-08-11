@@ -9,6 +9,6 @@ class HomeController extends Controller
 {
     public function dashboard()
 	{
-		return view('admin.layout');
+		return view('admin.dashboard');
 	}
 }

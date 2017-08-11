@@ -9,50 +9,69 @@ use Illuminate\Support\Facades\Session;
 
 class BlogController extends Controller
 {
+	/**
+	 * Dependency, which will be inject in constructor
+	 *
+	 * @var BlogRepository
+	 */
 	protected $blog;
-	
+
+	/**
+	 * BlogController constructor.
+	 *
+	 * @param BlogRepository $blog_repository
+	 */
     public function __construct(BlogRepository $blog_repository)
 	{
-		Session::put('active', 'main');
 		$this->blog = $blog_repository;
 	}
 
-//	public function getPublish()
-//	{
-//		$categories = $this->blog->allCategories();
-//		$view = view('article/publish', array('categories' => $categories))->render();
-//
-//		return (new Response($view));
-//	}
-	
-//	public function postPublish(Request $request)
-//	{
-//		$this->blog->store($request->all());
-//		return 'true';
-//	}
-
-	public function getAll(Request $request)
+	/**
+	 * The main page of blog
+	 *
+	 * Get all posts with pagination.
+	 * Also get all categories separately, that will be used as filter.
+	 * Each category is a link, and by clicking on it the posts
+	 * of the corresponding category will be shown instead of all posts.
+	 *
+	 * @param Request $request
+	 * @return \Illuminate\Http\Response
+	 */
+	public function allPosts(Request $request)
 	{
-		Session::forget('category');
-		$categories = $this->blog->allCategories();
-		$posts = $this->blog->allPosts();
+		try {
+			$categories = $this->blog->allCategories();
+			$posts = $this->blog->allPosts();
+			Session::forget('category');
 
-		return response()->view('article/all', array('articles' => $posts, 'categories' => $categories));
+			return response()->view('article/all', array('articles' => $posts, 'categories' => $categories));
+		} catch (\Exception $e) {
+			abort(404);
+		}
 	}
 
-
-	public function getOne($id)
+	/**
+	 * Get one post.
+	 *
+	 * @param $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function onePost($id)
 	{
-		Session::forget('category');
 		$categories = $this->blog->allCategories();
 		$post = $this->blog->postById($id);
 		$post->showFull = true;
 
-		return response()->view('article/one', array('article' => $post, 'categories' => $categories, 'content' => $post->content));
+		return response()->view('article/one', array('article' => $post, 'categories' => $categories));
 	}
 
-
-	public function getByCategories($category)
+	/**
+	 * Get all posts that have selected categories
+	 * 
+	 * @param $category
+	 * @return \Illuminate\Http\Response
+	 */
+	public function postsByCategory($category)
 	{
 		$categories = $this->blog->allCategories();
 		$posts = $this->blog->postsByCategory($category);
@@ -61,3 +80,4 @@ class BlogController extends Controller
 		return response()->view('article/all', array('articles' => $posts, 'categories' => $categories));
 	}
 }
+
