@@ -1,5 +1,5 @@
 @foreach($categories as $category)
-    <tr {{!$category->seen ? 'class=panel-warning' : ''}}>
+    <tr {{!$category->seen ? 'class=panel-warning' : ''}} >
         <td class="table-row-name">{{trans('categories.' . $category->name)}}</td>
         <td class="text-center">{{$category->posts}}</td>
 

@@ -6,9 +6,12 @@ use App\Http\Requests\ArticleRequest;
 use App\Repositories\BlogRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use App\Repositories\CommentRepository;
 
 class BlogController extends Controller
 {
+	protected $comment;
+	
 	/**
 	 * Dependency, which will be inject in constructor
 	 *
@@ -20,10 +23,12 @@ class BlogController extends Controller
 	 * BlogController constructor.
 	 *
 	 * @param BlogRepository $blog_repository
+	 * @param CommentRepository $comment_repository
 	 */
-    public function __construct(BlogRepository $blog_repository)
+    public function __construct(BlogRepository $blog_repository, CommentRepository $comment_repository)
 	{
 		$this->blog = $blog_repository;
+		$this->comment = $comment_repository;
 	}
 
 	/**
@@ -61,8 +66,9 @@ class BlogController extends Controller
 		$categories = $this->blog->allCategories();
 		$post = $this->blog->postById($id);
 		$post->showFull = true;
+		$comments = $this->comment->commentsByPostId($id);
 
-		return response()->view('article/one', array('article' => $post, 'categories' => $categories));
+		return response()->view('article/one', array('article' => $post, 'categories' => $categories, 'comments' => $comments));
 	}
 
 	/**

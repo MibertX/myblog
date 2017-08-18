@@ -3,11 +3,9 @@ namespace App\Repositories;
 
 use App\Models\Content;
 use App\Models\Post;
-use App\Models\Comment;
 use App\Repositories\CategoryRepository as Category;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use App\Repositories\UserRepository as User;
 
 class BlogRepository extends BaseRepository
 {
@@ -19,7 +17,7 @@ class BlogRepository extends BaseRepository
 	protected $content;
 
 	/**
-	 * The dependence on the App\Models\Comment
+	 * The dependence on the App\Repositories\CommentRepository
 	 *
 	 * @var Comment
 	 */
@@ -31,7 +29,12 @@ class BlogRepository extends BaseRepository
 	 * @var category
 	 */
 	protected $category;
-	
+
+	/**
+	 * The dependence on App\Repositories\UserRepository
+	 * 
+	 * @var user
+	 */
 	protected $user;
 
 	/**
@@ -46,18 +49,19 @@ class BlogRepository extends BaseRepository
 	 * Inject all the necessary dependencies.
 	 *
 	 * @param Post $post
-	 * @param Comment $comment
+	 * @param CommentRepository $comment_repository
 	 * @param Category $category
 	 * @param Content $content
-	 * @param User $user
+	 * @param UserRepository $user_repository
 	 */
-	public function __construct(Post $post, Comment $comment, Category $category, Content $content, User $user)
+	public function __construct(Post $post, CommentRepository $comment_repository, 
+								Category $category, Content $content, UserRepository $user_repository)
 	{
 		$this->model = $post;
-		$this->comment = $comment;
+		$this->comment = $comment_repository;
 		$this->category = $category;
 		$this->content = $content;
-		$this->user = $user;
+		$this->user = $user_repository;
 	}
 
 	/**
@@ -84,9 +88,9 @@ class BlogRepository extends BaseRepository
 	public function allPosts($ordered_column = 'posts.created_at', $direction = 'desc')
 	{
 		$posts = $this->preparePostsQuery()
-			->where('posts.active', '=', 1)->with('categories')
-			->orderBy($ordered_column, $direction)
-			->paginate($this->elementsPerPage);
+		->where('posts.active', '=', 1)->with('categories')
+		->orderBy($ordered_column, $direction)
+		->paginate($this->elementsPerPage);
 
 		return $posts;
 	}
@@ -201,14 +205,6 @@ class BlogRepository extends BaseRepository
 
 	public function newPosts()
 	{
-//		return $this->preparePostsQuery()
-//			->join('contents', 'posts.post_id', '=', 'contents.post_id')
-//			->addSelect('contents.text as posts.content')
-//			->where('posts.seen', '=', false)
-//			->with('categories')
-//			->orderBy('created_at', 'desc')
-//			->paginate(1);
-		
 		return $this->model->select(DB::raw('COUNT(post_id) as counter'))
 			->where('seen', '=', false)->first();
 	}
@@ -262,7 +258,6 @@ class BlogRepository extends BaseRepository
 		$this->content->post_id = $this->model->post_id;
 		$this->content->save();
 	}
-
 
 	/**
 	 * Update data of the post in table 'contents'.

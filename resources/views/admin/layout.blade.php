@@ -57,6 +57,13 @@
                             <li><a href="{{route('categoryCreateView')}}">{{trans('admin.add_category')}}</a></li>
                         </ul>
                     </li>
+
+                    <li>
+                        <a href="{{route('adminComments')}}">
+                            <i class="fa fa-comments"></i>
+                            Comments
+                        </a>
+                    </li>
                 </ul>
             </div>
         </nav>

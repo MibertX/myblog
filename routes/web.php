@@ -189,3 +189,25 @@ Route::get('adminzone/users/toogleseen', [
 	'as' => 'toogleUserSeen'
 ]);
 
+
+//comments
+Route::get('adminzone/comments/all', [
+	'uses' => 'Admin\CommentController@commentsForAdmin',
+	'as' => 'adminComments'
+]);
+
+Route::get('adminzone/comments/seentoogle', [
+	'uses' => 'Admin\CommentController@toogleCommentSeen',
+	'as' => 'toogleCommentSeen'
+]);
+
+Route::get('adminzone/comments/validtoogle', [
+	'uses' => 'Admin\CommentController@toogleCommentValid',
+	'as' => 'toogleCommentValid'
+]);
+
+Route::post('adminzone/comments/delete', [
+	'uses' => 'Admin\CommentController@deleteComment',
+	'as' => 'deleteComment'
+]);
+

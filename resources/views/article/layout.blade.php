@@ -3,6 +3,8 @@
 @section('headExtra')
     <link href="/css/article/common.css" rel="stylesheet">
     <link href="/css/article/preview.css" rel="stylesheet">
+    <link href="/css/comment.css" rel="stylesheet">
+    <script src="/js/blog.js"></script>
 @stop
 
 @section('content')

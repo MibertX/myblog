@@ -50,9 +50,14 @@
     background-color: #00b300;
 }
 
+#comments > .card-top {
+    background-color: orange;
+}
+
 #posts:hover > .card-bottom,
 #users:hover > .card-bottom,
-#categories:hover > .card-bottom {
+#categories:hover > .card-bottom,
+#comments:hover > .card-bottom{
     background-color: black;
 }
 
@@ -66,4 +71,8 @@
 
 #categories:hover > .card-top {
     background-color: #b30000;
+}
+
+#comments:hover > .card-top {
+    background-color: darkorange;
 }

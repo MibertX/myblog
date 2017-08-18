@@ -103,7 +103,7 @@ class UserRepository extends BaseRepository
 	public function newUsers()
 	{
 		return $this->model->select(DB::raw('COUNT(user_id) as counter'))
-			->where('seen', '='. false)->first();
+			->where('seen', '=', false)->first();
 	}
 }
 

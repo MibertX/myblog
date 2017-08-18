@@ -6,7 +6,7 @@ abstract class BaseRepository
 {
 	protected $model;
 	
-	public $elementsPerPage;
+	public $elementsPerPage = 5;
 	
 	public function findById($id)
 	{

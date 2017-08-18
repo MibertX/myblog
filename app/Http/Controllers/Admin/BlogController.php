@@ -37,6 +37,7 @@ class BlogController extends Controller
 	/**
 	 * Show the form for creating post.
 	 *
+	 * @param $request
 	 * @return \Illuminate\Http\Response
 	 */
 	public function createPostView(Request $request)
@@ -70,6 +71,7 @@ class BlogController extends Controller
 	 * Get the form for updating selected post.
 	 *
 	 * @param $id
+	 * @param $request
 	 * @return \Illuminate\Http\Response
 	 */
 	public function updatePostView($id, Request $request)
@@ -120,11 +122,12 @@ class BlogController extends Controller
 
 		return response()->view('partials.message_partial', ['type' => 'ok', 'message' => 'post was deleted']);
 	}
-
+	
 	/**
 	 * Toogle seen (it can be true or false) of the post.
-	 *
+	 * 
 	 * @param Request $request
+	 * @return \Illuminate\Http\RedirectResponse
 	 */
 	public function tooglePostSeen(Request $request)
 	{
@@ -157,17 +160,20 @@ class BlogController extends Controller
 
 	public function dashboard(Request $request)
 	{
-//		if (Gate::denies('dashboard', $request->user())) {
-//			return redirect()->back()->with('error', 'no permision');
-//		}
+		if (Gate::denies('dashboard', $request->user())) {
+			return redirect()->back()->with('error', 'no permision');
+		}
 
 		$new_users = $this->blog->newUsers();
 		$new_categories = $this->blog->newCategories();
 		$new_posts = $this->blog->newPosts();
+		$new_comments = $this->comment->newComments();
 		
-		return view('admin.dashboard.menu', array('new_users' => $new_users->counter,
+		return view('admin.dashboard.menu', array(
+			'new_users' => $new_users->counter,
 			'new_categories' => $new_categories->counter,
-			'new_posts' => $new_posts->counter));
+			'new_posts' => $new_posts->counter,
+			'new_comments' => $new_comments->counter));
 	}
 }
 

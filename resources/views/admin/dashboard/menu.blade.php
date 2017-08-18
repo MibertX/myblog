@@ -42,6 +42,16 @@
             </a>
         </div>
 
-        <div class="col-xs-4"></div>
+        <div class="col-xs-4 col-md-3">
+            <a href="{{route('adminComments')}}" class="card" id="comments">
+                <div class="card-top">
+                    <i class="fa fa-comments fa-inverse"></i>
+                </div>
+                <div class="card-bottom">
+                    <span class="card-title">COMMENTS</span>
+                    <span class="new">{{$new_comments}} new</span>
+                </div>
+            </a>
+        </div>
     </div>
     @stop
