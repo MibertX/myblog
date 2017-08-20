@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use App\Repositories\CommentRepository;
 use App\Http\Controllers\Controller;
@@ -57,6 +58,10 @@ class CommentController extends Controller
 			abort(404);
 		}
 		
+		if (Gate::denies('toogleCommentSeen', $request->user())) {
+			abort(403);
+		}
+		
 		$this->comment->toogleCommentSeen($request);
 	}
 
@@ -72,6 +77,10 @@ class CommentController extends Controller
 		if (!$request->ajax()) {
 			abort(404);
 		}
+
+		if (Gate::denies('toogleCommentValid', $request->user())) {
+			abort(403);
+		}
 		
 		$this->comment->toogleCommentValid($request);
 	}
@@ -85,6 +94,10 @@ class CommentController extends Controller
 	 */
 	public function deleteComment(Request $request)
 	{
+		if(Gate::denies('deleteComment', $request->user())) {
+			abort(403);
+		}
+
 		$result = $this->comment->destroyById($request->comment_id);
 
 		if (!$result) {

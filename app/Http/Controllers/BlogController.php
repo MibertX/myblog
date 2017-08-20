@@ -44,15 +44,11 @@ class BlogController extends Controller
 	 */
 	public function allPosts(Request $request)
 	{
-		try {
-			$categories = $this->blog->allCategories();
-			$posts = $this->blog->allPosts();
-			Session::forget('category');
+		$categories = $this->blog->allCategories();
+		$posts = $this->blog->allPosts();
+		Session::forget('category');
 
-			return response()->view('article/all', array('articles' => $posts, 'categories' => $categories));
-		} catch (\Exception $e) {
-			abort(404);
-		}
+		return response()->view('article/all', array('articles' => $posts, 'categories' => $categories));
 	}
 
 	/**

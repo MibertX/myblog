@@ -13,6 +13,9 @@ function activeClick(that)
         },
         url: "/adminzone/categories/activetoogle",
 
+        success: function () {
+            $(that).parents('tr').toggleClass('panel-warning')
+        },
         error: function () {
             $(that).prop('checked', $(that).prop('checked') == false)
         },
@@ -35,7 +38,7 @@ function seenClick(that) {
         },
         url: '/adminzone/categories/seentoogle',
         success: function () {
-            $(that).parents('tr').toggleClass('panel-warning')
+            $(that).parents('tr').toggleClass('panel-info')
         },
         error: function () {
             $(that).prop('checked', $(that).prop('checked') == false)
@@ -59,7 +62,7 @@ function deleteClick(button)
             '_token': $('input[name="_token"]').val(),
             'category_id': button.value
         },
-        success: function () {
+        success: function (data) {
             $(button).parents("tr").remove();
             var page = ($(".responsive-table .pagination .active span").html());
 
@@ -68,11 +71,9 @@ function deleteClick(button)
             }
 
             if (page > 0) {
-                getData(page)
+                getData(page);
             }
-        },
-        error: function () {
-            alert('false');
+            createPopupForAjax(data);
         }
     })
 }
@@ -104,9 +105,6 @@ function getData(page) {
             $('.responsive-table').children('tbody').empty().append(data);
             setEventHandlersForTable();
             location.hash = page;
-        },
-        error: function () {
-            alert('false')
         }
     })
 }
@@ -129,7 +127,7 @@ $(document).ready( function () {
     $(document).on('click', '.pagination a', function (event) {
         $('li').removeClass('active');
         $(this).parent('li').addClass('active');
-        console.log(this);
+        
         event.preventDefault();
         var page = $(this).attr('href').split('page=')[1];
         getData(page);
@@ -161,9 +159,6 @@ $(document).ready( function () {
             success: function (data) {
                 $('.responsive-table').children('tbody').empty().append(data);
                 setEventHandlersForTable();
-            },
-            error: function () {
-                alert('Flase')
             }
         })
     })

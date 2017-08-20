@@ -17,9 +17,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-//        'App\Model' => 'App\Policies\ModelPolicy',
-//        User::class => BlogPolicy::class
-    'App\Models\User' => 'App\Policies\BlogPolicy'
+
+        'App\Models\User' => 'App\Policies\AdminPolicy',
     ];
 
     /**
@@ -31,10 +30,5 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(GateContract $gate)
     {
         $this->registerPolicies($gate);
-
-        $gate->define('update_post', function ($user) {
-            return $user->role->name == 'admin';
-        });
-        //
     }
 }

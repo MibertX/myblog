@@ -13,10 +13,13 @@
                 Role
                 <a href="#" class="order" name="role"><i class="fa fa-sort"></i></a>
             </th>
+
+            @can('toogleUserSeen', Auth::user())
             <th class="text-center">
                 Seen
                 <a href="#" class="order" name="users.seen"><i class="fa fa-sort"></i></a>
             </th>
+            @endcan
             <th>&nbsp;</th>
             <th>&nbsp;</th>
             <th>&nbsp;</th>

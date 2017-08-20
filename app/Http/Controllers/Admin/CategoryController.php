@@ -36,12 +36,10 @@ class CategoryController extends Controller
 	{
 		if ($request->ajax()) {
 			$categories = $this->categories->allCategoriesForAdmin($request->ordered_column, $request->direction);
-//			$categories->pagination_menu = $categories->render();
 			return response()->view('admin.category.table', array('categories' => $categories));
 		}
 
 		$categories = $this->categories->allCategoriesForAdmin();
-//		$categories->pagination_menu = $categories->render();
 		return response()->view('admin.category.all', array('categories' => $categories));
 	}
 	
@@ -53,7 +51,7 @@ class CategoryController extends Controller
 	public function createCategoryView()
 	{
 		if(Gate::denies('createCategory', Auth::user())) {
-			return redirect()->back()->with('error', 'no permission');
+			abort(403);
 		}
 
 		return response()->view('admin.category.create');
@@ -71,11 +69,13 @@ class CategoryController extends Controller
 		$result = $this->categories->store($request);
 
 		if(!$result) {
-			return redirect()->route('adminCategories')
+			return redirect()
+				->route('adminCategories')
 				->with('error', 'Can\'t create the category. Try please later');
 		}
 
-		return redirect()->route('adminCategories')
+		return redirect()
+			->route('adminCategories')
 			->with('info', 'The category was created successfully');
 	}
 
@@ -88,7 +88,7 @@ class CategoryController extends Controller
 	public function updateCategoryView($id)
 	{
 		if(Gate::denies('updateCategory', Auth::user())) {
-			return redirect()->back()->with('error', 'no permission');
+			abort(403);
 		}
 
 		$category = $this->categories->findById($id);
@@ -121,45 +121,51 @@ class CategoryController extends Controller
 	 */
 	public function deleteCategory(Request $request)
 	{
+		if (Gate::denies('deleteCategory', Auth::user())) {
+			abort(403);
+		}
+
+		$this->categories->destroyById($request->category_id);
+
+		return response()->view('partials.message_partial', ['type' => 'error', 'message' => 'category was deleted']);
+	}
+
+	/**
+	 * Toogle category active value (true or false).
+	 * This action can be done only with ajax, if not - show 404 page.
+	 *
+	 * @param Request $request
+	 */
+	public function toogleCategoryActive(Request $request)
+	{
 		if (!$request->ajax()) {
 			abort(404);
 		}
 
-		if (Gate::denies('deleteCategory', Auth::user())) {
-			return redirect()->back()->with('error', 'no permission');
-			//return popup msg
-		}
-
-		$this->categories->destroyById($request->category_id);
-	}
-
-
-	public function toogleCategoryActive(Request $request)
-	{
 		if (Gate::denies('toogleCategoryActive', $request->user())) {
 			abort(403);
 		}
-		
-		if ($request->ajax()) {
-			$this->categories->toogleCategoryActive($request);
-		} else {
-			abort(404);
-		}
+
+		$this->categories->toogleCategoryActive($request);
 	}
-	
+
+	/**
+	 * Toogle category seen value (true or false).
+	 * This action can be done only with ajax. If not - show 404 page.
+	 *
+	 * @param Request $request
+	 */
 	public function toogleCategorySeen(Request $request)
 	{
+		if (!$request->ajax()) {
+			abort(404);
+		}
+
 		if (Gate::denies('toogleCategorySeen', $request->user())) {
 			abort(403);
 		}
-		
-		if ($request->ajax()) {
-			$this->categories->toogleCategorySeen($request);
-		} else {
-			abort(404);
-		}
+
+		$this->categories->toogleCategorySeen($request);
 	}
-	
-	
 }
 

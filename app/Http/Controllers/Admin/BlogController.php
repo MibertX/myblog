@@ -17,8 +17,6 @@ class BlogController extends Controller
 	 */
 	public function allPosts(Request $request)
 	{
-		$this->blog->elementsPerPage = 5;
-		
 		if ($request->ajax()) {
 			$posts = $this->blog->allPosts($request->ordered, $request->direction);
 			return response()->view('admin/post/table', array('posts' => $posts));
@@ -43,7 +41,7 @@ class BlogController extends Controller
 	public function createPostView(Request $request)
 	{
 		if (Gate::denies('createPost', $request->user())) {
-			return redirect()->back()->with('error', 'no permission');
+			abort(403);
 		}
 
 		$categories = $this->blog->allCategories();
@@ -76,11 +74,11 @@ class BlogController extends Controller
 	 */
 	public function updatePostView($id, Request $request)
 	{
-		$post = $this->blog->postById($id);
 		if (Gate::denies('updatePost', $request->user()))  {
-			return redirect()->back()->with('error', 'no permission');
+			abort(403);
 		}
-		
+
+		$post = $this->blog->postById($id);
 		$categories = $this->blog->allCategories();
 		return response()->view('admin.post.update', ['post' => $post, 'categories' => $categories]);
 	}
@@ -111,7 +109,7 @@ class BlogController extends Controller
 	public function deletePost(Request $request)
 	{
 		if (Gate::denies('deletePost', $request->user())) {
-			return redirect()->back()->with('error', 'no permission');
+			abort(403);
 		}
 
 		$result = $this->blog->destroyById($request->post_id);
@@ -131,15 +129,15 @@ class BlogController extends Controller
 	 */
 	public function tooglePostSeen(Request $request)
 	{
-		if (Gate::denies('tooglePostSeen', $request->user())) {
-			return redirect()->back()->with('error', 'no permission');
-		}
-
-		if ($request->ajax()) {
-			$this->blog->tooglePostSeen($request);
-		} else {
+		if (!$request->ajax()) {
 			abort(404);
 		}
+		
+		if (Gate::denies('tooglePostSeen', $request->user())) {
+			abort(403);
+		}
+		
+		$this->blog->tooglePostSeen($request);
 	}
 
 	/**
@@ -149,21 +147,19 @@ class BlogController extends Controller
 	 */
 	public function tooglePostActive(Request $request)
 	{
-		if ($request->ajax()) {
-			if (Gate::denies('tooglePostActive', $request->user())) {
-				$this->blog->tooglePostActive($request);
-			}
-		} else {
+		if (!$request->ajax()) {
 			abort(404);
+		} 
+		
+		if (Gate::denies('tooglePostActive', $request->user())) {
+			abort(403);
 		}
+
+		$this->blog->tooglePostActive($request);
 	}
 
-	public function dashboard(Request $request)
+	public function dashboard()
 	{
-		if (Gate::denies('dashboard', $request->user())) {
-			return redirect()->back()->with('error', 'no permision');
-		}
-
 		$new_users = $this->blog->newUsers();
 		$new_categories = $this->blog->newCategories();
 		$new_posts = $this->blog->newPosts();

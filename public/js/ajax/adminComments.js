@@ -71,10 +71,6 @@ function deleteClick(button)
             }
             createPopupForAjax(data)
         },
-        error: function () {
-            alert('false');
-        },
-
     })
 }
 
@@ -103,9 +99,6 @@ function getData(page) {
             $('#comments-container').empty().append(data);
             setEventHandlersForTable();
             location.hash = page;
-        },
-        error: function () {
-            alert('false')
         }
     })
 }
@@ -128,7 +121,7 @@ $(document).ready( function () {
     $(document).on('click', '.pagination a', function (event) {
         $('li').removeClass('active');
         $(this).parent('li').addClass('active');
-        console.log(this);
+       
         event.preventDefault();
         var page = $(this).attr('href').split('page=')[1];
         getData(page);

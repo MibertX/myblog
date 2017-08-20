@@ -13,6 +13,10 @@ function setEventHandlersForTable() {
     $('.icon-action').on('click', function () {
         openUserWindowClick(this);
     })
+
+    $('.icon-ban').on('click', function () {
+        banClick(this);
+    })
 }
 
 function deleteClick(that) {
@@ -50,7 +54,7 @@ function seenClick(that) {
         },
         url: '/adminzone/users/toogleseen',
         success: function () {
-            $(that).parents('tr').toggleClass('panel-warning')
+            $(that).parents('tr').toggleClass('panel-info')
         },
         error: function () {
             $(that).prop('checked', $(that).prop('checked') == false)
@@ -59,6 +63,28 @@ function seenClick(that) {
             $('.fa-spin').remove();
             $(that).show();
         }
+    })
+}
+
+function banClick(that) {
+    var icon = $(that).find('span i:nth-child(2)');
+    var ban = icon.hasClass('fa-ban');
+    $.ajax({
+        type: "GET",
+        data: {
+            "ban": ban,
+            "user_id": that.value,
+        },
+        url: "/adminzone/users/toogleban",
+        success: function () {
+            if (icon.hasClass('fa-ban')) {
+                icon.removeClass('fa-ban').addClass('fa-unlock');
+            } else {
+                icon.removeClass('fa-unlock').addClass('fa-ban')
+            }
+            $(that).toggleClass('icon-unlock')
+            $(that).parents('tr').toggleClass('panel-warning')
+        },
     })
 }
 
@@ -73,12 +99,8 @@ function getData(page) {
         },
         success: function (data) {
             $('.responsive-table').children('tbody').empty().append(data);
-
             setEventHandlersForTable();
             location.hash = page;
-        },
-        error: function () {
-            alert('false')
         }
     })
 }
@@ -94,31 +116,6 @@ $(document).ready( function () {
         event.preventDefault();
         var page = $(this).attr('href').split('page=')[1];
         getData(page);
-    })
-
-
-    $('.icon-ban').on('click', function () {
-        var icon = $(this).find('span i:nth-child(2)');
-
-        if (icon.hasClass('fa-ban')) {
-            var ban = true;
-            icon.removeClass('fa-ban').addClass('fa-unlock');
-        } else {
-            var ban = false;
-            icon.removeClass('fa-unlock').addClass('fa-ban')
-        }
-
-        $.ajax({
-            type: "GET",
-            data: {
-                "ban": ban,
-                "user_id": this.value
-            },
-            url: "/adminzone/users/toogleban",
-            complete: function (data) {
-
-            }
-        })
     })
 
     $('.order').on('click', function () {
@@ -148,11 +145,6 @@ $(document).ready( function () {
                 $('.responsive-table').children('tbody').empty().append(data);
                 setEventHandlersForTable();
             },
-            error: function () {
-                alert('Flase')
-            }
         })
     })
-
-    
 })

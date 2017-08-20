@@ -165,17 +165,17 @@ Route::get('adminzone/users/all', [
 ]);
 
 Route::get('/adminzone/users/create', [
-    'uses' => 'Admin\UserController@getCreateView',
+    'uses' => 'Admin\UserController@createUserView',
     'as' => 'createUserView'
 ]);
 
-Route::post('adminzone/users/create', [
-    'uses' => 'Admin\UserController@create',
+Route::post('adminzone/users/createUser', [
+    'uses' => 'Admin\UserController@createUser',
     'as' => 'createUser'
 ]);
 
 Route::get('adminzone/users/toogleban', [
-   'uses' => 'Admin\UserController@toogleBan',
+   'uses' => 'Admin\UserController@toogleUserBan',
     'as' => 'toogleUserBan'
 ]);
 

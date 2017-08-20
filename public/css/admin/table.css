@@ -2,7 +2,6 @@ td> p {
     margin: 0;
 }
 
-
 .responsive-table {
     width: 100%;
 }
@@ -10,7 +9,6 @@ td> p {
 .responsive-table tr > td {
     border-top: 1px solid black;
     height: 50px;
-    /*line-height: 44px;*/
     padding: 8px !important;
 }
 
@@ -29,95 +27,34 @@ td> p {
     padding: 8px 16px;
 }
 
-.btn-edit {
-    background-color: #ffc14d;
+.panel-info {
+    background-color: #fff4e6 !important;
 }
 
-.btn-extra {
-    background-color: #4f74e3;
+.panel-warning {
+    background-color: #ffe6e6 !important;
 }
 
-.btn-delete {
-    background-color: #de5454;
-    display: inline-block;
-    color: white;
-    padding: 6px 12px !important;
+.td-for-btn {
+    width: 75px;
+    text-align: center;
 }
 
-.btn-delete,
-.btn-edit,
-.btn-extra {
-    width: 100%;
-    border-radius: 5px;
-    border: none;
-    padding: 0;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-}
-
-.btn-extra:hover,
-.btn-extra:active,
-.btn-extra:focus {
-    background-color: #18399a;
-}
-
-.btn-edit:hover,
-.btn-edit:active,
-.btn-edit:focus {
-    background-color: #e69500;
-}
-
-.btn-delete:hover,
-.btn-delete:active,
-.btn-delete:focus {
-    background-color: #961d1d;
-}
-
-.btn-edit > a,
-.btn-extra > a {
-    display: inline-block;
-    width: 100% !important;
-    height: 100% !important;
-    color: white;
-    padding: 6px 12px !important;
-}
-
-.btn-delete:hover,
-.btn-delete:active,
-.btn-delete:focus,
-.btn-edit > a:hover,
-.btn-edit > a:active,
-.btn-edit > a:focus,
-.btn-extra > a:hover,
-.btn-extra > a:active,
-.btn-extra > a:focus {
-    color: white;
-    text-decoration: none;
-}
-
-button[name='delete'] {
+.td-for-btn button {
     background-color: transparent;
     border: none;
     min-height: 20px;
     min-width: 20px;
     padding: 0 !important;
 }
-/*.icon-extra {*/
-    /*display: inline-block;*/
-    /*width: 25px;*/
-    /*height: 25px;*/
-    /*background-color: #18399a;*/
-    /*border-radius: 6px;*/
-    /*padding: 2px;*/
-/*}*/
 
-/*a > i {*/
-    /*color: white;*/
-    /*width: 22px !important;*/
-    /*height: 22px !important;*/
-    /*padding-top: 5px !important;*/
-    /*padding-left: 3px !important;*/
-/*}*/
+button.icon-delete {
+    background-color: transparent;
+    border: none;
+    min-height: 20px;
+    min-width: 20px;
+    padding: 0 !important;
+}
 
 .icon-delete .fa-square {
     color:  #de5454;
@@ -149,33 +86,35 @@ button[name='delete'] {
     color: #e69500;
 }
 
-.icon-disabled {
-    cursor: not-allowed;
+.icon-ban .fa-square {
+    color: #ff4500;
 }
 
-.icon-disabled .fa-square {
+.icon-ban:hover .fa-square,
+.icon-ban:active .fa-square,
+.icon-ban:focus .fa-square {
+    color: #cc3600;
+}
+
+.icon-unlock .fa-square {
+    color: #32cd32;
+}
+
+.icon-unlock:hover .fa-square,
+.icon-unlock:active .fa-square,
+.icon-unlock:focus .fa-square {
+    color: #239023;
+}
+
+.icon-disabled {
+    pointer-events: none;
+}
+
+.icon-disabled .fa-square,
+.icon-disabled:hover .fa-square {
     color: rgba(0, 0, 0, 0.15);
 }
 
 .align-center {
     text-align: center;
 }
-
-.panel-warning {
-    background-color: #fff4e6;
-}
-
-.td-for-btn {
-    width: 75px;
-    text-align: center;
-}
-
-.td-for-btn button {
-    background-color: transparent;
-    border: none;
-    min-height: 20px;
-    min-width: 20px;
-    padding: 0 !important;
-}
-
-

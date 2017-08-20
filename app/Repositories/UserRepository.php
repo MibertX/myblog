@@ -17,7 +17,6 @@ class UserRepository extends BaseRepository
 		$this->role = $role;
 	}
 
-	
 	public function store($data, $activationCode)
 	{
 		$this->model->email = $data->email;
@@ -32,7 +31,6 @@ class UserRepository extends BaseRepository
 		return $this->model;
 	}
 
-
 	public function confirm($activationCode)
 	{
 		$user = $this->model->where('activationCode', '=', $activationCode)->FirstOrFail();
@@ -41,24 +39,18 @@ class UserRepository extends BaseRepository
 		$user->save();
 	}
 
-
 	public function allUsers($ordered_column='users.name', $direction='asc')
 	{
 		return $this->prepareUsersQuery()
 			->orderBy($ordered_column, $direction)
 			->paginate($this->elementsPerPage);
 	}
-
 	
 	public function oneById($data)
 	{
 		return $this->prepareUsersQuery()->where('user_id', '=', $data->user_id)->first();
 	}
 
-	/**
-	 * @param $data
-	 * @return mixed
-	 */
 	public function storeByAdmin($data)
 	{
 		$this->model->name = $data->name;
@@ -75,7 +67,7 @@ class UserRepository extends BaseRepository
 		return $this->role->select('role_id','name')->get();
 	}
 
-	public function toogleBanUser($data)
+	public function toogleUserBan($data)
 	{
 		$ban = $data->ban == 'true';
 		$this->model->where('user_id', '=', $data->user_id)

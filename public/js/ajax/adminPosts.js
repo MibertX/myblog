@@ -15,7 +15,7 @@ function seenClick(that) {
         },
         url: "/adminzone/posts/seentoogle",
         success: function () {
-            $(that).parents('tr').toggleClass('panel-warning')
+            $(that).parents('tr').toggleClass('panel-info')
         },
         error: function () {
             $(that).prop('checked', $(that).prop('checked') == false)
@@ -38,7 +38,7 @@ function activeClick(checkbox) {
         },
         url: "/adminzone/posts/activetoogle",
         success: function () {
-
+            $(checkbox).parents('tr').toggleClass('panel-warning')
         },
         error: function () {
             $(checkbox).prop('checked', $(checkbox).prop('checked') == false)
@@ -96,9 +96,6 @@ function getData(page, url) {
             $('.responsive-table').children('tbody').empty().append(data);
             setEventHandlersForTable();
             location.hash = page;
-        },
-        error: function () {
-            alert('false')
         }
     })
 }
@@ -122,7 +119,7 @@ $(document).ready( function () {
     {
         $('li').removeClass('active');
         $(this).parent('li').addClass('active');
-        console.log(this);
+        
         event.preventDefault();
         var myurl = $(this).attr('href');
         var page=$(this).attr('href').split('page=')[1];
@@ -155,9 +152,6 @@ $(document).ready( function () {
             success: function (data) {
                 $('.responsive-table').children('tbody').empty().append(data);
                 setEventHandlersForTable();
-            },
-            error: function () {
-                alert('Flase')
             }
         })
     })

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\UserController as Controller;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -21,6 +22,12 @@ class UserController extends Controller
 	
 	public function deleteUser(Request $request)
 	{
+		$deleted_user = $this->users->oneById($request);
+
+		if (Gate::denies('deleteUser', $deleted_user)) {
+			abort(403);
+		}
+
 		$result = $this->users->destroyById($request->user_id);
 
 		if (!$result) {
@@ -33,30 +40,48 @@ class UserController extends Controller
 	
 	public function toogleUserSeen(Request $request)
 	{
-		if ($request->ajax()) {
-			$this->users->toogleSeenUser($request);
-		} else {
+		if (!$request->ajax()) {
 			abort(404);
 		}
+
+		if (Gate::denies('toogleUserSeen', $request->user())) {
+			abort(403);
+		}
+
+		$this->users->toogleSeenUser($request);
 	}
 	
 	
-	public function getCreateView()
+	public function createUserView(Request $request)
 	{
+		if (Gate::denies('createUser', $request->user())) {
+			abort(403);
+		}
+
 		$roles = $this->users->allRoles();
 		return response()->view('admin.user.create', array('roles' => $roles));
 	}
 	
 	
-	public function create(Request $request)
+	public function createUser(Request $request)
 	{
 		$this->users->storeByAdmin($request);
 	}
 	
 	
-	public function toogleBan(Request $request)
+	public function toogleUserBan(Request $request)
 	{
-		$this->users->toogleBanUser($request);
+		if (!$request->ajax()) {
+			abort(404);
+		}
+
+		$banned_user = $this->users->oneById($request);
+
+		if (Gate::denies('toogleUserBan', $banned_user)) {
+			abort(403);
+		}
+
+		$this->users->toogleUserBan($request);
 	}
 }
 

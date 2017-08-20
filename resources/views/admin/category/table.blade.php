@@ -1,19 +1,35 @@
+@can('toogleCategorySeen', Auth::user())
+    <?php $can_toogle_seen = true ?>
+@endcan
+
+@can('toogleCategoryActive', Auth::user())
+    <?php $can_toogle_active = true ?>
+@endcan
+
+@cannot('updateCategory', Auth::user())
+    <?php $button_update_disable = true ?>
+@endcannot
+
+@cannot('deleteCategory', Auth::user())
+    <?php $button_delete_disable = true ?>
+@endcannot
+
 @foreach($categories as $category)
-    <tr {{!$category->seen ? 'class=panel-warning' : ''}} >
+    <tr class="{{!$category->seen ? 'panel-info' : ''}} {{!$category->active ? 'panel-warning' : ''}}">
         <td class="table-row-name">{{trans('categories.' . $category->name)}}</td>
         <td class="text-center">{{$category->posts}}</td>
 
-        @can('toogleCategorySeen', Auth::user())
+        @if (isset($can_toogle_seen))
         <td class="align-center">
             <input type="checkbox" name="seen" value="{{$category->category_id}}" {{$category->seen == 1 ? 'checked' : ''}}>
         </td>
-        @endcan
+        @endif
 
-        @can('toogleCategoryActive', Auth::user())
+        @if (isset($can_toogle_active))
         <td class="align-center">
             <input type="checkbox" name="active" value="{{$category->category_id}}" {{$category->active == 1 ? 'checked' : ''}}>
         </td>
-        @endcan
+        @endif
 
         <td class="td-for-btn">
             <a href="{{route('getByCategories', ['category' => $category->name])}}" class="icon-extra">
@@ -25,11 +41,8 @@
         </td>
 
         <td class="td-for-btn">
-            @can('updateCategory', Auth::user())
-            <a href="{{route('categoryUpdateView', array('id' => $category->category_id))}}" class="icon-edit">
-            @else
-            <a href="#" class="icon-disabled">
-            @endcan
+            <a href="{{route('categoryUpdateView', array('id' => $category->category_id))}}"
+               class="icon-edit {{isset($button_update_disable) ? 'icon-disabled' : ''}}">
                 <span class="fa-stack fa-lg">
                     <i class="fa fa-square fa-stack-2x"></i>
                     <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
@@ -37,12 +50,8 @@
             </a>
         </td>
         <td class="td-for-btn">
-            @can('deleteCategory', Auth::user())
-                <?php $icon_class = 'icon-delete' ?>
-            @else
-                <?php $icon_class = 'icon-disabled' ?>
-            @endcan
-            <button type="button" name="delete" class="{{$icon_class}}" value="{{$category->category_id}}">
+            <button type="button" name="delete" value="{{$category->category_id}}"
+                    class="icon-delete {{isset($button_delete_disable) ? 'icon-disabled' : ''}}" >
                 <span class="fa-stack fa-lg">
                     <i class="fa fa-square fa-stack-2x"></i>
                     <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>

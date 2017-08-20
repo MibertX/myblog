@@ -3,7 +3,7 @@
 @section('admin-content')
     <div class="row">
         <div class="col-xs-12">
-            <form action="" enctype="multipart/form-data" method="post">
+            <form action="{{route('createUser')}}" enctype="multipart/form-data" method="post">
                 {{csrf_field()}}
                 <div class="form-group">
                     <label for="name">Name</label>

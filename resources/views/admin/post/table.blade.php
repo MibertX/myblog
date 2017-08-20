@@ -1,20 +1,36 @@
+@can('tooglePostSeen', Auth::user())
+    <?php $can_toogle_seen = true ?>
+@endcan
+
+@can('tooglePostActive', Auth::user())
+    <?php $can_toogle_active = true ?>
+@endcan
+
+@cannot('updatePost', Auth::user())
+    <?php $button_update_disable = true ?>
+@endcannot
+
+@cannot('deletePost', Auth::user())
+    <?php $button_delete_disable = true ?>
+@endcannot
+
 @foreach($posts as $post)
-    <tr {{ !$post->seen? 'class=panel-warning' : '' }}>
+    <tr class="{{!$post->seen? 'panel-info' : '' }} {{!$post->active ? 'panel-warning' : ''}}">
         <td class="td-title">{!! $post->title !!}</td>
         <td>{{$post->username}}</td>
         <td class="td-date">{{$post->created_at}}</td>
 
-        @can('tooglePostSeen', Auth::user())
+        @if (isset($can_toogle_seen))
         <td class="align-center">
             <input type="checkbox" name="seen" value="{{$post->post_id}}" {{$post->seen == 1 ? 'checked' : ''}}>
         </td>
-        @endcan
+        @endif
 
-        @can('tooglePostActive', Auth::user())
+        @if (isset($can_toogle_active))
         <td class="align-center">
             <input type="checkbox" name="active" value="{{$post->post_id}}" {{$post->active == 1 ? 'checked' : ''}}>
         </td>
-        @endcan
+        @endif
 
         <td class="td-for-btn">
             <a href="{{route('getOne', ['id' => $post->post_id])}}" class="icon-extra">
@@ -25,35 +41,23 @@
             </a>
         </td>
 
-
         <td class="td-for-btn">
-            @can('updatePost', Auth::user())
-            <a href="{{route('updatePostView', ['id' => $post->post_id])}}" class="icon-edit">
-            @else
-            <a href="#" class="icon-disabled">
-            @endcan
+            <a href="{{route('updatePostView', ['id' => $post->post_id])}}"
+               class="icon-edit {{isset($button_update_disable) ? 'icon-disabled' : ''}}">
                 <span class="fa-stack fa-lg">
                     <i class="fa fa-square fa-stack-2x"></i>
                     <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
                 </span>
             </a>
-
         </td>
 
-
-
         <td class="td-for-btn">
-            @can('deletePost', Auth::user())
-            <button type="button" name="delete" class="icon-delete" value="{{$post->post_id}}">
-            @else
-            <button class="icon-disabled">
-            @endcan
-            {{--<a href="#" name="delete" class="icon-delete" value="{{$post->post_id}}">--}}
+            <button type="button" name="delete" value="{{$post->post_id}}"
+                    class="icon-delete {{isset($button_delete_disable) ? 'icon-disabled' : ''}}">
                 <span class="fa-stack fa-lg">
                     <i class="fa fa-square fa-stack-2x"></i>
                     <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
                 </span>
-            {{--</a>--}}
             </button>
         </td>
     </tr>
