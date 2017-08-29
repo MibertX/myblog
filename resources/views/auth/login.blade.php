@@ -60,6 +60,10 @@
                         <div class="empty-error"></div>
                     @endif
 
+                    <a class="btn btn-link" href="{{route('getRegister')}}">
+                        {{trans('nav.reg')}}
+                    </a>
+
                     <a class="btn btn-link" href="{{ url('/password/reset') }}">
                         {{trans('auth.forget_pass')}}
                     </a>

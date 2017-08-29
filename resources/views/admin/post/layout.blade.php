@@ -1,12 +1,12 @@
 @extends('admin.layout')
-@section('headExtra')
-    <link rel="stylesheet" href="/css/admin/posts.css">
-    <link rel="stylesheet" href="/css/admin/table.css">
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="/js/ajax/pagination.js"></script>
 
+@section('section_head_extra')
+    <link rel="stylesheet" href="/css/admin/posts.css">
+    <script src="/js/ajax/adminPosts.js"></script>
     @yield('summernote')
-    @yield('ajax')
+@endsection
+
+
 @section('admin-section')
     <div class="row">
         <div class="col-xs-12">
@@ -23,10 +23,10 @@
             @endif
         </div>
     </div>
-    <hr>
+    <hr class="admin-hr posts-hr-color">
     <div class="row">
         <div class="col-xs-12">
-            <span class="admin-link-path no-user-select">
+            <span class="admin-link-path posts-bgcolor-transparent">
                 <i class="fa fa-file-text-o"></i>
                 <a href="{{route('adminPostsView')}}" class="{{request()->path() != 'adminzone/posts/all' ? '' : 'link-disabled'}}">
                     {{trans('admin.posts.link')}}

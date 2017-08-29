@@ -19,7 +19,7 @@ function openUserWindowClick(that) {
 }
 
 $(document).ready(function () {
-    $('.icon-action').on('click', function () {
+    $('.user-window').on('click', function () {
         openUserWindowClick(this);
     })
 })

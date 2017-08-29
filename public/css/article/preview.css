@@ -12,33 +12,29 @@
 */
 .preview-short-date {
     -webkit-user-select: none;
+    cursor: default;
     padding: 0;
     margin-left: 15px;
     width: 40px;
     border-radius: 7px;
     box-shadow: 2px 3px 5px 0 black;
-    /*border: 1px solid steelblue;*/
 }
 
 .preview-day {
     height: 25px;
     background-color: #3e4750;
-    /*background-color: steelblue;*/
     border-radius: 6px 6px 0 0;
     text-align: center;
     font: 16pt Arial, sans-serif;
     color: #ffffff;
-    /*color: black;*/
     line-height: 27px;
 }
 
 .preview-month {
     height: 15px;
     background-color: #191f25;
-    /*background-color: #c4e4ed;*/
     border-radius: 0 0 6px 6px;
     color: #808080;
-    /*color: steelblue;*/
     text-align: center;
     font: 10pt Arial, sans-serif;
 }
@@ -50,7 +46,7 @@
 |-----------------------------------------------------------------------------------------------------
 */
 .preview-link {
-    margin-top: 20px;
+    margin-top: 10px;
     -webkit-user-select: none;
     font: 14pt Arial;
     color: #3e4750;
@@ -66,15 +62,12 @@
 
 .preview-link > a:hover,
 .preview-link > a:active {
-    /*border-bottom: 2px solid #1E90FF;*/
-    /*color: darkorange;*/
     color: steelblue;
     border: none;
 }
 
 .preview-link >a:hover + span,
 .preview-link >a:active + span{
-    /*color: darkorange;*/
     color: steelblue;
 }
 
@@ -88,26 +81,96 @@
     padding: 0 15px 10px 15px;
 }
 
-.preview-title {
-    /*color: #3e4750;*/
+.preview-article-info i {
     color: black;
-    /*margin: 0;*/
+}
+
+.preview-title {
+    color: black;
     font: 16pt Arial, sans-serif;
 }
 
 .preview-details {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     color: #808080;
     font: 10pt  Arial, sans-serif;
     margin: 0;
+    cursor: default;
 }
 
 .preview-text {
-    margin: 0;
     color: #000000;
     font: 14pt Arial;
     padding: 15px 10px;
 }
 
+.preview-post-categories {
+    padding: 5px 0 0 5px;
+}
+
+.preview-post-categories i {
+    color: black;
+}
+
+.preview-post-categories a {
+    color: black;
+}
+
+.preview-post-categories a:hover,
+.preview-post-categories a:active,
+.preview-post-categories a:focus {
+    text-decoration: none;
+    color: steelblue;
+}
+
+#preview-no-posts-text {
+    color: white;
+    font: 18pt Arial;
+    text-align: center;
+}
+
+.banned-color,
+.admin-color,
+.moderator-color,
+.user-color,
+.redactor-color {
+    display: inline-block;
+    border-radius: 5px;
+    padding: 5px;
+    color: white;
+}
+
+.admin-color {
+    background-color: rgba(0, 153, 0, 0.6);
+    border: 1px solid green;
+}
+
+.moderator-color,
+.redactor-color {
+    background-color: rgba(51, 51, 255, 0.6);
+    border: 1px solid blue;
+}
+
+.user-color {
+    background-color: grey;
+}
+
+.banned-color {
+    background: rgba(255, 51, 51, 0.6);
+    border: 1px solid red;
+}
+
+.banned-color + button.user-window {
+    pointer-events: none;
+    color: grey;
+}
+
+.banned-color + button.user-window > span {
+    text-decoration: line-through;
+}
 
 /*
 |-----------------------------------------------------------------------------------------------------
@@ -119,39 +182,17 @@
     background-color: #E6E6FA;
     padding: 10px 10px;
     border-radius: 6px;
-    /*margin-bottom: 25px;*/
-    margin: 20px 15px 0 !important;
+    margin-bottom: 30px !important;
 }
-
-/*.preview-container:first-child {*/
-    /*margin-top: 15px !important;*/
-/*}*/
-
-/*.preview-container:last-child {*/
-    /*margin-top: 15px !important;*/
-/*}*/
 
 .preview-hr {
     margin: 3px 0px;
     background-color: transparent;
-    /*border-color: #808080;*/
     border-color: steelblue;
-
 }
 
-.preview-hr-dashed {
-    /*margin: 0 10px 25px;*/
+.preview-hr-solid{
     margin: 20px 70px 0;
     border: none;
-    /*border-bottom: 1px dashed #808080;*/
     border-bottom: 2px solid #2d3844;
 }
-
-/*.preview-hr-dashed:last-child {*/
-    /*display: none !important;*/
-/*}*/
-
-/*.preview-container:last-child + .preview-hr-dashed {*/
-    /*display: none !important;*/
-/*}*/
-

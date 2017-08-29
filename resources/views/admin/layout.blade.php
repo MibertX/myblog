@@ -1,67 +1,126 @@
 @extends("main_layout")
 @section('headExtra')
     <link href="/css/admin/layout.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="/css/admin/table.css">
+    <script src="/js/adminzone.js"></script>
+    @yield('section_head_extra')
+@stop
 
 @section('content')
     <div class="container-fluid admin-main-container">
         <nav class="navmenu navmenu-default admin-main-menu" role="navigation">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#admin-nav">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="admin-nav">
+            <div class="navbar" id="admin-nav">
                 <ul class="nav navmenu-nav">
-                    <li>
+                    <li id="{{session('adminActive') == 'dashboard' ? 'dashboard-active' : 'dashboard-menu-item'}}">
                         <a href="{{route('dashboard')}}">
-                            <i class="fa fa-dashboard"></i>
-                            Dashboard
+                            <span class="admin-menu-icon"><i class="fa fa-dashboard fa"></i></span>
+                            <span class="item-name">
+                                {{trans('admin.menu.dashboard')}}
+                            </span>
                         </a>
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-user"></i>
-                            Users&nbsp;
+                    <li id="{{session('adminActive') == 'users' ? 'users-active' : 'users-menu-item'}}" >
+                        <a href="javascript://" data-toggle="collapse" data-target="#users_sub_menu">
+                            <span class="admin-menu-icon">
+                                <i class="fa fa-user"></i>
+                            </span>
+                            <span class="item-name">
+                                {{trans('admin.menu.users')}}
+                            </span>
                             <b class="caret"></b>
                         </a>
-                        <ul class="dropdown-menu navmenu-nav admin-sub-menu" role="menu">
-                            <li><a href="{{route('allUsers')}}">All</a></li>
-                            <li><a href="{{route('createUserView')}}">New User</a></li>
+                        <ul class="collapse admin-sub-menu" role="menu" id="users_sub_menu">
+                            <li>
+                                <a href="{{route('allUsers')}}">
+                                    {{trans('admin.submenu.all')}}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{route('createUserView')}}">
+                                    {{trans('admin.submenu.create')}}
+                                </a>
+                            </li>
                         </ul>
                     </li>
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-file-text-o"></i>
-                            {{trans('admin.posts.link')}}&nbsp;
+                    <li id="{{session('adminActive') == 'posts' ? 'posts-active' : 'posts-menu-item'}}">
+                        <a href="javascript://" data-toggle="collapse" data-target="#posts_sub_menu">
+                            <span class="admin-menu-icon">
+                                <i class="fa fa-file-text-o"></i>
+                            </span>
+                            <span class="item-name">
+                                {{trans('admin.menu.posts')}}
+                            </span>
                             <b class="caret"></b>
                         </a>
-                        <ul class="dropdown-menu navmenu-nav admin-sub-menu" role="menu">
-                            <li><a href="{{route('adminPostsView')}}">{{trans('admin.posts.all')}}</a></li>
-                            <li><a href="{{route('createPostView')}}">{{trans('admin.posts.create_btn')}}</a></li>
+                        <ul class="collapse admin-sub-menu" role="menu" id="posts_sub_menu">
+                            <li>
+                                <a href="{{route('adminPostsView')}}">
+                                    {{trans('admin.submenu.all')}}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{route('createPostView')}}">
+                                    {{trans('admin.submenu.create')}}
+                                </a>
+                            </li>
                         </ul>
                     </li>
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-tags"></i>
-                            {{trans('admin.categories')}}&nbsp;
+                    <li id="{{session('adminActive') == 'categories' ? 'categories-active' : 'categories-menu-item'}}">
+                        <a href="javascript://" data-toggle="collapse" data-target="#categories_sub_menu">
+                            <span class="admin-menu-icon">
+                                <i class="fa fa-tags"></i>
+                            </span>
+                            <span class="item-name">
+                                {{trans('admin.menu.categories')}}
+                            </span>
                             <b class="caret"></b>
                         </a>
-                        <ul class="dropdown-menu navmenu-nav admin-sub-menu" role="menu">
-                            <li><a href="{{route('adminCategories')}}">{{trans('admin.all')}}</a></li>
-                            <li><a href="{{route('categoryCreateView')}}">{{trans('admin.add_category')}}</a></li>
+                        <ul class="collapse admin-sub-menu" role="menu" id="categories_sub_menu">
+                            <li>
+                                <a href="{{route('adminCategories')}}">
+                                    {{trans('admin.submenu.all')}}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{route('categoryCreateView')}}">
+                                    {{trans('admin.submenu.create')}}
+                                </a>
+                            </li>
                         </ul>
+                    </li>
+
+                    <li id="{{session('adminActive') == 'comments' ? 'comments-active' : 'comments-menu-item'}}">
+                        <a  href="{{route('adminComments')}}">
+                            <span class="admin-menu-icon">
+                                <i class="fa fa-comments"></i>
+                            </span>
+                            <span class="item-name">
+                                {{trans('admin.menu.comments')}}
+                            </span>
+                        </a>
                     </li>
 
                     <li>
-                        <a href="{{route('adminComments')}}">
-                            <i class="fa fa-comments"></i>
-                            Comments
+                        <a href="{{route('unisharp.lfm.show')}}" target="_blank">
+                            <span class="admin-menu-icon">
+                                <i class="fa fa-archive"></i>
+                            </span>
+                            <span class="item-name">
+                                {{trans('admin.menu.files')}}
+                            </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="javascript://" id="button-menu">
+                            <span class="admin-menu-icon">
+                                <i class="fa fa-arrow-circle-o-right"></i>
+                            </span>
+                            <span class="item-name">
+                                {{trans('admin.menu.close')}}
+                            </span>
                         </a>
                     </li>
                 </ul>

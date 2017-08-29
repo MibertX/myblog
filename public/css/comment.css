@@ -73,3 +73,11 @@
     background-color: #ffe6e6 !important;
 }
 
+.comments-hr-color {
+    border-color: #00e6e6;
+}
+
+.comments-bgcolor-transparent {
+    background-color: rgba(0, 230, 230, 0.15);
+}
+

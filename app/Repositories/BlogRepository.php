@@ -91,7 +91,7 @@ class BlogRepository extends BaseRepository
 		->where('posts.active', '=', 1)->with('categories')
 		->orderBy($ordered_column, $direction)
 		->paginate($this->elementsPerPage);
-
+		
 		return $posts;
 	}
 
@@ -227,7 +227,7 @@ class BlogRepository extends BaseRepository
 	protected function savePost($data)
 	{
 		$this->model->title = $data->title;
-		$this->model->user_id = 1; // доделать чтобы ставился айди текущего залогиненого пользователя
+		$this->model->user_id = $data->user()->user_id;
 		$this->model->preview = $data->preview;
 		$this->model->save();
 	}
@@ -308,9 +308,10 @@ class BlogRepository extends BaseRepository
 	{
 		$select = $this->model
 			->select('posts.post_id', 'posts.title', 'posts.preview', 'posts.seen', 'posts.active',
-				'posts.views', 'posts.created_at', 'posts.updated_at', 'posts.user_id')
+				'posts.views', 'posts.created_at', 'posts.user_id')
 			->join('users', 'posts.user_id', '=' , 'users.user_id')
-			->addSelect('users.name as username', 'users.user_id');
+			->join('roles', 'users.role_id', '=', 'roles.role_id')
+			->addSelect('users.name as username', 'users.user_id', 'users.ban as userbanned', 'roles.name as userrole');
 
 		return $select;
 	}

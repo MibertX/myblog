@@ -6,11 +6,11 @@
             <h2 class="admin-title">Dasboard</h2>
         </div>
     </div>
-    <hr>
+    <hr class="admin-hr dashboard-hr-color">
 
     <div class="row">
         <div class="col-xs-12">
-            <span class="admin-link-path no-user-select">
+            <span class="admin-link-path dashboard-bgcolor-transparent">
                 <i class="fa fa-dashboard"></i>
                 <a href="{{route('adminPostsView')}}" class="{{request()->path() != 'adminzone/dashboard' ? '' : 'link-disabled'}}">
                     Dashboard

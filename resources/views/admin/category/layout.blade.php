@@ -1,10 +1,10 @@
 @extends('admin.layout')
 
-@section('headExtra')
+@section('section_head_extra')
     <link rel="stylesheet" href="/css/admin/categories.css">
-    <link rel="stylesheet" href="/css/admin/table.css">
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="/js/ajax/adminCategories.js"></script>
+@endsection
+
 @section('admin-section')
     <div class="row">
         <div class="col-xs-12">
@@ -21,10 +21,10 @@
             @endif
         </div>
     </div>
-    <hr>
+    <hr class="admin-hr categories-hr-color">
     <div class="row">
         <div class="col-xs-12">
-            <span class="admin-link-path">
+            <span class="admin-link-path categories-bgcolor-transparent">
                 <i class="fa fa-tags"></i>
                 @yield('link-path')
             </span>

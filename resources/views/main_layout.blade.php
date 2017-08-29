@@ -30,6 +30,9 @@
     <script src="/summernote/summernote.js"></script>
     <link href="/summernote/summernote.css" rel="stylesheet">
 
+
+
+
     <!-- Custom stylesheets -->
     <link href="/css/main_layout.css" rel="stylesheet">
     <link href="/css/user.css" rel="stylesheet">
@@ -39,12 +42,8 @@
 </head>
 
 <body>
-@section('auth')
-    @include('partials.auth_buttons')
-@stop
-
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
+    <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                     data-target="#main-nav">
@@ -75,42 +74,56 @@
                     @endforeach
                 </ul>
             </div>
-
-            <div class="nav nav-auth pull-right hidden-sm visible-xs ">
-                @yield('auth')
-            </div>
         </div>
 
         <div class="collapse navbar-collapse navbar-left" id="main-nav">
             <ul class="nav navbar-nav">
                 <li class="main-nav-item" id="{{session('active') == 'main' ? 'current' : ''}}">
-                    <a href="{{route('home')}}">{{trans('nav.main')}}</a>
+                    <a href="{{route('home')}}">
+                        <i class="fa fa-home"></i>
+                        {{trans('nav.main')}}
+                    </a>
                 </li>
-                <li class="main-nav-item" id="">
-                    <a href="">{{trans('nav.about')}}</a>
+                <li class="main-nav-item" id="{{session('active') == 'blog' ? 'current' : ''}}">
+                    <a href="{{route('allArticles')}}">
+                        <i class="fa fa-book"></i>
+                        {{trans('nav.blog')}}
+                    </a>
                 </li>
-                <li class="main-nav-item" id="">
-                    <a href="">{{trans('nav.contact')}}</a>
+                <li class="main-nav-item" id="{{session('active') == 'contact' ? 'current' : ''}}">
+                    <a href="">
+                        <i class="fa fa-id-card-o"></i>
+                        {{trans('nav.contact')}}
+                    </a>
                 </li>
-                <li class="main-nav-item" id="">
-                    <a href="">Testing</a>
-                </li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
 
-        <div class="nav navbar-right nav-auth hidden-xs visible-sm visible-lg visible-md">
-            @yield('auth')
+                @if (session('userRole') == 'admin' || session('userRole') == 'moderator' || session('userRole') == 'redactor')
+                <li class="main-nav-item" id="{{session('active') == 'adminzone' ? 'current' : ''}}">
+                    <a href="{{route('dashboard')}}">
+                        <i class="fa fa-wrench"></i>
+                        {{trans('nav.adminzone')}}
+                    </a>
+                </li>
+                @endif
+
+            </ul>
         </div>
-    </div><!-- /.container-fluid -->
+
+        @if (request()->path() !== 'login')
+            <div class="nav navbar-right nav-auth">
+                @include('partials.auth_buttons')
+            </div>
+        @endif
+    </div>
 </nav>
 
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12">
-            @yield('path-link')
-        </div>
-    </div>
-</div>
+{{--<div class="container">--}}
+    {{--<div class="row">--}}
+        {{--<div class="col-xs-12">--}}
+            {{--@yield('path-link')--}}
+        {{--</div>--}}
+    {{--</div>--}}
+{{--</div>--}}
 
 <div id="notification">
     @if(session('ok'))
@@ -131,10 +144,11 @@
 
 @yield('content')
 
+<div id="bootstrap-width-for-js" class="hidden-xs hidden-sm visible-md visible-lg"></div>
 <div id="footer">
     <div class="container">
         <div class="col-xs-12">
-            MyBlog &copy; 2016 - All rights reserved
+            MyBlog &copy; 2017 - All rights reserved
         </div>
     </div>
 </div>

@@ -16,9 +16,9 @@
 
 @foreach($posts as $post)
     <tr class="{{!$post->seen? 'panel-info' : '' }} {{!$post->active ? 'panel-warning' : ''}}">
-        <td class="td-title">{!! $post->title !!}</td>
+        <td>{!! $post->title !!}</td>
         <td>{{$post->username}}</td>
-        <td class="td-date">{{$post->created_at}}</td>
+        <td>{{date('d-m-Y H:i', strtotime($post->created_at))}}</td>
 
         @if (isset($can_toogle_seen))
         <td class="align-center">

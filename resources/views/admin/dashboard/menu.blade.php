@@ -1,6 +1,6 @@
 @extends('admin.dashboard.layout')
 
-@section('headExtra')
+@section('section_head_extra')
     <link href="/css/admin/dashboard.css" rel="stylesheet">
     @endsection
 

@@ -1,9 +1,5 @@
 @extends('admin.post.layout')
 
-@section('ajax')
-    <script src="/js/ajax/adminPosts.js"></script>
-    @endsection
-
 @section('admin-content')
     {{csrf_field()}}
     <table class="responsive-table">

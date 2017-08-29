@@ -4,6 +4,10 @@
     &nbsp;/&nbsp; {{trans('admin.creating')}}
 @endsection
 
+@section('summernote')
+    <script src="/js/admin/summernote_config.js"></script>
+@endsection
+
 @section('admin-content')
     <form action="{{route('createPost')}}" enctype="multipart/form-data" method="post">
         {{csrf_field()}}
@@ -13,7 +17,7 @@
                 <input type="text" name="title" id="post-title" value="{{old('title')}}">
 
                 <label for="preview" class="label-title no-user-select">{{trans('admin.posts.preview')}}</label>
-                <textarea id="preview" name="preview" style="display: none">{{old('preview')}}</textarea>
+                <textarea class="admin-summernote" name="preview" style="display: none">{{old('preview')}}</textarea>
                 <script>
                     $(document).ready(function() {
                         $('#preview').summernote();
@@ -21,12 +25,8 @@
                 </script>
 
                 <label for="text" class="label-title no-user-select">{{trans('admin.posts.content')}}</label>
-                <textarea id="text" name="text" style="display: none">{{old('text')}}</textarea>
-                <script>
-                    $(document).ready(function() {
-                        $('#text').summernote();
-                    });
-                </script>
+                <textarea class="admin-summernote" name="text" style="display: none">{{old('text')}}</textarea>
+
 
                 <div class="wrapper">
                     <button type="submit" class="btn btn-success publish-button">{{trans('admin.submit')}}</button>
@@ -36,7 +36,6 @@
 
                 <label for="category-list" class="label-title no-user-select">{{trans('admin.categories')}}</label>
                 <ul id="category-list" class="no-user-select">
-                    {{--<hr class="common-category-hr">--}}
                     @foreach($categories as $category)
                         <li>
                             <label>
@@ -47,7 +46,6 @@
                                     @endif
                                 @endif
                                 >
-                                {{--{{ old('categories') ? !in_array($category->category_id, old('categories')) ?: 'checked' : in_array($category->category_id, $post->categories) ? 'checked': ''}} }}>--}}
                                 <span class="common-category-font pull-right">{{trans('categories.' . $category->name)}}</span>
                             </label>
                         </li>

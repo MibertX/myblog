@@ -1,8 +1,16 @@
 .card {
-
+    margin: 20px 0;
     color: black;
     /*height: 175px;*/
     display: block;
+}
+
+.dashboard-hr-color {
+    border-color: rgb(180, 120, 237);
+}
+
+.dashboard-bgcolor-transparent {
+    background-color: rgba(180, 120, 237, 0.15);
 }
 
 .card-top {
@@ -19,6 +27,10 @@
 .card-bottom {
     color: white;
     background-color: #262626;
+    /*background-color: rgba(38, 38, 38, 0.75);*/
+    /*background-color: black;*/
+    border: 3px solid black;
+    border-top: none;
     border-radius: 0 0 6px 6px;
     padding: 2px 6px;
 }
@@ -39,19 +51,29 @@
 }
 
 #categories > .card-top {
-    background-color: #ff3333;
+    background-color: rgba(255, 175, 26, 0.75);
+    border: 3px solid #e67e00;
+    border-bottom: none;
 }
 
 #users > .card-top {
-    background-color: #3333ff;
+    background-color: rgba(51, 51, 255, 0.75);
+    border: 3px solid #000099;
+    border-bottom: none;
 }
 
 #posts > .card-top {
-    background-color: #00b300;
+    /*background-color: #00b300;*/
+    background-color: rgba(51, 200, 51, 0.75);
+    border: 3px solid #008000;
+    border-bottom: none;
 }
 
 #comments > .card-top {
-    background-color: orange;
+    /*background-color: rgba(255, 51, 51, 0.75);*/
+    background-color: rgba(0, 230, 230, 0.75);
+    border: 3px solid #009999;
+    border-bottom: none;
 }
 
 #posts:hover > .card-bottom,
@@ -70,9 +92,10 @@
 }
 
 #categories:hover > .card-top {
-    background-color: #b30000;
+    background-color: #e67e00;
 }
 
 #comments:hover > .card-top {
-    background-color: darkorange;
+    /*background-color: #b30000;*/
+    background-color: #009999;
 }

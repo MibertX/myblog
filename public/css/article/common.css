@@ -7,28 +7,30 @@
 | Categories
 |-----------------------------------------------------------------------------------------------------
 */
+.common-category-container {
+    -webkit-user-select: none;
+}
+
 .common-category-title {
     cursor: default;
     padding: 10px 10px 5px;
     margin: 0 0 10px;
-    /*background-color: #20B2AA;*/
     background-color: steelblue;
-    /*box-shadow:  0 27px 0 -17px black, 0px 10px 0 0px #222a33;*/
     box-shadow:  0 27px 0 -17px #2d3844, 0px 10px 0 0px #222a33;
-    /*border: 3px solid #20B2AA;*/
     border: 3px solid steelblue;
-    /*border-bottom: 5px solid #20B2AA;*/
     border-bottom: 5px solid steelblue;
     border-radius: 25px 25px 0 0;
     text-align: center;
     color: black;
     font: bold 18pt Arial;
     font-style: italic;
+
 }
 
-.common-category-container {
-    padding-left: 30px;
-    -webkit-user-select: none;
+@media (max-width: 991px) {
+    .common-category-title {
+        font-size: 14pt;
+    }
 }
 
 .common-category-list {
@@ -40,111 +42,87 @@
     margin-top: -1px;
 }
 
-.common-category-label {
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    height: 100%;
+#common-category-current {
+    border-color: steelblue;
+    background-color: rgba(70, 130, 180, 0.25); /*steelblue with opacity*/
 }
 
-.common-category-hr {
-    margin: 3px 0;
-    border: none;
-    border-bottom: 1px solid #53585c;
+#common-category-current:active > a > span,
+#common-category-current:focus > a > span,
+#common-category-current:hover > a > span {
+    color: white ;
 }
 
-.common-category-field {
-    padding: 2px 5px;
-    margin: 0 0;
-    height: 30px;
+.common-category-list > li {
+    padding: 3px 6px;
+    height: 33px;
     border-top: 1px solid #53585c;
     cursor: pointer;
 }
 
-.common-category-font {
-    color: white;
-    font: 12pt Arial, sans-serif;
-    line-height: 26px;
-    text-align: right;
+.common-category-list > li:first-child > a {
+    text-decoration: none;
+    text-align: center;
 }
 
-.common-category-field > a {
+.common-category-list > li:last-child {
+    border-bottom: 1px solid #53585c;
+    height: 34px;
+}
+
+.common-category-list > li:active,
+.common-category-list > li:focus,
+.common-category-list > li:hover {
+    border-color: steelblue;
+}
+
+.common-category-list > li:active + li,
+.common-category-list > li:focus + li,
+.common-category-list > li:hover + li,
+#common-category-current + li {
+    border-top-color: steelblue;
+}
+
+.common-category-list > li > a {
     display: block;
     padding: 0;
     width: 100%;
     height: 100%;
-    background-color: inherit;
-
-
-    /*border-top: 1px solid #53585c;*/
 }
 
-.common-category-field:last-child {
-    border-bottom: 1px solid #53585c;
-}
-
-/*.common-category-field > a:active .common-category-font,*/
-/*.common-category-field > a:focus .common-category-font,*/
-/*.common-category-field > a:hover .common-category-font {*/
-    /*color: steelblue;*/
-/*}*/
-
-.common-category-field:active,
-.common-category-field:focus,
-.common-category-field:hover {
-    border-color: steelblue;
-}
-.common-category-field:active + .common-category-field,
-.common-category-field:focus + .common-category-field,
-.common-category-field:hover + .common-category-field,
-.common-category-active + .common-category-field {
-    border-top-color: steelblue;
-}
-
-.common-category-field:active > a .common-category-font,
-.common-category-field:focus > a .common-category-font,
-.common-category-field:hover > a .common-category-font {
-    color: steelblue;
-}
-
-.common-category-active:active > a .common-category-font,
-.common-category-active:focus > a .common-category-font,
-.common-category-active:hover > a .common-category-font {
+.common-category-list > li > a > span {
     color: white;
-
+    font: 12pt Arial, sans-serif;
+    line-height: 26px;
+}
+@media (max-width: 991px) {
+    .common-category-list > li > a > span {
+        font-size: 10pt;
+    }
 }
 
-.common-category-active {
-    border-color: steelblue;
-    background-color: steelblue;
+.common-category-list > li:active > a > span,
+.common-category-list > li:focus > a > span,
+.common-category-list > li:hover > a >span {
+    color: steelblue;
 }
 
 
 /*
 |-----------------------------------------------------------------------------------------------------
-| Decorations - containers and errors info
+| Article containers
 |-----------------------------------------------------------------------------------------------------
 */
 .common-article-container {
-    padding: 0px 35px 0 50px;
+    max-width: 1600px;
 }
 
 .common-article-background {
-    /*background-color: #eeeade;*/
     background-color: #222a33;
-    padding: 0 !important;
-    /*padding: 15px 20px 0;*/
-    /*padding: 30px 35px 0;*/
+    padding: 15px;
     border-radius: 8px;
     box-shadow: 5px 5px 20px -4px black;
 }
-
-.error-info {
-    color: red;
-    font: 8pt Arial, sans-serif;
-    margin: 10px;
-}
-
 
 /*
 |-----------------------------------------------------------------------------------------------------
@@ -152,43 +130,36 @@
 |-----------------------------------------------------------------------------------------------------
 */
 .pagination {
-    margin: 10px 0 5px;
+    margin: 15px 0 0 0;
+    border: 1px solid steelblue;
     -webkit-user-select: none;
     -moz-user-select: none;
 }
 
 .pagination li > a,
 .pagination li > span {
-    border-bottom: none !important;
-    border-top: none !important;
-    border-color: #222a33 !important;
+    border: none !important;
 }
 
-.pagination .enabled > a{
+.pagination li > a {
     background-color: #E6E6FA;
     color: steelblue;
 }
 
-.pagination .enabled > a:hover,
-.pagination .enabled > a:focus,
-.pagination .enabled > a:active {
-    background-color: #c4e4ed !important;
+.pagination li:last-child > a,
+.pagination li:last-child > span {
+    border: none;
+}
+
+.pagination li > a:hover,
+.pagination li > a:focus,
+.pagination li > a:active {
+    background-color: #c4e4ed;
 }
 
 .pagination .disabled > span,
 .pagination .disabled > span:hover {
-    background-color: #222a33;
-}
-
-.pagination .simple > a,
-.pagination .simple > a:focus {
-    background-color: transparent !important;
-    color: steelblue !important;
-}
-.pagination .simple > a:hover,
-.pagination .simple > a:active {
-    background-color: steelblue !important;
-    color: white !important;
+    background-color: rgba(153, 153, 153, 0.25);
 }
 
 .pagination .active > span,
@@ -196,17 +167,3 @@
     background-color: steelblue;
 }
 
-
-@media (max-width: 992px) {
-    .common-article-container {
-        padding: 0 5px;
-    }
-
-    .common-category-title {
-        font-size: 14pt;
-    }
-
-    .common-category-font {
-        font-size: 10pt;
-    }
-}

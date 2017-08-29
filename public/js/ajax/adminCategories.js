@@ -65,14 +65,8 @@ function deleteClick(button)
         success: function (data) {
             $(button).parents("tr").remove();
             var page = ($(".responsive-table .pagination .active span").html());
-
-            if (($(".responsive-table tr").length) < 3) {
-                --page;
-            }
-
-            if (page > 0) {
-                getData(page);
-            }
+            getData(page);
+            
             createPopupForAjax(data);
         }
     })

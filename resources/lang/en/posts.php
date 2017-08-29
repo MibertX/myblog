@@ -18,11 +18,10 @@ return [
 		'web' => 'Web',
 		'windows' => 'Windows'
 	],
-	
-	
+
 	'read_more' => 'Read more',
 	'updated' => 'Updated',
-	'added' => 'Added'
-	
+	'added' => 'Added',
+	'no_posts' => 'There are no posts in this category yet :('
 	
 ];

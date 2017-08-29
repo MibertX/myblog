@@ -19,6 +19,8 @@ class ActiveSection
         if ((stripos($request->path(), 'adminzone')) !== false) {
             Session::put('active', 'adminzone');
         } else if ((stripos($request->path(), 'articles')) !== false) {
+            Session::put('active', 'blog');
+        } else if ($request->path() == '/') {
             Session::put('active', 'main');
         }
 

@@ -9,6 +9,21 @@ return [
 	'delete_btn' => 'Delete',
 	'category_section' => 'Category management',
 
+	'menu' => [
+		'dashboard' => 'Dashboard',
+		'users' => 'Users',
+		'posts' => 'Posts',
+		'categories' => 'Categories',
+		'comments' => 'Comments',
+		'files' => 'Files',
+		'close' => 'Close'
+	],
+
+	'submenu' => [
+		'all' => 'All',
+		'create' => 'Create'
+	],
+
 
 	'posts' => [
 		'link' => 'Posts',

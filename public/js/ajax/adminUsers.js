@@ -31,14 +31,7 @@ function deleteClick(that) {
             $(that).parents("tr").remove();
             createPopupForAjax(data);
             var page = ($(".responsive-table .pagination .active span").html());
-
-            if (($(".responsive-table tr").length) < 3) {
-                --page;
-            }
-
-            if (page > 0) {
-                getData(page)
-            }
+            getData(page)
         }
     })
 }

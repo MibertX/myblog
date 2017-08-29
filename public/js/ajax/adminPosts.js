@@ -62,6 +62,8 @@ function deleteClick(that) {
         url: "/adminzone/posts/delete",
         success: function (data) {
             $(that).parents("tr").remove();
+            var page = ($(".responsive-table .pagination .active span").html());
+            getData(page);
             createPopupForAjax(data);
         }
     })

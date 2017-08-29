@@ -42,15 +42,10 @@ class Post extends Model
 
 	public function getCreatedAtAttribute($time)
 	{
-		$this->short_month = date('M', strtotime($time));
-		$this->short_day   = date('d', strtotime($time));
-		return DateFormat::when($time);
+		$this->date = DateFormat::when($time);
+		return $time;
 	}
 
-	public function getUpdatedAtAttribute($time)
-	{
-		return DateFormat::when($time);
-	}
 
 	/**
 	 * One to one relation.

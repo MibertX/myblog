@@ -46,8 +46,9 @@ class BlogController extends Controller
 	{
 		$categories = $this->blog->allCategories();
 		$posts = $this->blog->allPosts();
-		Session::forget('category');
-
+		Session::put('category', 'all');
+		
+		
 		return response()->view('article/all', array('articles' => $posts, 'categories' => $categories));
 	}
 

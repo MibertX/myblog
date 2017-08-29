@@ -85,3 +85,11 @@
 .red-color:active {
     color: #961d1d;
 }
+
+.posts-bgcolor-transparent {
+    background-color: rgba(102, 255, 102, 0.15);
+}
+
+.posts-hr-color {
+    border-color: #66ff66
+}

@@ -2,11 +2,13 @@
 
 namespace App\Http;
 
-use App\Http\Middleware\ExistViewMiddleware;
+use App\Http\Middleware\AdminzoneAccess;
+use App\Http\Middleware\AdminzoneActiveSection;
 use App\Http\Middleware\MiddleTest;
 use App\Http\Middleware\RegisterValidation;
 use App\Http\Middleware\SecondMiddle;
 use App\Http\Middleware\SetLocale;
+use App\Http\Middleware\UserRoleMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use App\Http\Middleware\ActiveSection;
 
@@ -21,6 +23,7 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
+        UserRoleMiddleware::class
     ];
 
     /**
@@ -38,6 +41,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             SetLocale::class,
             ActiveSection::class,
+            UserRoleMiddleware::class,
         ],
 
         'api' => [
@@ -60,5 +64,7 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'admin_access' => AdminzoneAccess::class,
+        'admin_active' => AdminzoneActiveSection::class
     ];
 }

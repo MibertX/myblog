@@ -61,14 +61,7 @@ function deleteClick(button)
         success: function (data) {
             $(button).parents("#comments-container div.row").remove();
             var page = ($("#comments-container .pagination .active span").html());
-
-            if (($("#comments-container").children().length) < 2) {
-                --page;
-            }
-
-            if (page > 0) {
-                getData(page)
-            }
+            getData(page)
             createPopupForAjax(data)
         },
     })

@@ -10,4 +10,5 @@ return [
 	'web'=>'Web',
 	'windows'=>'Windows',
 	'javascript'=>'JavaScript',
+	'all_categories'=>'Все категории'
 ];

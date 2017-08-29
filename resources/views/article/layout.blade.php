@@ -8,22 +8,32 @@
 @stop
 
 @section('content')
-    <div class="container common-article-container">
+    <div class="container-fluid common-article-container">
         <div class="row">
-            <div class="col-xs-9 common-article-background">
-                @yield('post')
-                @yield('posts')
+            <div class="col-xs-9 col-lg-10">
+                <div class="common-article-background">
+                    @yield('post')
+                    @yield('posts')
+                </div>
             </div>
 
-            <div class="col-xs-3 common-category-container">
-                <div class="wrapper"><h4 class="common-category-title">{{trans('posts.category_title')}}</h4></div>
+            <div class="col-xs-3 col-lg-2 common-category-container">
+                <div class="wrapper">
+                    <h4 class="common-category-title">{{trans('posts.category_title')}}</h4>
+                </div>
 
                 <ul class="common-category-list">
+                    <li {{session('category') == 'all' ? 'id=common-category-current' : ''}}>
+                        <a href="{{route('allArticles')}}">
+                            <span>{{trans('categories.all_categories')}}</span>
+                        </a>
+                    </li>
+
                     @foreach($categories as $category)
-                        <li class="common-category-field{{session('category') == $category->name ? ' common-category-active':'' }}">
+                        <li {{session('category') == $category->name ? 'id=common-category-current' : ''}}>
                             <a href="{{route('getByCategories', ['category' => $category->name])}}">
-                                <span class="pull-left common-category-font">{{$category->posts}}</span>
-                                <span class="pull-right common-category-font">{{strtr($category->name, trans('posts.categories'))}}</span>
+                                <span class="pull-left">{{$category->posts}}</span>
+                                <span class="pull-right">{{strtr($category->name, trans('posts.categories'))}}</span>
                             </a>
                         </li>
                     @endforeach

@@ -1,11 +1,9 @@
 @extends('admin.layout')
 
-@section('headExtra')
-    <link rel="stylesheet" href="/css/admin/table.css">
+@section('section_head_extra')
     <link rel="stylesheet" href="/css/user.css">
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="/js/ajax/adminUsers.js"></script>
-
+@endsection
 
 @section('admin-section')
     <div class="row">
@@ -21,10 +19,10 @@
             @endif
         </div>
     </div>
-    <hr>
+    <hr class="admin-hr user-hr-color">
     <div class="row">
         <div class="col-xs-12">
-            <span class="admin-link-path no-user-select">
+            <span class="admin-link-path user-bgcolor-transparent">
                 <i class="fa fa-user"></i>
                 <a href="{{route('createUserView')}}" class="{{request()->path() != 'adminzone/users/all' ? '' : 'link-disabled'}}">
                     Users

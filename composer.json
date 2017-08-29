@@ -12,7 +12,8 @@
         "barryvdh/laravel-ide-helper": "*",
         "barryvdh/laravel-debugbar": "dev-master",
         "guzzlehttp/guzzle": "~5.3|~6.0",
-        "graham-campbell/exceptions": "*"
+        "graham-campbell/exceptions": "*",
+        "unisharp/laravel-filemanager": "^1.8"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

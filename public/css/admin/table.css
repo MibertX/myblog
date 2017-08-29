@@ -10,6 +10,7 @@ td> p {
     border-top: 1px solid black;
     height: 50px;
     padding: 8px !important;
+    font: 10pt Arial, Verdana, sans-serif;
 }
 
 .responsive-table th {
@@ -36,7 +37,7 @@ td> p {
 }
 
 .td-for-btn {
-    width: 75px;
+    width: 50px;
     text-align: center;
 }
 
@@ -117,4 +118,22 @@ button.icon-delete {
 
 .align-center {
     text-align: center;
+}
+
+@media (max-width: 1200px) {
+    .responsive-table th {
+        font-size: 12pt;
+        text-align: center;
+    }
+    .responsive-table th i {
+        display: inline-block;
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 991px) {
+    .responsive-table th {
+        font-size: 11pt;
+    }
 }
